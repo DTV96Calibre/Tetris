@@ -51,7 +51,7 @@ public class Block {
         this.highlight = null;
     }
 
-    public Block(Color color, Color highlight) {
+    public Block(java.awt.Color color, java.awt.Color highlight) {
         this.color = color;
         this.highlight = highlight;
     }

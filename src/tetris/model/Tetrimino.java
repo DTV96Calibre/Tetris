@@ -15,14 +15,18 @@ import java.awt.Color;
  * @author Daniel Vasquez
  */
 public class Tetrimino {
+    // PLACEHOLDER!!!
+    private static boolean[][] array;
 
     /**
      * The number of columns/rows in the Tetrimino's array of blocks.
      */
-    public static final int WIDTH_OF_TETRIMINO_ARRAY = 5;
+    public static final int TETRIMINO_ARRAY_WIDTH = 5;
 
     public enum Shape {
-        Z();
+
+        // PLACEHOLDER!!!
+        Z(array, Color.BLUE);
 
         private final boolean[][] blockShape;
         private final Color color;
@@ -42,8 +46,13 @@ public class Tetrimino {
         }
     }
 
-    public Tetrimino() {
-        Block[][] blockArray = new Block[WIDTH_OF_TETRIMINO_ARRAY][WIDTH_OF_TETRIMINO_ARRAY];
-
+    public Tetrimino(Shape shape) {
+        Block[][] blockArray = new Block[TETRIMINO_ARRAY_WIDTH][TETRIMINO_ARRAY_WIDTH];
+        for (int i = 0; i < TETRIMINO_ARRAY_WIDTH; i++) {
+            for (int j = 0; i < TETRIMINO_ARRAY_WIDTH; i++) {
+                blockArray[i][j] = new Block(shape.getColor(), Color.GRAY); //PLACEHOLDER
+            }
+        }
+        this.array = null;
     }
 }
