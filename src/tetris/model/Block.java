@@ -13,7 +13,22 @@ import java.awt.Color;
  * @author Daniel Vasquez
  */
 public class Block {
+    /**
+     * The color of the block.
+     */
     private Color color;
+
+    /**
+     * The color of the block's highlight.
+     *
+     * null if the block should not be highlighted. Highlighting is used to
+     * indicated whether or not the block should be in the foreground or on the
+     * same plane as the rest of the board.
+     *
+     * TODO: Highlighting could be implemented by drawing a block of the
+     * highlight color with a slightly larger size behind the block.
+     */
+    private Color highlight;
 
     public Color getColor() {
         return color;
@@ -30,7 +45,6 @@ public class Block {
     public void setHighlight(Color highlight) {
         this.highlight = highlight;
     }
-    private Color highlight;
 
     public Block() {
         this.color = null;
