@@ -30,8 +30,10 @@ public class Block {
      */
     private Color highlight;
 
+    /* Getters and setters */
     public Color getColor() {
         return color;
+        System.out.println("yolo");
     }
 
     public void setColor(Color color) {
