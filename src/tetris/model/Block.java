@@ -6,11 +6,12 @@
 package tetris.model;
 
 import java.awt.Color;
+import java.awt.Point;
 
 /**
- * A block used in the construction of tetriminos and other Tetris pieces.
+ * A block used in the construction of Tetriminos and other Tetris pieces.
  *
- * @author Daniel Vasquez
+ * @author Daniel Vasquez & Brooke Bullek
  */
 public class Block {
     /**
@@ -19,42 +20,53 @@ public class Block {
     private Color color;
 
     /**
-     * The color of the block's highlight.
-     *
-     * null if the block should not be highlighted. Highlighting is used to
-     * indicated whether or not the block should be in the foreground or on the
-     * same plane as the rest of the board.
-     *
-     * TODO: Highlighting could be implemented by drawing a block of the
-     * highlight color with a slightly larger size behind the block.
+     * The representation of the block's location relative to its Tetrimino.
+     * This is independent from the Gameboard class(es). Every Tetrimino is
+     * rotated around a center square and held within a "bounding box," and its
+     * shape can be uniquely identified by a set of four points where (0, 0) is
+     * the center.
      */
-    private Color highlight;
+    private Point location;
+
+    /**
+     * The default constructor for the Block class.
+     *
+     * @author Daniel Vasquez
+     */
+    public Block() {
+        this.color = null;
+        this.location = null;
+    }
+
+    /**
+     * The explicit constructor for the Block class. Instantiates a Block with
+     * specific attributes.
+     *
+     * @param color the color of this block
+     * @param location A Point (tuple) that stores x- and y-coordinates
+     *
+     * @author Daniel Vasquez & Brooke Bullek
+     */
+    public Block(Color color, Point location) {
+        this.color = color;
+        this.location = location;
+    }
 
     /* Getters and setters */
     public Color getColor() {
         return color;
-        System.out.println("yolo");
     }
 
     public void setColor(Color color) {
         this.color = color;
     }
 
-    public Color getHighlight() {
-        return highlight;
+    public Point getLocation() {
+        return location;
     }
 
-    public void setHighlight(Color highlight) {
-        this.highlight = highlight;
+    public void setLocation(Point location) {
+        this.location = location;
     }
-
-    public Block() {
-        this.color = null;
-        this.highlight = null;
-    }
-
-    public Block(java.awt.Color color, java.awt.Color highlight) {
-        this.color = color;
-        this.highlight = highlight;
-    }
+    /* End of getters and setters */
 }
