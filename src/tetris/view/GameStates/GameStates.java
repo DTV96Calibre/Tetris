@@ -13,8 +13,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import tetris.model.TShape;
 import tetris.model.Tetrimino;
-import tetris.model.Tetrimino.Shape;
 
 /**
  *
@@ -35,7 +35,7 @@ public class GameStates extends BasicGameState {
     @Override
     public void init(GameContainer gc, StateBasedGame s) throws SlickException {
         entities = new ArrayList<Tetrimino>();
-        entities.add(new Tetrimino(Shape.Z));
+        entities.add(new Tetrimino(TShape.J_BLOCK));
     }
 
     @Override
