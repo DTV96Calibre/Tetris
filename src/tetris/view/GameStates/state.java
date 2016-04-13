@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tetris.model;
+package tetris.view.GameStates;
+
+import amaingGame.states.*;
 
 /**
  *
  * @author xizhouli
  */
-public class Entities {
-
+public class state {
+    public static final int GAME = 0;
+    public static final int MENU = 1;
 }

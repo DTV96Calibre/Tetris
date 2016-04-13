@@ -6,6 +6,8 @@
 package tetris.model;
 
 import java.awt.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 
 /**
  * A block used in the construction of tetriminos and other Tetris pieces.
@@ -54,5 +56,9 @@ public class Block {
     public Block(java.awt.Color color, java.awt.Color highlight) {
         this.color = color;
         this.highlight = highlight;
+    }
+
+    public void render(GameContainer gc, Graphics g) {
+        g.drawRect(10, 10, 5, 5);
     }
 }

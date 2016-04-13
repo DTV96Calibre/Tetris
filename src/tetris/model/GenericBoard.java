@@ -20,7 +20,7 @@ package tetris.model;
  *
  * @author Daniel Vasquez
  */
-public class GenericBoard extends Entities {
+public class GenericBoard {
 
     /**
      * Width of the <code>GenericBoard</code>'s grid
@@ -92,4 +92,5 @@ public class GenericBoard extends Entities {
     public GenericBoard(int width, int height) {
         this.blockArray = new Block[width][height];
     }
+
 }

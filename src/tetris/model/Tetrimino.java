@@ -6,6 +6,8 @@
 package tetris.model;
 
 import java.awt.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 
 /**
  * A shaped piece made up of four blocks. Represented as a 2D array of blocks.
@@ -14,7 +16,7 @@ import java.awt.Color;
  *
  * @author Daniel Vasquez
  */
-public class Tetrimino extends Entities {
+public class Tetrimino {
     // PLACEHOLDER!!!
     private static boolean[][] array;
 
@@ -54,5 +56,13 @@ public class Tetrimino extends Entities {
             }
         }
         this.array = null;
+    }
+
+    public void render(GameContainer gc, Graphics g) {
+
+    }
+
+    public void update(GameContainer gc, int delta) {
+
     }
 }
