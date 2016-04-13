@@ -6,16 +6,16 @@
 package tetris.model;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.util.Objects;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 
 /**
  * A block used in the construction of Tetriminos and other Tetris pieces.
  *
  * @author Daniel Vasquez & Brooke Bullek
  */
+@SuppressWarnings("EqualsAndHashcode")
 public class Block {
     /**
      * The color of the block.
