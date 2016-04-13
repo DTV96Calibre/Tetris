@@ -20,5 +20,7 @@ package tetris.view;
  * @author xizhouli
  */
 public class Window {
+    public static int WIDTH = 640;
+    public static int HEIGHT = 640;
 
 }

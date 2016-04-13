@@ -20,7 +20,7 @@ package tetris.model;
  *
  * @author Andre Amirsaleh
  */
-public class ScoreBoard {
+public class ScoreBoard extends Entities {
 
     /**
      * The current number of points that a player has

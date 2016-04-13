@@ -14,7 +14,7 @@ import java.awt.Color;
  *
  * @author Daniel Vasquez
  */
-public class Tetrimino {
+public class Tetrimino extends Entities {
     // PLACEHOLDER!!!
     private static boolean[][] array;
 
