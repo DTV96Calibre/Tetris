@@ -64,17 +64,17 @@ public class World {
                 for (int j = 0; j < size; j++) {
                     JSONObject sublayer = (JSONObject) sublayers.get(j);
                     if ((boolean) sublayer.get("ellipse")) {
-                        WIDTH = (int) (long) sublayer.get("width");
-                        HEIGHT = (int) (long) sublayer.get("height");
+                        int width = (int) (long) sublayer.get("width");
+                        int height = (int) (long) sublayer.get("height");
                         int x = (int) (long) sublayer.get("x");
                         int y = (int) (long) sublayer.get("y");
                         System.out.println(
-                                WIDTH + " " + HEIGHT + " " + x + " " + y);
+                                width + " " + height + " " + x + " " + y);
                         System.out.println(j);
                         Ellipse2D ellipse = new Ellipse2D.Double((double) x,
                                                                  (double) y,
-                                                                 (double) WIDTH,
-                                                                 (double) HEIGHT);
+                                                                 (double) width,
+                                                                 (double) height);
 //                        System.out.println(ellipse == null);
                         collision[j] = ellipse;
                     }

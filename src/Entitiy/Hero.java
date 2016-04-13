@@ -49,7 +49,7 @@ public class Hero extends Entity {
     @Override
     public void update(GameContainer gc, int delta) {
         Input input = gc.getInput();
-        if (!inPortal()) {
+        if (inPortal()) {
             if (input.isKeyDown(Input.KEY_W)) {
                 if (!testUp()) {
                     y -= speed * delta;
