@@ -11,7 +11,7 @@ package amazingGame.world;
  */
 public class Tile {
     public static final int large_size = 576;
-    public static final int size = 32;
+    public static final int size = 64;
     public static final int small_size = 16;
     public static final float scale = (size / small_size);
 }

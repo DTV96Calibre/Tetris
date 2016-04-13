@@ -27,9 +27,12 @@ public class Resources {
         sprite = new HashMap<String, SpriteSheet>();
         sounds = new HashMap<String, Sound>();
         try {
+
             sprite.put("tiles", loadSprite(
-                       "/Users/xizhouli/slick2D/Json Files/pictures_tmx/gameView.png",
-                       Tile.size, Tile.size));
+                       "/Users/xizhouli/slick2D/my asset/gameView.png",
+                       Tile.size,
+                       Tile.size));
+
             image.put("soldier", loadImage(
                       "/Users/xizhouli/slick2D/soldier.png"));
             image.put("bomb", loadImage("/Users/xizhouli/slick2D/bomb.png"));

@@ -42,7 +42,7 @@ public class GameStates extends BasicGameState {
         g.setColor(Color.yellow);
         g.drawString("Game State, Hoorray", 200, 200);
 //        g.translate(-40, -40);
-        World.render(400, 400);
+        World.render(200, 200);
         int amount = entities.size();
         for (int i = 0; i < amount; i++) {
             entities.get(i).render(gc, g);

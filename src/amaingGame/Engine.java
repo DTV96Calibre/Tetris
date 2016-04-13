@@ -60,9 +60,10 @@ public class Engine extends StateBasedGame {
 
         new Resources();
         try {
-            World.load("/Users/xizhouli/slick2D/Json Files/gameView.json");
+            World.load(
+                    "/Users/xizhouli/slick2D/my asset/gameView.json");
         } catch (Exception ex) {
-
+            ex.printStackTrace();
             System.err.println("map does not exist");
             System.exit(0);
         }
