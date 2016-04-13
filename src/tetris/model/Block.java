@@ -7,6 +7,7 @@ package tetris.model;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.Objects;
 
 /**
  * A block used in the construction of Tetriminos and other Tetris pieces.
@@ -69,4 +70,30 @@ public class Block {
         this.location = location;
     }
     /* End of getters and setters */
+
+    /**
+     * Overrides the == operator to check for equality among two Blocks.
+     *
+     * @author Brooke Bullek
+     * @param obj the object with which to compare this Block
+     * @return a boolean indicating whether these objects are equal
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Block other = (Block) obj;
+        if (!Objects.equals(this.color, other.color)) {
+            return false;
+        }
+        if (!Objects.equals(this.location, other.location)) {
+            return false;
+        }
+        return true;
+    }
+
 }
