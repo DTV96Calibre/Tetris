@@ -27,14 +27,14 @@ public class GenericBoard {
      *
      * @author Daniel Vasquez
      */
-    private static int BOARD_WIDTH;
+    private static final int WIDTH = 10;
 
     /**
      * Height of the <code>GenericBoard</code>'s grid
      *
      * @author Daniel Vasquez
      */
-    private static int BOARD_HEIGHT;
+    private static final int HEIGHT = 20;
 
     /**
      * The <code>GenericBoard</code>'s grid
@@ -44,23 +44,23 @@ public class GenericBoard {
     private Block[][] blockArray;
 
     /**
-     * Returns <code>BOARD_WIDTH</code> (static) attribute
+     * Returns <code>WIDTH</code> (static) attribute
      *
      * @return Width of the <code>GenericBoard</code>'s grid
      * @author Daniel Vasquez
      */
-    public static int getBOARD_WIDTH() {
-        return BOARD_WIDTH;
+    public static int getWidth() {
+        return WIDTH;
     }
 
     /**
-     * Returns <code>BOARD_HEIGHT</code> (static) attribute
+     * Returns <code>getHeight</code> (static) attribute
      *
      * @return Height of the <code>GenericBoard</code>'s grid
      * @author Daniel Vasquez
      */
-    public static int getBOARD_HEIGHT() {
-        return BOARD_HEIGHT;
+    public static int getHeight() {
+        return HEIGHT;
     }
 
     /**
@@ -79,7 +79,7 @@ public class GenericBoard {
      * @author Daniel Vasquez
      */
     public GenericBoard() {
-        this.blockArray = new Block[BOARD_WIDTH][BOARD_HEIGHT];
+        this.blockArray = new Block[WIDTH][HEIGHT];
     }
 
     /**

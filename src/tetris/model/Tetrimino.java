@@ -5,10 +5,10 @@
  */
 package tetris.model;
 
-import java.awt.Color;
+import java.awt.Point;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import java.awt.Point;
 
 /**
  * A shaped piece made up of four blocks. Represented as a 2D array of blocks.
@@ -42,17 +42,21 @@ public class Tetrimino {
     public Tetrimino(TShape shape) {
         Block[] blockArray = new Block[TETRIMINO_ARRAY_WIDTH];
 
-        // iterate through the Point array of this TShape and create four Blocks
-        for (int i = 0; i < shape.getMinoLocations().length; i++) {
-            blockArray[i] = new Block(shape.getColor(),
-                                      shape.getMinoLocations()[i]);
-        }
-
+        initBlockArray(shape, blockArray);
         /* Assign attributes to this Tetrimino. No need to assign a Color
          * since that information is contained within the TShape enum.
          */
         this.shape = shape;
         this.blockArray = blockArray;
+    }
+
+    private void initBlockArray(TShape shape1, Block[] blockArray1) {
+        // iterate through the Point array of this TShape and create four Blocks
+        for (int i = 0; i < shape1.getMinoLocations().length; i++) {
+
+            blockArray1[i] = new Block(shape1.color,
+                                       shape1.getMinoLocations()[i]);
+        }
     }
 
     /* Getters and setters */
@@ -71,8 +75,12 @@ public class Tetrimino {
     public void setShape(TShape shape) {
         this.shape = shape;
     }
-    /* End of getters and setters */
 
+    public Color getColor() {
+        return this.blockArray[0].getColor();
+    }
+
+    /* End of getters and setters */
     /**
      * Rotates the Tetrimino 90 degrees left or right, depending on the factor
      * given (-1 denotes a left rotation, 1 denotes a right rotation). All
@@ -110,7 +118,10 @@ public class Tetrimino {
         // Tetrimino can't be rotated (for example, it's in a corner)
     }
 
-    public void render(GameContainer gc, Graphics g) {
+    public void renderTetris(GameContainer gc, Graphics g) {
+        for (int i = 0; i < this.blockArray.length; i++) {
+            this.blockArray[i].render(gc, g);
+        }
 
     }
 

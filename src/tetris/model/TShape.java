@@ -15,8 +15,9 @@
  */
 package tetris.model;
 
-import java.awt.Color;
 import java.awt.Point;
+import org.newdawn.slick.Color;
+
 
 /* An enumerated class to store the seven possible arrangements of a
  * Tetrimino. These reflect the initial state of the Tetrimino upon being
@@ -25,25 +26,25 @@ import java.awt.Point;
  * @author Brooke Bullek
  */
 public enum TShape {
-    I_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(1, 0),
-                        new Point(2, 0)}, Color.CYAN),
+    I_BLOCK(new Point[]{new Point(0, 0), new Point(0, 1), new Point(0, 2),
+                        new Point(0, 3)}, Color.cyan),
     J_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(-1, 1),
-                        new Point(1, 0)}, Color.BLUE),
+                        new Point(1, 0)}, Color.blue),
     L_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(1, 0),
-                        new Point(1, 1)}, Color.ORANGE),
+                        new Point(1, 1)}, Color.orange),
     O_BLOCK(new Point[]{new Point(0, 0), new Point(1, 0), new Point(0, -1),
-                        new Point(1, -1)}, Color.YELLOW),
+                        new Point(1, -1)}, Color.yellow),
     S_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(0, 1),
-                        new Point(1, 1)}, Color.GREEN),
+                        new Point(1, 1)}, Color.green),
     T_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(1, 0),
-                        new Point(0, 1)}, Color.MAGENTA),
+                        new Point(0, 1)}, Color.magenta),
     Z_BLOCK(new Point[]{new Point(0, 0), new Point(0, 1), new Point(1, 0),
-                        new Point(-1, 1)}, Color.RED);
+                        new Point(-1, 1)}, Color.red);
 
     // array of Points rather than array of Blocks (to reduce dependencies)
-    private final Point[] minoLocations;
+    public final Point[] minoLocations;
     // the color of this type of Tetrimino
-    private final Color color;
+    public final Color color;
 
     TShape(Point[] minoLocations, Color color) {
         this.color = color;
@@ -55,8 +56,5 @@ public enum TShape {
         return minoLocations;
     }
 
-    public Color getColor() {
-        return color;
-    }
     /* End of getters and setters */
 }

@@ -48,8 +48,8 @@ public class GameEngine extends StateBasedGame {
         try {
             AppGameContainer game = new AppGameContainer(
                     new GameEngine("Tetris"));
-            game.setDisplayMode(tetris.view.Window.WIDTH,
-                                tetris.view.Window.HEIGHT, false);
+            game.setDisplayMode(tetris.view.Window.getWIDTH(),
+                                tetris.view.Window.getHEIGHT(), false);
             game.start();
         } catch (SlickException ex) {
             ex.printStackTrace();
