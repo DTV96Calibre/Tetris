@@ -5,8 +5,6 @@
  */
 package tetris.view.GameStates;
 
-import amaingGame.states.*;
-
 /**
  *
  * @author xizhouli

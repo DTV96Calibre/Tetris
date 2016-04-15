@@ -98,16 +98,6 @@ public class Block {
         return true;
     }
 
-    public Block() {
-        this.color = null;
-        this.highlight = null;
-    }
-
-    public Block(java.awt.Color color, java.awt.Color highlight) {
-        this.color = color;
-        this.highlight = highlight;
-    }
-
     public void render(GameContainer gc, Graphics g) {
         g.drawRect(10, 10, 5, 5);
     }
