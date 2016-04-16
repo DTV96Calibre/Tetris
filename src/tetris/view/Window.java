@@ -20,7 +20,20 @@ package tetris.view;
  * @author xizhouli
  */
 public class Window {
-    public static int WIDTH = 640;
-    public static int HEIGHT = 640;
+    private static int WIDTH = 640;
+    private static int HEIGHT = 640;
+    private static final int PIXEL_OFFSET = 32;
+
+    public static int getWIDTH() {
+        return WIDTH;
+    }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public static int getPIXEL_OFFSET() {
+        return PIXEL_OFFSET;
+    }
 
 }

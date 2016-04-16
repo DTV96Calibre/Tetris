@@ -6,7 +6,6 @@
 package tetris.view.GameStates;
 
 import java.util.ArrayList;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -22,9 +21,9 @@ import tetris.model.Tetrimino;
  */
 public class GameStates extends BasicGameState {
     public static ArrayList<Tetrimino> entities;
-    public int x = 10;
-    public int y = 10;
-    public int side = 10;
+//    public int x = 10;
+//    public int y = 10;
+//    public int side = 10;
     public int timer = 0;
 
     @Override
@@ -34,17 +33,22 @@ public class GameStates extends BasicGameState {
 
     @Override
     public void init(GameContainer gc, StateBasedGame s) throws SlickException {
-        entities = new ArrayList<Tetrimino>();
-        entities.add(new Tetrimino(TShape.J_BLOCK));
+        entities = new ArrayList<>();
+
+        entities.add(new Tetrimino(TShape.I_BLOCK));
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame s, Graphics g) throws SlickException {
-        g.setColor(Color.cyan);
-        g.drawRect(x, y, 10, 10);
-        g.drawRect(x + 10, y, 10, 10);
-        g.drawRect(x, y + 10, 10, 10);
-        g.drawRect(x + 10, y + 10, 10, 10);
+
+        for (int i = 0; i < entities.size(); i++) {
+            entities.get(i).renderTetris(gc, g);
+        }
+//        g.setColor(Color.cyan);
+//        g.drawRect(x, y, 10, 10);
+//        g.drawRect(x + 10, y, 10, 10);
+//        g.drawRect(x, y + 10, 10, 10);
+//        g.drawRect(x + 10, y + 10, 10, 10);
 //        int amount = entities.size();
 //        for (int i = 0; i < amount; i++) {
 //            entities.get(i).render(gc, g);
@@ -61,14 +65,14 @@ public class GameStates extends BasicGameState {
 //        for (int i = 0; i < amount; i++) {
 //            entities.get(i).update(gc, delta);
 //        }
-        if (timer <= 1000) {
-            timer += delta;
-        } else {
-
-            y += 10;
-            timer = 0;
-
-        }
+//        if (timer <= 1000) {
+//            timer += delta;
+//        } else {
+//
+//            y += 10;
+//            timer = 0;
+//
+//        }
     }
 
 }
