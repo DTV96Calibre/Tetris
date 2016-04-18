@@ -23,7 +23,7 @@ public class Tetrimino {
      * The number of blocks that form a Tetrimino.
      */
     public static final int TETRIMINO_ARRAY_WIDTH = 4;
-
+    public GenericBoard myBoard = new GenericBoard();
     /* An array of four Blocks that stores the internal layout of the Tetrimino
      * piece. Each Block contains a Point where (0, 0) is the center (pivot)
      * block of the Tetrimino.
@@ -32,6 +32,8 @@ public class Tetrimino {
 
     /* The general "shape" of this Tetrimino (e.g. S-block, L-block). */
     private TShape shape;
+
+    private int timer;
 
     /**
      * Constructs a new Tetrimino of type TShape.
@@ -126,6 +128,28 @@ public class Tetrimino {
     }
 
     public void update(GameContainer gc, int delta) {
+        if (timer <= 1000) {
+            timer += delta;
+        } else {
+            for (int i = 0; i < this.blockArray.length; i++) {
+                int xCoordinate = (int) this.blockArray[i].getLocation().getX();
+                int yCoordinate = (int) this.blockArray[i].getLocation().getY();
+                if (yCoordinate < 19) {
+                    if (this.myBoard.getBooleanArray()[xCoordinate][yCoordinate + 1] == false) {
+                        Point newPoint = new Point(
+                                xCoordinate,
+                                yCoordinate + 1);
+                        this.blockArray[i].setLocation(newPoint);
+                        // if a grid is true, then it means this grid is occupied.
+                        this.myBoard.getBooleanArray()[newPoint.x][newPoint.y] = true;
+                        this.myBoard.getBooleanArray()[newPoint.x][newPoint.y - 1] = false;
+                    }
+
+                }
+
+            }
+            timer = 0;
+        }
 
     }
 }

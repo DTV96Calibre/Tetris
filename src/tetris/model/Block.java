@@ -8,6 +8,7 @@ package tetris.model;
 import java.awt.Point;
 import java.util.Objects;
 import org.newdawn.slick.Color;
+import static org.newdawn.slick.Color.black;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import tetris.view.Window;
@@ -105,10 +106,10 @@ public class Block {
                    (int) (this.location.getY() * Window.getPIXEL_OFFSET()),
                    SIDE_LENGTH * Window.getPIXEL_OFFSET(),
                    SIDE_LENGTH * Window.getPIXEL_OFFSET());
-//        g.setColor(yellow);
-//        g.drawRect((int) this.location.getX() * Window.getPIXEL_OFFSET(),
-//                   (int) (this.location.getY() * Window.getPIXEL_OFFSET()),
-//                   SIDE_LENGTH * Window.getPIXEL_OFFSET(),
-//                   SIDE_LENGTH * Window.getPIXEL_OFFSET());
+        g.setColor(black);
+        g.drawRect((int) this.location.getX() * Window.getPIXEL_OFFSET(),
+                   (int) (this.location.getY() * Window.getPIXEL_OFFSET()),
+                   SIDE_LENGTH * Window.getPIXEL_OFFSET(),
+                   SIDE_LENGTH * Window.getPIXEL_OFFSET());
     }
 }

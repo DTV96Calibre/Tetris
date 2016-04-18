@@ -26,8 +26,8 @@ import org.newdawn.slick.Color;
  * @author Brooke Bullek
  */
 public enum TShape {
-    I_BLOCK(new Point[]{new Point(0, 0), new Point(0, 1), new Point(0, 2),
-                        new Point(0, 3)}, Color.cyan),
+    I_BLOCK(new Point[]{new Point(0, 3), new Point(0, 2), new Point(0, 1),
+                        new Point(0, 0)}, Color.cyan),
     J_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(-1, 1),
                         new Point(1, 0)}, Color.blue),
     L_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(1, 0),

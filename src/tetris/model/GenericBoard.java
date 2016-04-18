@@ -42,6 +42,19 @@ public class GenericBoard {
      * @author Daniel Vasquez
      */
     private Block[][] blockArray;
+    private boolean[][] booleanArray = new boolean[WIDTH][HEIGHT];
+
+    public static int getWIDTH() {
+        return WIDTH;
+    }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public boolean[][] getBooleanArray() {
+        return booleanArray;
+    }
 
     /**
      * Returns <code>WIDTH</code> (static) attribute

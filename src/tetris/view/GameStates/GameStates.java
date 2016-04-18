@@ -61,6 +61,9 @@ public class GameStates extends BasicGameState {
         if (gc.getInput().isKeyPressed(Input.KEY_ENTER)) {
             s.enterState(state.MENU);
         }
+        for (int i = 0; i < entities.size(); i++) {
+            entities.get(i).update(gc, delta);
+        }
 //        int amount = entities.size();
 //        for (int i = 0; i < amount; i++) {
 //            entities.get(i).update(gc, delta);
