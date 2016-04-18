@@ -15,6 +15,9 @@
  */
 package tetris.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Generic gameboard which contains falling and sitting blocks
  *
@@ -91,6 +94,26 @@ public class GenericBoard {
      */
     public GenericBoard(int width, int height) {
         this.blockArray = new Block[width][height];
+    }
+
+    /**
+     * Detects lines in the board's block array.
+     *
+     * @author Daniel Vasquez
+     * @return List of indexes where lines are located
+     */
+    public List detectLines() {
+        List myList = new ArrayList();
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                if (this.blockArray[i][j] == null) {
+                    break;
+                } else if (j + 1 == HEIGHT) {
+                    myList.add(i);
+                }
+            }
+        }
+        return myList;
     }
 
 }
