@@ -103,17 +103,24 @@ public class GenericBoard {
      * @return List of indexes where lines are located
      */
     public List detectLines() {
-        List myList = new ArrayList();
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
+        List rowIndices = new ArrayList();
+        for (int j = 0; j < HEIGHT; j++) {
+            for (int i = 0; i < WIDTH; i++) {
                 if (this.blockArray[i][j] == null) {
                     break;
-                } else if (j + 1 == HEIGHT) {
-                    myList.add(i);
+                } else if (i + 1 == WIDTH) {
+                    rowIndices.add(j);
                 }
             }
         }
-        return myList;
+        return rowIndices;
     }
 
+//    public void dropLines(int j) {
+//        while (j > 0) {
+//            for (int i = 0; i < WIDTH; i++) {
+//
+//            }
+//        }
+//    }
 }
