@@ -10,12 +10,14 @@ import java.util.Objects;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import tetris.view.Window;
 
 /**
  * A block used in the construction of Tetriminos and other Tetris pieces.
  *
  * @author Daniel Vasquez & Brooke Bullek
  */
+@SuppressWarnings("EqualsAndHashcode")
 public class Block {
     /**
      * The color of the block.
@@ -94,19 +96,16 @@ public class Block {
         if (!Objects.equals(this.color, other.color)) {
             return false;
         }
-        if (!Objects.equals(this.location, other.location)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.location, other.location);
     }
 
     public void render(GameContainer gc, Graphics g) {
-        //g.setColor(this.color);
-        /*g.fillRect((int) this.location.getX() * Window.getPIXEL_OFFSET(),
-         (int) (this.location.getY() * Window.getPIXEL_OFFSET()),
-         SIDE_LENGTH * Window.getPIXEL_OFFSET(),
-         SIDE_LENGTH * Window.getPIXEL_OFFSET());*/
-//        g.setColor(black);
+        g.setColor(this.color);
+        g.fillRect((int) this.location.getX() * Window.getPIXEL_OFFSET(),
+                   (int) (this.location.getY() * Window.getPIXEL_OFFSET()),
+                   SIDE_LENGTH * Window.getPIXEL_OFFSET(),
+                   SIDE_LENGTH * Window.getPIXEL_OFFSET());
+//        g.setColor(yellow);
 //        g.drawRect((int) this.location.getX() * Window.getPIXEL_OFFSET(),
 //                   (int) (this.location.getY() * Window.getPIXEL_OFFSET()),
 //                   SIDE_LENGTH * Window.getPIXEL_OFFSET(),

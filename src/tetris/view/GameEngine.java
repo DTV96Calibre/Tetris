@@ -9,8 +9,8 @@
  * Project: csci205FinalProject
  * Package: tetris.view
  * File: GameEngine
- * Description:
- *
+ * Description: Contains the necessary methods to launch and run the Tetris
+ * application
  * ****************************************
  */
 package tetris.view;
@@ -23,20 +23,20 @@ import org.newdawn.slick.state.StateBasedGame;
 import tetris.view.GameStates.GameStates;
 
 /**
+ * Contains the necessary methods to launch and run the Tetris application
  *
- * @author xizhouli
- */
-/**
- *
- * @author xizhouli
+ * @author Xizhou Li
  */
 public class GameEngine extends StateBasedGame {
 
-    /**
-     * @param args the command line arguments
-     */
     public static boolean _APPLET = true;
 
+    /**
+     * Main method to run the Tetris application
+     *
+     * @param args Command line arguments
+     * @author Xizhou Li
+     */
     public static void main(String[] args) {
         // TODO code application logic here
         _APPLET = false;
@@ -56,10 +56,23 @@ public class GameEngine extends StateBasedGame {
         }
     }
 
+    /**
+     * Constructs a new <code>GameEngine</code> instance
+     *
+     * @param name The <code>GameEngine</code>'s name
+     * @author Xizhou Li
+     */
     public GameEngine(String name) {
         super("Tetris");
     }
 
+    /**
+     * Initializes the <code>GameStates</code>
+     *
+     * @param gc Automatically passed parameter
+     * @throws SlickException
+     * @author Xizhou Li
+     */
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
         // The frame will update 60 time a second
