@@ -7,8 +7,6 @@ package tetris.model;
 
 import java.awt.Point;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 
 /**
  * A shaped piece made up of four blocks. Represented as a 2D array of blocks.
@@ -23,7 +21,7 @@ public class Tetrimino {
      * The number of blocks that form a Tetrimino.
      */
     public static final int TETRIMINO_ARRAY_WIDTH = 4;
-    public GenericBoard myBoard = new GenericBoard();
+
     /* An array of four Blocks that stores the internal layout of the Tetrimino
      * piece. Each Block contains a Point where (0, 0) is the center (pivot)
      * block of the Tetrimino.
@@ -32,8 +30,6 @@ public class Tetrimino {
 
     /* The general "shape" of this Tetrimino (e.g. S-block, L-block). */
     private TShape shape;
-
-    private int timer;
 
     /**
      * Constructs a new Tetrimino of type TShape.
@@ -55,7 +51,6 @@ public class Tetrimino {
     private void initBlockArray(TShape shape1, Block[] blockArray1) {
         // iterate through the Point array of this TShape and create four Blocks
         for (int i = 0; i < shape1.getMinoLocations().length; i++) {
-
             blockArray1[i] = new Block(shape1.color,
                                        shape1.getMinoLocations()[i]);
         }
@@ -81,8 +76,8 @@ public class Tetrimino {
     public Color getColor() {
         return this.blockArray[0].getColor();
     }
-
     /* End of getters and setters */
+
     /**
      * Rotates the Tetrimino 90 degrees left or right, depending on the factor
      * given (-1 denotes a left rotation, 1 denotes a right rotation). All
@@ -118,38 +113,5 @@ public class Tetrimino {
 
         //TODO: Integrate with GenericBoard class to determine whether this
         // Tetrimino can't be rotated (for example, it's in a corner)
-    }
-
-    public void renderTetris(GameContainer gc, Graphics g) {
-        for (int i = 0; i < this.blockArray.length; i++) {
-            this.blockArray[i].render(gc, g);
-        }
-
-    }
-
-    public void update(GameContainer gc, int delta) {
-        if (timer <= 1000) {
-            timer += delta;
-        } else {
-            for (int i = 0; i < this.blockArray.length; i++) {
-                int xCoordinate = (int) this.blockArray[i].getLocation().getX();
-                int yCoordinate = (int) this.blockArray[i].getLocation().getY();
-                if (yCoordinate < 19) {
-                    if (this.myBoard.getBooleanArray()[xCoordinate][yCoordinate + 1] == false) {
-                        Point newPoint = new Point(
-                                xCoordinate,
-                                yCoordinate + 1);
-                        this.blockArray[i].setLocation(newPoint);
-                        // if a grid is true, then it means this grid is occupied.
-                        this.myBoard.getBooleanArray()[newPoint.x][newPoint.y] = true;
-                        this.myBoard.getBooleanArray()[newPoint.x][newPoint.y - 1] = false;
-                    }
-
-                }
-
-            }
-            timer = 0;
-        }
-
     }
 }
