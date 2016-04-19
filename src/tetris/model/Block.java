@@ -8,10 +8,6 @@ package tetris.model;
 import java.awt.Point;
 import java.util.Objects;
 import org.newdawn.slick.Color;
-import static org.newdawn.slick.Color.black;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import tetris.view.Window;
 
 /**
  * A block used in the construction of Tetriminos and other Tetris pieces.
@@ -33,8 +29,6 @@ public class Block {
      * the center.
      */
     private Point location;
-
-    private static final int SIDE_LENGTH = 1;
 
     /**
      * The default constructor for the Block class.
@@ -98,18 +92,5 @@ public class Block {
             return false;
         }
         return Objects.equals(this.location, other.location);
-    }
-
-    public void render(GameContainer gc, Graphics g) {
-        g.setColor(this.color);
-        g.fillRect((int) this.location.getX() * Window.getPIXEL_OFFSET(),
-                   (int) (this.location.getY() * Window.getPIXEL_OFFSET()),
-                   SIDE_LENGTH * Window.getPIXEL_OFFSET(),
-                   SIDE_LENGTH * Window.getPIXEL_OFFSET());
-        g.setColor(black);
-        g.drawRect((int) this.location.getX() * Window.getPIXEL_OFFSET(),
-                   (int) (this.location.getY() * Window.getPIXEL_OFFSET()),
-                   SIDE_LENGTH * Window.getPIXEL_OFFSET(),
-                   SIDE_LENGTH * Window.getPIXEL_OFFSET());
     }
 }
