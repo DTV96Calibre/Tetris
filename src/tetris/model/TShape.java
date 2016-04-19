@@ -42,9 +42,9 @@ public enum TShape {
                         new Point(-1, 1)}, Color.red);
 
     // array of Points rather than array of Blocks (to reduce dependencies)
-    public final Point[] minoLocations;
+    private final Point[] minoLocations;
     // the color of this type of Tetrimino
-    public final Color color;
+    private final Color color;
 
     TShape(Point[] minoLocations, Color color) {
         this.color = color;
@@ -54,6 +54,10 @@ public enum TShape {
     /* Getters and setters */
     public Point[] getMinoLocations() {
         return minoLocations;
+    }
+
+    public Color getColor() {
+        return color;
     }
     /* End of getters and setters */
 }

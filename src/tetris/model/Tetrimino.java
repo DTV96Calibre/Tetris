@@ -51,7 +51,7 @@ public class Tetrimino {
     private void initBlockArray(TShape shape1, Block[] blockArray1) {
         // iterate through the Point array of this TShape and create four Blocks
         for (int i = 0; i < shape1.getMinoLocations().length; i++) {
-            blockArray1[i] = new Block(shape1.color,
+            blockArray1[i] = new Block(shape1.getColor(),
                                        shape1.getMinoLocations()[i]);
         }
     }
