@@ -35,5 +35,4 @@ public class Window {
     public static int getPIXEL_OFFSET() {
         return PIXEL_OFFSET;
     }
-
 }

@@ -57,26 +57,6 @@ public class GenericBoard {
     }
 
     /**
-     * Returns <code>WIDTH</code> (static) attribute
-     *
-     * @return Width of the <code>GenericBoard</code>'s grid
-     * @author Daniel Vasquez
-     */
-    public static int getWidth() {
-        return WIDTH;
-    }
-
-    /**
-     * Returns <code>getHeight</code> (static) attribute
-     *
-     * @return Height of the <code>GenericBoard</code>'s grid
-     * @author Daniel Vasquez
-     */
-    public static int getHeight() {
-        return HEIGHT;
-    }
-
-    /**
      * Returns the <code>blockArray</code> attribute
      *
      * @return The <code>GenericBoard</code>'s grid
