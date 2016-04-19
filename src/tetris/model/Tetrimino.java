@@ -7,8 +7,6 @@ package tetris.model;
 
 import java.awt.Point;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 
 /**
  * A shaped piece made up of four blocks. Represented as a 2D array of blocks.
@@ -53,8 +51,7 @@ public class Tetrimino {
     private void initBlockArray(TShape shape1, Block[] blockArray1) {
         // iterate through the Point array of this TShape and create four Blocks
         for (int i = 0; i < shape1.getMinoLocations().length; i++) {
-
-            blockArray1[i] = new Block(shape1.color,
+            blockArray1[i] = new Block(shape1.getColor(),
                                        shape1.getMinoLocations()[i]);
         }
     }
@@ -79,8 +76,8 @@ public class Tetrimino {
     public Color getColor() {
         return this.blockArray[0].getColor();
     }
-
     /* End of getters and setters */
+
     /**
      * Rotates the Tetrimino 90 degrees left or right, depending on the factor
      * given (-1 denotes a left rotation, 1 denotes a right rotation). All
@@ -113,19 +110,5 @@ public class Tetrimino {
                 this.blockArray[i].setLocation(new Point(-oldY, oldX));
             }
         }
-
-        //TODO: Integrate with GenericBoard class to determine whether this
-        // Tetrimino can't be rotated (for example, it's in a corner)
-    }
-
-    public void renderTetris(GameContainer gc, Graphics g) {
-        for (int i = 0; i < this.blockArray.length; i++) {
-            this.blockArray[i].render(gc, g);
-        }
-
-    }
-
-    public void update(GameContainer gc, int delta) {
-
     }
 }

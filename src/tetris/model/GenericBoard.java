@@ -15,26 +15,31 @@
  */
 package tetris.model;
 
+import java.awt.Point;
+
 /**
  * Generic gameboard which contains falling and sitting blocks
  *
  * @author Daniel Vasquez
  */
 public class GenericBoard {
+    // default board sizes
+    public static final int WIDTH = 10;
+    public static final int HEIGHT = 20;
 
     /**
      * Width of the <code>GenericBoard</code>'s grid
      *
      * @author Daniel Vasquez
      */
-    private static final int WIDTH = 10;
+    private int width;
 
     /**
      * Height of the <code>GenericBoard</code>'s grid
      *
      * @author Daniel Vasquez
      */
-    private static final int HEIGHT = 20;
+    private int height;
 
     /**
      * The <code>GenericBoard</code>'s grid
@@ -43,24 +48,12 @@ public class GenericBoard {
      */
     private Block[][] blockArray;
 
-    /**
-     * Returns <code>WIDTH</code> (static) attribute
-     *
-     * @return Width of the <code>GenericBoard</code>'s grid
-     * @author Daniel Vasquez
-     */
-    public static int getWidth() {
-        return WIDTH;
+    public int getWidth() {
+        return width;
     }
 
-    /**
-     * Returns <code>getHeight</code> (static) attribute
-     *
-     * @return Height of the <code>GenericBoard</code>'s grid
-     * @author Daniel Vasquez
-     */
-    public static int getHeight() {
-        return HEIGHT;
+    public int getHeight() {
+        return height;
     }
 
     /**
@@ -74,12 +67,15 @@ public class GenericBoard {
     }
 
     /**
-     * Constructs an empty standard size Tetris board.
+     * Constructs an empty standard size Tetris board with default height and
+     * width.
      *
      * @author Daniel Vasquez
      */
     public GenericBoard() {
         this.blockArray = new Block[WIDTH][HEIGHT];
+        this.width = WIDTH;
+        this.height = HEIGHT;
     }
 
     /**
@@ -91,6 +87,41 @@ public class GenericBoard {
      */
     public GenericBoard(int width, int height) {
         this.blockArray = new Block[width][height];
+        this.width = width;
+        this.height = height;
     }
 
+    /**
+     * Validates that a given array of cells (represented by Points) are empty
+     * on this board so that we can place Blocks here. Returns false if any of
+     * the Points exceed the boundary of this board or if the cell is already
+     * full.
+     *
+     * @author Brooke Bullek
+     */
+    public boolean validate(Point[] newPositions) {
+        int newXPos;
+        int newYPos;
+
+        // check each of the Points and only return true if they all fit
+        for (int i = 0; i < newPositions.length; i++) {
+            // grab the x and y coordinates from this Point
+            newXPos = (int) newPositions[i].getX();
+            newYPos = (int) newPositions[i].getY();
+
+            // return false if this Point exceeds the vertical boundary
+            if (newYPos < 0 || newYPos >= this.height) {
+                return false;
+            }
+            // return false if this Point exceeds the horizontal boundary
+            if (newXPos < 0 || newXPos >= this.width) {
+                return false;
+            }
+            // return false if this is a valid cell that is already occupied
+            if (this.blockArray[newXPos][newYPos] != null) {
+                return false;
+            }
+        }
+        return true; // everything's good!
+    }
 }

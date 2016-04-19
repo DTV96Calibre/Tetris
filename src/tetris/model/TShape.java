@@ -26,8 +26,8 @@ import org.newdawn.slick.Color;
  * @author Brooke Bullek
  */
 public enum TShape {
-    I_BLOCK(new Point[]{new Point(0, 0), new Point(0, 1), new Point(0, 2),
-                        new Point(0, 3)}, Color.cyan),
+    I_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(1, 0),
+                        new Point(2, 0)}, Color.cyan),
     J_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(-1, 1),
                         new Point(1, 0)}, Color.blue),
     L_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(1, 0),
@@ -42,9 +42,9 @@ public enum TShape {
                         new Point(-1, 1)}, Color.red);
 
     // array of Points rather than array of Blocks (to reduce dependencies)
-    public final Point[] minoLocations;
+    private final Point[] minoLocations;
     // the color of this type of Tetrimino
-    public final Color color;
+    private final Color color;
 
     TShape(Point[] minoLocations, Color color) {
         this.color = color;
@@ -56,5 +56,8 @@ public enum TShape {
         return minoLocations;
     }
 
+    public Color getColor() {
+        return color;
+    }
     /* End of getters and setters */
 }

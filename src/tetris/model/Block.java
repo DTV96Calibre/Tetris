@@ -8,14 +8,13 @@ package tetris.model;
 import java.awt.Point;
 import java.util.Objects;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 
 /**
  * A block used in the construction of Tetriminos and other Tetris pieces.
  *
  * @author Daniel Vasquez & Brooke Bullek
  */
+@SuppressWarnings("EqualsAndHashcode")
 public class Block {
     /**
      * The color of the block.
@@ -30,8 +29,6 @@ public class Block {
      * the center.
      */
     private Point location;
-
-    private static final int SIDE_LENGTH = 1;
 
     /**
      * The default constructor for the Block class.
@@ -94,22 +91,6 @@ public class Block {
         if (!Objects.equals(this.color, other.color)) {
             return false;
         }
-        if (!Objects.equals(this.location, other.location)) {
-            return false;
-        }
-        return true;
-    }
-
-    public void render(GameContainer gc, Graphics g) {
-        //g.setColor(this.color);
-        /*g.fillRect((int) this.location.getX() * Window.getPIXEL_OFFSET(),
-         (int) (this.location.getY() * Window.getPIXEL_OFFSET()),
-         SIDE_LENGTH * Window.getPIXEL_OFFSET(),
-         SIDE_LENGTH * Window.getPIXEL_OFFSET());*/
-//        g.setColor(black);
-//        g.drawRect((int) this.location.getX() * Window.getPIXEL_OFFSET(),
-//                   (int) (this.location.getY() * Window.getPIXEL_OFFSET()),
-//                   SIDE_LENGTH * Window.getPIXEL_OFFSET(),
-//                   SIDE_LENGTH * Window.getPIXEL_OFFSET());
+        return Objects.equals(this.location, other.location);
     }
 }
