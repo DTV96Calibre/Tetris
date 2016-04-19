@@ -15,7 +15,7 @@ import org.newdawn.slick.Color;
  * @author Daniel Vasquez & Brooke Bullek
  */
 @SuppressWarnings("EqualsAndHashcode")
-public class Block {
+public class Block implements Cloneable {
     /**
      * The color of the block.
      */
@@ -92,5 +92,15 @@ public class Block {
             return false;
         }
         return Objects.equals(this.location, other.location);
+    }
+
+    /**
+     * Returns a deep copy of this Block object.
+     *
+     * @return a copy of this Block object
+     * @throws CloneNotSupportedException
+     */
+    public Block copy() throws CloneNotSupportedException {
+        return (Block) this.clone();
     }
 }

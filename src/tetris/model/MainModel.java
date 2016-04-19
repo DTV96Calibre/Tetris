@@ -54,7 +54,7 @@ public class MainModel {
         myBoard = new GenericBoard();
 
         // TODO: Allow for random Tetrimino instead of an I-block
-        activeTetrimino = new Tetrimino(TShape.J_BLOCK);
+        activeTetrimino = new Tetrimino(TShape.T_BLOCK);
 
         initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
 

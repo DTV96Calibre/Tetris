@@ -16,6 +16,8 @@
 package tetris.controller;
 
 import java.awt.Point;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static org.newdawn.slick.Color.black;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -24,6 +26,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import tetris.model.Block;
 import tetris.model.Direction;
 import tetris.model.MainModel;
+import tetris.model.Tetrimino;
 import tetris.view.MainView;
 import tetris.view.Window;
 
@@ -100,14 +103,23 @@ public class MainController {
      * If so, this position is updated; else, nothing happens.
      *
      * @author Brooke Bullek
-     * @param 1 is rotating clockwise, -1 if rotating counterclockwise
+     * @param factor
      */
     public void rotateActiveTetrimino(int factor) {
         // preserve old arrangement of blocks in case a rotation isn't possible
-        Block oldBlockArray[] = theModel.getActiveTetrimino().getBlockArray();
+        Block oldBlockArray[] = new Block[Tetrimino.TETRIMINO_ARRAY_WIDTH];
+        for (int i = 0; i < Tetrimino.TETRIMINO_ARRAY_WIDTH; i++) {
+            try {
+                oldBlockArray[i] = (Block) theModel.getActiveTetrimino().getBlockArray()[i].copy();
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(MainController.class.getName()).log(
+                        Level.WARNING,
+                        "Block could not be copied; Cloning not supported", ex);
+            }
+        }
 
         // create a new array of Points which reflects the rotated Tetrimino
-        Point newBlockPositions[] = new Point[4];
+        Point newBlockPositions[] = new Point[Tetrimino.TETRIMINO_ARRAY_WIDTH];
         theModel.getActiveTetrimino().rotate(factor);
         // grab the new absolute positions (i.e. their positions on the board)
         int i = 0;
