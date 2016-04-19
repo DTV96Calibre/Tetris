@@ -54,7 +54,7 @@ public class MainModel {
         myBoard = new GenericBoard();
 
         // TODO: Allow for random Tetrimino instead of an I-block
-        activeTetrimino = new Tetrimino(TShape.I_BLOCK);
+        activeTetrimino = new Tetrimino(TShape.J_BLOCK);
 
         initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
 
@@ -95,31 +95,4 @@ public class MainModel {
         this.timer = timer;
     }
     /* End of getters and setters */
-
-    /**
-     * Check to see whether the active Tetrimino may be moved down 1 unit on the
-     * gameboard.
-     *
-     * @authors Daniel Vasquez & Brooke Bullek
-     */
-    public void moveTetriminoDown() {
-        // iterate through blocks & determine if the proposed new space is occupied
-        for (Block block : activeTetrimino.getBlockArray()) {
-            // maintain x coordinate
-            int newX = (int) (block.getLocation().getX() + activeTetriminoLocation.getX());
-            // Get new y location for block by adding 1 to y coordinate
-            int newY = (int) (block.getLocation().getY() + activeTetriminoLocation.getY() + 1);
-
-            if (newY >= myBoard.getHeight()) {
-                return;
-            }
-
-            if (myBoard.getBlockArray()[newX][newY] != null) {
-                return;
-            }
-        }
-
-        // Update Tetrimino location relative to the gameboard
-        this.activeTetriminoLocation.y += 1;
-    }
 }

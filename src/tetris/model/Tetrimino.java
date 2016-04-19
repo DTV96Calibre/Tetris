@@ -110,8 +110,5 @@ public class Tetrimino {
                 this.blockArray[i].setLocation(new Point(-oldY, oldX));
             }
         }
-
-        //TODO: Integrate with GenericBoard class to determine whether this
-        // Tetrimino can't be rotated (for example, it's in a corner)
     }
 }
