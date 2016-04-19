@@ -28,8 +28,7 @@ public class MainModel {
      Traditionally, the Tetrimino starts at the top of the middle of the
      screen.
      */
-    private static final Point INITIAL_TETRIMINO_LOCATION = new Point(
-            GenericBoard.getWIDTH() / 2, 0);
+    private Point initialTetriminoLocation;
 
     /* The active game board for this game */
     public GenericBoard myBoard;
@@ -57,8 +56,10 @@ public class MainModel {
         // TODO: Allow for random Tetrimino instead of an I-block
         activeTetrimino = new Tetrimino(TShape.I_BLOCK);
 
+        initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
+
         // set the new Tetrimino's location to the top center of the screen
-        activeTetriminoLocation = INITIAL_TETRIMINO_LOCATION;
+        activeTetriminoLocation = initialTetriminoLocation;
     }
 
     /* Getters and setters */

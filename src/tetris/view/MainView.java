@@ -18,6 +18,7 @@ package tetris.view;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import tetris.controller.MainController;
 import tetris.view.GameStates.GameStates;
 
 /**
@@ -27,6 +28,12 @@ import tetris.view.GameStates.GameStates;
  * @author Xizhou Li
  */
 public class MainView extends StateBasedGame {
+    private GameStates gameStates;
+
+    // TODO: Refactor so MainView doesn't have a dependency on MainController.
+    // However, this would require a revamp of the GameState class which is
+    // unfortunately integral to the Slick API
+    private MainController controller;
 
     /**
      * Constructs a new <code>MainView</code> instance
@@ -34,8 +41,9 @@ public class MainView extends StateBasedGame {
      * @param name The <code>GameEngine</code>'s name
      * @author Xizhou Li
      */
-    public MainView(String name) {
+    public MainView(String name, MainController mainController) {
         super("Tetris");
+        this.controller = mainController;
     }
 
     /**
@@ -53,9 +61,29 @@ public class MainView extends StateBasedGame {
         gc.setAlwaysRender(true);
         // The game will update 60 times a second
         gc.setMaximumLogicUpdateInterval(60);
-        //
+        gameStates = new GameStates();
+        // associate this GameStates object with the controller (important!)
+        gameStates.setController(controller);
         gc.setVSync(true);
         gc.setShowFPS(false);
-        this.addState(new GameStates());
+        this.addState(gameStates);
     }
+
+    /* Getters and setters */
+    public GameStates getGameStates() {
+        return gameStates;
+    }
+
+    public void setGameStates(GameStates gameStates) {
+        this.gameStates = gameStates;
+    }
+
+    public MainController getMainController() {
+        return controller;
+    }
+
+    public void setMainController(MainController mainController) {
+        this.controller = mainController;
+    }
+    /* End of getters and setters */
 }
