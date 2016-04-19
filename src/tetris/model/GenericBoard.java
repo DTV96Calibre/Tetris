@@ -21,20 +21,23 @@ package tetris.model;
  * @author Daniel Vasquez
  */
 public class GenericBoard {
+    // default board sizes
+    public static final int WIDTH = 10;
+    public static final int HEIGHT = 20;
 
     /**
      * Width of the <code>GenericBoard</code>'s grid
      *
      * @author Daniel Vasquez
      */
-    private static final int WIDTH = 10;
+    private int width;
 
     /**
      * Height of the <code>GenericBoard</code>'s grid
      *
      * @author Daniel Vasquez
      */
-    private static final int HEIGHT = 20;
+    private int height;
 
     /**
      * The <code>GenericBoard</code>'s grid
@@ -42,18 +45,13 @@ public class GenericBoard {
      * @author Daniel Vasquez
      */
     private Block[][] blockArray;
-    private boolean[][] booleanArray = new boolean[WIDTH][HEIGHT];
 
-    public static int getWIDTH() {
-        return WIDTH;
+    public int getWidth() {
+        return width;
     }
 
-    public static int getHEIGHT() {
-        return HEIGHT;
-    }
-
-    public boolean[][] getBooleanArray() {
-        return booleanArray;
+    public int getHeight() {
+        return height;
     }
 
     /**
@@ -67,12 +65,15 @@ public class GenericBoard {
     }
 
     /**
-     * Constructs an empty standard size Tetris board.
+     * Constructs an empty standard size Tetris board with default height and
+     * width.
      *
      * @author Daniel Vasquez
      */
     public GenericBoard() {
         this.blockArray = new Block[WIDTH][HEIGHT];
+        this.width = WIDTH;
+        this.height = HEIGHT;
     }
 
     /**
@@ -84,6 +85,8 @@ public class GenericBoard {
      */
     public GenericBoard(int width, int height) {
         this.blockArray = new Block[width][height];
+        this.width = width;
+        this.height = height;
     }
 
 }
