@@ -22,6 +22,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 import tetris.model.Block;
+import tetris.model.Direction;
 import tetris.model.MainModel;
 import tetris.view.MainView;
 import tetris.view.Window;
@@ -64,6 +65,12 @@ public class MainController {
         // if user pressed the up arrow key, try to rotate the active tetrimino
         if (input.isKeyPressed(Input.KEY_UP)) {
             rotateActiveTetrimino(1);
+        } // if user pressed the left arrow key, try to move the tetrimino left
+        else if (input.isKeyPressed(Input.KEY_LEFT)) {
+            moveActiveTetrimino(Direction.LEFT);
+        } // if user pressed the right arrow key, try to move right
+        else if (input.isKeyPressed(Input.KEY_RIGHT)) {
+            moveActiveTetrimino(Direction.RIGHT);
         }
 
         updateActiveTetrimino(gc, delta);
@@ -71,7 +78,9 @@ public class MainController {
 
     /**
      * Allows the active Tetrimino to fall downward by 1 block if enough time
-     * has passed since the last fall.
+     * has passed since the last fall. This method is constantly called within
+     * the main game loop and its timer threshold should scale with the current
+     * difficulty level.
      *
      * @author Xizhou Li
      */
@@ -82,7 +91,7 @@ public class MainController {
             theModel.setTimer(timer + delta);
         } else {
             theModel.setTimer(0); // reset timer event
-            moveActiveTetriminoDown(); // logic to drop tetrimino by 1 space
+            moveActiveTetrimino(Direction.DOWN); // drop tetrimino by 1 space
         }
     }
 
@@ -119,19 +128,33 @@ public class MainController {
     }
 
     /**
-     * Moves the active Tetrimino down by 1 unit if there is room on the
-     * gameboard. If so, this position is updated; else, nothing happens.
+     * Moves the active Tetrimino in a specified direction if there is room on
+     * the gameboard. If so, this position is updated; else, nothing happens.
      *
      * @authors Daniel Vasquez & Brooke Bullek
+     * @param d A Direction associated with this movement; e.g. left/right/down.
      */
-    public void moveActiveTetriminoDown() {
+    public void moveActiveTetrimino(Direction d) {
+        // for more info, see the Direction enum in tetris.model package
+        int shiftAmountX = (int) d.getDirection().getX();
+        int shiftAmountY = (int) d.getDirection().getY();
+
         // compose a new series of Points corresponding to locations if we were
-        // to move this Tetrimino down
+        // to move this Tetrimino
         Point newBlockPositions[] = new Point[4];
         int i = 0;
         for (Block block : theModel.getActiveTetrimino().getBlockArray()) {
-            int newX = (int) (block.getLocation().getX() + theModel.getActiveTetriminoLocation().getX());
-            int newY = (int) (block.getLocation().getY() + theModel.getActiveTetriminoLocation().getY() + 1);
+            /* calculate the new coordinate, which is the absolute position
+             * of this Tetrimino on the gameboard, plus the relative position
+             * of this individual block to the Tetrimino, plus whatever shift
+             * amount is specified by the direction of motion
+             */
+            int newX = (int) (block.getLocation().getX()
+                              + theModel.getActiveTetriminoLocation().getX()
+                              + shiftAmountX);
+            int newY = (int) (block.getLocation().getY()
+                              + theModel.getActiveTetriminoLocation().getY()
+                              + shiftAmountY);
             newBlockPositions[i] = new Point(newX, newY);
             i++;
         }
@@ -140,8 +163,8 @@ public class MainController {
         if (theModel.getMyBoard().validate(newBlockPositions) == true) {
             // it's safe to move this piece down
             Point newPosition = new Point(
-                    (int) theModel.getActiveTetriminoLocation().getX(),
-                    (int) theModel.getActiveTetriminoLocation().getY() + 1);
+                    (int) theModel.getActiveTetriminoLocation().getX() + shiftAmountX,
+                    (int) theModel.getActiveTetriminoLocation().getY() + shiftAmountY);
             theModel.setActiveTetriminoLocation(newPosition);
         } // else, we don't update the Tetrimino's position
     }

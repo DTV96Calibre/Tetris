@@ -55,6 +55,5 @@ public enum TShape {
     public Point[] getMinoLocations() {
         return minoLocations;
     }
-
     /* End of getters and setters */
 }
