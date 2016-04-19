@@ -15,6 +15,8 @@
  */
 package tetris.model;
 
+import java.awt.Point;
+
 /**
  * Generic gameboard which contains falling and sitting blocks
  *
@@ -89,4 +91,37 @@ public class GenericBoard {
         this.height = height;
     }
 
+    /**
+     * Validates that a given array of cells (represented by Points) are empty
+     * on this board so that we can place Blocks here. Returns false if any of
+     * the Points exceed the boundary of this board or if the cell is already
+     * full.
+     *
+     * @author Brooke Bullek
+     */
+    public boolean validate(Point[] newPositions) {
+        int newXPos;
+        int newYPos;
+
+        // check each of the Points and only return true if they all fit
+        for (int i = 0; i < newPositions.length; i++) {
+            // grab the x and y coordinates from this Point
+            newXPos = (int) newPositions[i].getX();
+            newYPos = (int) newPositions[i].getY();
+
+            // return false if this Point exceeds the vertical boundary
+            if (newYPos < 0 || newYPos >= this.height) {
+                return false;
+            }
+            // return false if this Point exceeds the horizontal boundary
+            if (newXPos < 0 || newXPos >= this.width) {
+                return false;
+            }
+            // return false if this is a valid cell that is already occupied
+            if (this.blockArray[newXPos][newYPos] != null) {
+                return false;
+            }
+        }
+        return true; // everything's good!
+    }
 }
