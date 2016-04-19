@@ -13,7 +13,6 @@
 
 # NetBeans specific #
 nbproject/*
-!nbproject/project.properties
 !nbproject/project.xml
 !nbproject/licenseheader.txt
 build/
