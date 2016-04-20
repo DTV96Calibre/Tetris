@@ -16,6 +16,8 @@
 package tetris.model;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Contains all of the internal states of Tetris that are subject to change
@@ -32,6 +34,12 @@ public class MainModel {
 
     /* The active game board for this game */
     public GenericBoard myBoard;
+
+    /* A static randomier that picks a randon type of tetrimino from a bag of T-shapes*/
+    private static Random Randomizer;
+
+    /* A bag of 7 different types of T-shapes*/
+    private ArrayList<TShape> bag = new ArrayList<TShape>();
 
     /* the Tetrimino that is currently being placed */
     private Tetrimino activeTetrimino;
@@ -52,9 +60,21 @@ public class MainModel {
         // TODO: Modify gameboard selection to change with user's choice of
         // game mode?
         myBoard = new GenericBoard();
+        //initialize the Randomizer.
+        Randomizer = new Random();
+        //initialize the bag.
+        bag.add(TShape.I_BLOCK);
+        bag.add(TShape.L_BLOCK);
+        bag.add(TShape.O_BLOCK);
+        bag.add(TShape.J_BLOCK);
+        bag.add(TShape.Z_BLOCK);
+        bag.add(TShape.S_BLOCK);
+        bag.add(TShape.T_BLOCK);
+        int index = Randomizer.nextInt(7);
 
         // TODO: Allow for random Tetrimino instead of an I-block
-        activeTetrimino = new Tetrimino(TShape.T_BLOCK);
+        activeTetrimino = new Tetrimino(bag.get(index));
+        bag.remove(index);
 
         initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
 
