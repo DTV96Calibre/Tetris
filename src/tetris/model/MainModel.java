@@ -35,9 +35,6 @@ public class MainModel {
     /* The active game board for this game */
     public GenericBoard myBoard;
 
-    /* A static randomier that picks a randon type of tetrimino from a bag of T-shapes*/
-    private static Random Randomizer;
-
     /* A bag of 7 different types of T-shapes*/
     private ArrayList<TShape> bag = new ArrayList<TShape>();
 
@@ -61,17 +58,10 @@ public class MainModel {
         // game mode?
         myBoard = new GenericBoard();
 
-        //initialize the Randomizer.
-        Randomizer = new Random();
-
-        //initialize the bag.
-        initializeBag();
-        int index = Randomizer.nextInt(7);
-
         // the Tetrimino should spawn at the midpoint of the top of the screen
         initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
 
-        setActiveTetrimino(pickTShape());
+        setActiveTetrimino(pickTShape()); // pick the first Tetrimino
     }
 
     /* Getters and setters */
@@ -154,16 +144,19 @@ public class MainModel {
      * @return an available TShape to set as the next Tetrimino to drop
      */
     public TShape pickTShape() {
-        int size = this.bag.size();
-
         // if this "grab bag" has been depleted, reset it with all 7 TShapes
-        if (size == 0) {
+        if (this.bag.size() == 0) {
             initializeBag();
         }
 
-        int index = Randomizer.nextInt(size);
+        // use a random number generator to pull out a new TShape
+        Random randomizer = new Random();
+        int index = randomizer.nextInt(this.bag.size());
         TShape shape = bag.get(index);
+
+        // remove this TShape from the bag
         bag.remove(index);
+
         return shape;
     }
 }

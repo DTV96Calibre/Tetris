@@ -56,6 +56,7 @@ public class MainController {
      */
     public void render(GameContainer gc, StateBasedGame s, Graphics g) {
         renderTetrimino(gc, g); // draw the active tetrimino
+        renderBoard(gc, g); // draw the blocks on the gameboard
     }
 
     /**
@@ -90,7 +91,7 @@ public class MainController {
     public void updateActiveTetrimino(GameContainer gc, int delta) {
         int timer = theModel.getTimer();
 
-        if (timer < 300) { // TODO: Scale timer with difficulty so blocks fall faster
+        if (timer < 100) { // TODO: Scale timer with difficulty so blocks fall faster
             theModel.setTimer(timer + delta);
         } else {
             theModel.setTimer(0); // reset timer event
@@ -190,6 +191,8 @@ public class MainController {
     /**
      * Renders a Tetrimino within the game window by drawing each of its 4
      * Blocks.
+     *
+     * @author Xizhou Li
      */
     public void renderTetrimino(GameContainer gc, Graphics g) {
         // get the array of blocks from the active tetrimino
@@ -204,6 +207,8 @@ public class MainController {
 
     /**
      * Renders a Block (1/4 of a Tetrimino) within the game window.
+     *
+     * @author Xizhou Li
      */
     public void renderBlock(GameContainer gc, Graphics g, Block block) {
         g.setColor(block.getColor());
@@ -220,5 +225,37 @@ public class MainController {
         g.drawRect((int) xLocation * Window.getPIXEL_OFFSET(),
                    (int) (yLocation * Window.getPIXEL_OFFSET()),
                    Window.getPIXEL_OFFSET(), Window.getPIXEL_OFFSET());
+    }
+
+    /**
+     * Draws the gameboard by iterating through the Block array and rendering
+     * colorful squares wherever the board is occupied.
+     *
+     * @author Brooke Bullek
+     * @param gc
+     * @param g
+     */
+    public void renderBoard(GameContainer gc, Graphics g) {
+        // iterate through the rows and columns of the Board, drawing each block
+        for (int i = 0; i < theModel.getMyBoard().getWidth(); i++) {
+            for (int j = 0; j < theModel.getMyBoard().getHeight(); j++) {
+                // be careful to check that there is indeed a block to draw
+                if (theModel.getMyBoard().getBlockArray()[i][j] != null) {
+                    // set the color of this block and fill in the square
+                    g.setColor(
+                            theModel.getMyBoard().getBlockArray()[i][j].getColor());
+                    g.fillRect(i * Window.getPIXEL_OFFSET(),
+                               j * Window.getPIXEL_OFFSET(),
+                               Window.getPIXEL_OFFSET(),
+                               Window.getPIXEL_OFFSET());
+                    // draw the black border around the square
+                    g.setColor(black);
+                    g.drawRect(i * Window.getPIXEL_OFFSET(),
+                               j * Window.getPIXEL_OFFSET(),
+                               Window.getPIXEL_OFFSET(),
+                               Window.getPIXEL_OFFSET());
+                }
+            }
+        }
     }
 }
