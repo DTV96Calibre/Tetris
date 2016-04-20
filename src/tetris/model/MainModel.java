@@ -87,6 +87,12 @@ public class MainModel {
         this.activeTetrimino = activeTetrimino;
     }
 
+    public void setActiveTetrimino(TShape shape) {
+        activeTetrimino = new Tetrimino(shape);
+
+        initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
+    }
+
     public int getTimer() {
         return timer;
     }

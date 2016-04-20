@@ -100,6 +100,8 @@ public class GenericBoard {
      * full.
      *
      * @author Brooke Bullek
+     * @param newPositions An array of points being checked for occupency on the
+     * board.
      */
     public boolean validate(Point[] newPositions) {
         int newXPos;
@@ -200,6 +202,17 @@ public class GenericBoard {
                 // Set the line to the line above it
                 this.blockArray[i][j] = this.blockArray[i][j - 1];
             }
+        }
+    }
+
+    /**
+     * Places the blocks in the active Tetrimino into the gameboard.
+     *
+     * @author Daniel Vasquez
+     */
+    public void lockActiveTetrimino(Tetrimino tetrimino) {
+        for (Block block : tetrimino.getBlockArray()) {
+            blockArray[block.getLocation().x][block.getLocation().y] = block;
         }
     }
 }
