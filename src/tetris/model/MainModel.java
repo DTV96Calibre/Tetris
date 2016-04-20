@@ -63,16 +63,10 @@ public class MainModel {
         //initialize the Randomizer.
         Randomizer = new Random();
         //initialize the bag.
-        bag.add(TShape.I_BLOCK);
-        bag.add(TShape.L_BLOCK);
-        bag.add(TShape.O_BLOCK);
-        bag.add(TShape.J_BLOCK);
-        bag.add(TShape.Z_BLOCK);
-        bag.add(TShape.S_BLOCK);
-        bag.add(TShape.T_BLOCK);
+        initializeBag();
         int index = Randomizer.nextInt(7);
 
-        // TODO: Allow for random Tetrimino instead of an I-block
+        // TODO: Allow for random Tetrimino instead of a block
         activeTetrimino = new Tetrimino(bag.get(index));
         bag.remove(index);
 
@@ -80,6 +74,23 @@ public class MainModel {
 
         // set the new Tetrimino's location to the top center of the screen
         activeTetriminoLocation = initialTetriminoLocation;
+    }
+
+    public void initializeBag() {
+        for (TShape shape : TShape.values()) {
+            bag.add(shape);
+        }
+    }
+
+    public TShape pickTShape() {
+        int size = this.bag.size();
+        if (size == 0) {
+            initializeBag();
+        }
+        int index = Randomizer.nextInt(size);
+        TShape shape = bag.get(index);
+        bag.remove(index);
+        return shape;
     }
 
     /* Getters and setters */
