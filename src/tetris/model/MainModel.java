@@ -60,20 +60,78 @@ public class MainModel {
         // TODO: Modify gameboard selection to change with user's choice of
         // game mode?
         myBoard = new GenericBoard();
+
         //initialize the Randomizer.
         Randomizer = new Random();
+
         //initialize the bag.
         initializeBag();
         int index = Randomizer.nextInt(7);
 
-        // TODO: Allow for random Tetrimino instead of a block
-        activeTetrimino = new Tetrimino(bag.get(index));
-        bag.remove(index);
-
+        // the Tetrimino should spawn at the midpoint of the top of the screen
         initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
 
-        // set the new Tetrimino's location to the top center of the screen
+        setActiveTetrimino(pickTShape());
+    }
+
+    /* Getters and setters */
+    public Point getActiveTetriminoLocation() {
+        return activeTetriminoLocation;
+    }
+
+    public void setActiveTetriminoLocation(Point activeTetriminoLocation) {
+        this.activeTetriminoLocation = activeTetriminoLocation;
+    }
+
+    public GenericBoard getMyBoard() {
+        return myBoard;
+    }
+
+    public void setMyBoard(GenericBoard myBoard) {
+        this.myBoard = myBoard;
+    }
+
+    public Tetrimino getActiveTetrimino() {
+        return activeTetrimino;
+    }
+
+    public void setActiveTetrimino(Tetrimino activeTetrimino) {
+        this.activeTetrimino = activeTetrimino;
+    }
+
+    public void setActiveTetrimino(TShape shape) {
+        activeTetrimino = new Tetrimino(shape);
         activeTetriminoLocation = initialTetriminoLocation;
+    }
+
+    public int getTimer() {
+        return timer;
+    }
+
+    public void setTimer(int timer) {
+        this.timer = timer;
+    }
+    /* End of getters and setters */
+
+    /**
+     * Places the blocks in the active Tetrimino into the gameboard and load a
+     * new Tetrimino at the top of the screen.
+     *
+     * TODO: Fix this function
+     *
+     * @author Daniel Vasquez
+     */
+    public void lockActiveTetrimino() {
+        for (Block block : activeTetrimino.getBlockArray()) {
+            // extract the location (x/y coordinates) of this block
+            int xPos = (int) (block.getLocation().getX() + activeTetriminoLocation.getX());
+            int yPos = (int) (block.getLocation().getY() + activeTetriminoLocation.getY());
+
+            myBoard.setBlock(xPos, yPos, block); // stick this Block in the board
+        }
+
+        // change the active Tetrimino
+        setActiveTetrimino(pickTShape());
     }
 
     /**
@@ -107,59 +165,5 @@ public class MainModel {
         TShape shape = bag.get(index);
         bag.remove(index);
         return shape;
-    }
-
-    /* Getters and setters */
-    public Point getActiveTetriminoLocation() {
-        return activeTetriminoLocation;
-    }
-
-    public void setActiveTetriminoLocation(Point activeTetriminoLocation) {
-        this.activeTetriminoLocation = activeTetriminoLocation;
-    }
-
-    public GenericBoard getMyBoard() {
-        return myBoard;
-    }
-
-    public void setMyBoard(GenericBoard myBoard) {
-        this.myBoard = myBoard;
-    }
-
-    public Tetrimino getActiveTetrimino() {
-        return activeTetrimino;
-    }
-
-    public void setActiveTetrimino(Tetrimino activeTetrimino) {
-        this.activeTetrimino = activeTetrimino;
-    }
-
-    public void setActiveTetrimino(TShape shape) {
-        activeTetrimino = new Tetrimino(shape);
-
-        initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
-    }
-
-    public int getTimer() {
-        return timer;
-    }
-
-    public void setTimer(int timer) {
-        this.timer = timer;
-    }
-    /* End of getters and setters */
-
-    /**
-     * Places the blocks in the active Tetrimino into the gameboard.
-     *
-     * TODO: Fix this function
-     *
-     * @author Daniel Vasquez
-     */
-    public void lockActiveTetrimino(Tetrimino tetrimino,
-                                    GenericBoard genericBoard) {
-        for (Block block : tetrimino.getBlockArray()) {
-            myBoard.getBlockArray()[block.getLocation().x][block.getLocation().y] = block;
-        }
     }
 }

@@ -50,24 +50,6 @@ public class GenericBoard {
      */
     private Block[][] blockArray;
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    /**
-     * Returns the <code>blockArray</code> attribute
-     *
-     * @return The <code>GenericBoard</code>'s grid
-     * @author Daniel Vasquez
-     */
-    public Block[][] getBlockArray() {
-        return blockArray;
-    }
-
     /**
      * Constructs an empty standard size Tetris board with default height and
      * width.
@@ -92,6 +74,39 @@ public class GenericBoard {
         this.width = width;
         this.height = height;
     }
+
+    /* Getters and setters */
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * Returns the <code>blockArray</code> attribute
+     *
+     * @return The <code>GenericBoard</code>'s grid
+     * @author Daniel Vasquez
+     */
+    public Block[][] getBlockArray() {
+        return blockArray;
+    }
+
+    /**
+     * Given a block and a pair of coordinates corresponding to indices of this
+     * board's 2D Block array, sets the cell in that position to the new Block.
+     *
+     * @author Brooke Bullek
+     * @param xPos the row in which to place the new Block
+     * @param yPos the column in which to place the new Block
+     * @param block the new Block to insert
+     */
+    public void setBlock(int xPos, int yPos, Block block) {
+        blockArray[xPos][yPos] = block;
+    }
+    /* End of getters and setters */
 
     /**
      * Validates that a given array of cells (represented by Points) are empty

@@ -90,7 +90,7 @@ public class MainController {
     public void updateActiveTetrimino(GameContainer gc, int delta) {
         int timer = theModel.getTimer();
 
-        if (timer < 800) { // TODO: Scale timer with difficulty so blocks fall faster
+        if (timer < 300) { // TODO: Scale timer with difficulty so blocks fall faster
             theModel.setTimer(timer + delta);
         } else {
             theModel.setTimer(0); // reset timer event
@@ -179,7 +179,12 @@ public class MainController {
                     (int) theModel.getActiveTetriminoLocation().getX() + shiftAmountX,
                     (int) theModel.getActiveTetriminoLocation().getY() + shiftAmountY);
             theModel.setActiveTetriminoLocation(newPosition);
-        } // else, we don't update the Tetrimino's position
+        } // else, we check whether this Tetrimino should be locked
+        else {
+            if (d == Direction.DOWN) {
+                theModel.lockActiveTetrimino();
+            }
+        }
     }
 
     /**
