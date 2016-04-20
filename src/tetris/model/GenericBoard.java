@@ -135,15 +135,64 @@ public class GenericBoard {
      */
     public List detectLines() {
         List rowIndices = new ArrayList();
-        for (int j = 0; j < HEIGHT; j++) {
-            for (int i = 0; i < WIDTH; i++) {
+        for (int j = 0; j < this.height; j++) {
+            for (int i = 0; i < this.width; i++) {
                 if (this.blockArray[i][j] == null) {
                     break;
-                } else if (i + 1 == WIDTH) {
+                } else if (i + 1 == this.width) {
                     rowIndices.add(j);
                 }
             }
         }
         return rowIndices;
+    }
+
+    /**
+     * Clears all lines in a given list.
+     *
+     * @author Daniel Vasquez
+     * @param lineYCoords a list of y coordinates indicating lines in the board.
+     */
+    public void clearLines(List lineYCoords) {
+        for (Line y : lineYCoords) {
+            clearLine(y);
+        }
+    }
+
+    /**
+     * Clears a line.
+     *
+     * @author Daniel Vasquez
+     * @param y The value of the line's vertical position.
+     */
+    public void clearLine(int y) {
+        for (int x = 0; x < this.width; x++) {
+            this.blockArray[x][y] = null;
+        }
+    }
+
+    /**
+     * Performs line drops for each line listed.
+     *
+     * @param lineYCoords a list of y coordinates indicating lines in the board.
+     */
+    public void dropLines(List lineYCoords) {
+        for (Line y : lineYCoords) {
+            dropLine(y);
+        }
+    }
+
+    /**
+     * Drops every block above a line down one place.
+     *
+     * @author Daniel Vasquez
+     * @param y The value of the line's vertical position.
+     */
+    public void dropLine(int y) {
+        for (y; y > 0; y--) {
+            for (int x = 0; x < this.width; x++) {
+                this.blockArray[x][y] = this.blockArray[x][y - 1];
+            }
+        }
     }
 }
