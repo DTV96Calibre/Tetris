@@ -16,6 +16,8 @@
 package tetris.model;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Generic gameboard which contains falling and sitting blocks
@@ -92,10 +94,10 @@ public class GenericBoard {
     }
 
     /**
-     * Validates that a given array of cells (represented by Points) are empty
-     * on this board so that we can place Blocks here. Returns false if any of
-     * the Points exceed the boundary of this board or if the cell is already
-     * full.
+     * <<<<<<< HEAD Validates that a given array of cells (represented by
+     * Points) are empty on this board so that we can place Blocks here. Returns
+     * false if any of the Points exceed the boundary of this board or if the
+     * cell is already full.
      *
      * @author Brooke Bullek
      */
@@ -123,5 +125,25 @@ public class GenericBoard {
             }
         }
         return true; // everything's good!
+    }
+
+    /**
+     * Detects lines in the board's block array.
+     *
+     * @author Daniel Vasquez
+     * @return List of indexes where lines are located
+     */
+    public List detectLines() {
+        List rowIndices = new ArrayList();
+        for (int j = 0; j < HEIGHT; j++) {
+            for (int i = 0; i < WIDTH; i++) {
+                if (this.blockArray[i][j] == null) {
+                    break;
+                } else if (i + 1 == WIDTH) {
+                    rowIndices.add(j);
+                }
+            }
+        }
+        return rowIndices;
     }
 }
