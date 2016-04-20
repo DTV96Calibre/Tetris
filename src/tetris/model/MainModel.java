@@ -121,4 +121,18 @@ public class MainModel {
         this.timer = timer;
     }
     /* End of getters and setters */
+
+    /**
+     * Places the blocks in the active Tetrimino into the gameboard.
+     *
+     * TODO: Fix this function
+     *
+     * @author Daniel Vasquez
+     */
+    public void lockActiveTetrimino(Tetrimino tetrimino,
+                                    GenericBoard genericBoard) {
+        for (Block block : tetrimino.getBlockArray()) {
+            myBoard.getBlockArray()[block.getLocation().x][block.getLocation().y] = block;
+        }
+    }
 }

@@ -205,14 +205,4 @@ public class GenericBoard {
         }
     }
 
-    /**
-     * Places the blocks in the active Tetrimino into the gameboard.
-     *
-     * @author Daniel Vasquez
-     */
-    public void lockActiveTetrimino(Tetrimino tetrimino) {
-        for (Block block : tetrimino.getBlockArray()) {
-            blockArray[block.getLocation().x][block.getLocation().y] = block;
-        }
-    }
 }
