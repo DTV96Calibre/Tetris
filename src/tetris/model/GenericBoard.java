@@ -100,6 +100,8 @@ public class GenericBoard {
      * full.
      *
      * @author Brooke Bullek
+     * @param newPositions An array of points being checked for occupency on the
+     * board.
      */
     public boolean validate(Point[] newPositions) {
         int newXPos;
@@ -202,4 +204,5 @@ public class GenericBoard {
             }
         }
     }
+
 }

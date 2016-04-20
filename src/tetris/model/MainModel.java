@@ -134,6 +134,12 @@ public class MainModel {
         this.activeTetrimino = activeTetrimino;
     }
 
+    public void setActiveTetrimino(TShape shape) {
+        activeTetrimino = new Tetrimino(shape);
+
+        initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
+    }
+
     public int getTimer() {
         return timer;
     }
@@ -142,4 +148,18 @@ public class MainModel {
         this.timer = timer;
     }
     /* End of getters and setters */
+
+    /**
+     * Places the blocks in the active Tetrimino into the gameboard.
+     *
+     * TODO: Fix this function
+     *
+     * @author Daniel Vasquez
+     */
+    public void lockActiveTetrimino(Tetrimino tetrimino,
+                                    GenericBoard genericBoard) {
+        for (Block block : tetrimino.getBlockArray()) {
+            myBoard.getBlockArray()[block.getLocation().x][block.getLocation().y] = block;
+        }
+    }
 }
