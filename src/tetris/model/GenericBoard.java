@@ -107,7 +107,7 @@ public class GenericBoard {
 
         // check each of the Points and only return true if they all fit
         for (int i = 0; i < newPositions.length; i++) {
-            // grab the x and y coordinates from this Point
+            // grab the i and y coordinates from this Point
             newXPos = (int) newPositions[i].getX();
             newYPos = (int) newPositions[i].getY();
 
@@ -134,11 +134,15 @@ public class GenericBoard {
      * @return List of indexes where lines are located
      */
     public List detectLines() {
-        List rowIndices = new ArrayList();
+        ArrayList<Integer> rowIndices = new ArrayList();
+        // Iterate over each row
         for (int j = 0; j < this.height; j++) {
+            // Iterate over each column
             for (int i = 0; i < this.width; i++) {
+                // If the block is empty, ignore this line
                 if (this.blockArray[i][j] == null) {
                     break;
+                    // If the line was full, flag the line as full
                 } else if (i + 1 == this.width) {
                     rowIndices.add(j);
                 }
@@ -153,8 +157,8 @@ public class GenericBoard {
      * @author Daniel Vasquez
      * @param lineYCoords a list of y coordinates indicating lines in the board.
      */
-    public void clearLines(List lineYCoords) {
-        for (Line y : lineYCoords) {
+    public void clearLines(ArrayList<Integer> lineYCoords) {
+        for (Integer y : lineYCoords) {
             clearLine(y);
         }
     }
@@ -176,8 +180,8 @@ public class GenericBoard {
      *
      * @param lineYCoords a list of y coordinates indicating lines in the board.
      */
-    public void dropLines(List lineYCoords) {
-        for (Line y : lineYCoords) {
+    public void dropLines(ArrayList<Integer> lineYCoords) {
+        for (Integer y : lineYCoords) {
             dropLine(y);
         }
     }
@@ -186,12 +190,15 @@ public class GenericBoard {
      * Drops every block above a line down one place.
      *
      * @author Daniel Vasquez
-     * @param y The value of the line's vertical position.
+     * @param y The coordinate of the line's vertical position. Y.
      */
     public void dropLine(int y) {
-        for (y; y > 0; y--) {
-            for (int x = 0; x < this.width; x++) {
-                this.blockArray[x][y] = this.blockArray[x][y - 1];
+        // Iterate over each line starting with y and ending at 1.
+        for (int j = y; j > 0; j--) {
+            // Iterate over each block in the line
+            for (int i = 0; i < this.width; i++) {
+                // Set the line to the line above it
+                this.blockArray[i][j] = this.blockArray[i][j - 1];
             }
         }
     }
