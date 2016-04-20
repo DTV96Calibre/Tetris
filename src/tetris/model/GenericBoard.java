@@ -94,10 +94,10 @@ public class GenericBoard {
     }
 
     /**
-     * <<<<<<< HEAD Validates that a given array of cells (represented by
-     * Points) are empty on this board so that we can place Blocks here. Returns
-     * false if any of the Points exceed the boundary of this board or if the
-     * cell is already full.
+     * Validates that a given array of cells (represented by Points) are empty
+     * on this board so that we can place Blocks here. Returns false if any of
+     * the Points exceed the boundary of this board or if the cell is already
+     * full.
      *
      * @author Brooke Bullek
      */
