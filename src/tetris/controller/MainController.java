@@ -108,6 +108,7 @@ public class MainController {
     public void rotateActiveTetrimino(int factor) {
         // preserve old arrangement of blocks in case a rotation isn't possible
         Block oldBlockArray[] = new Block[Tetrimino.TETRIMINO_ARRAY_WIDTH];
+        // creates a deep copy to avoid copying references to these Blocks
         for (int i = 0; i < Tetrimino.TETRIMINO_ARRAY_WIDTH; i++) {
             try {
                 oldBlockArray[i] = (Block) theModel.getActiveTetrimino().getBlockArray()[i].copy();

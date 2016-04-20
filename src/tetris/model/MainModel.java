@@ -76,17 +76,33 @@ public class MainModel {
         activeTetriminoLocation = initialTetriminoLocation;
     }
 
+    /**
+     * Inserts each of the 7 Tetrimino types (from the TShape enum) into the
+     * "grab bag" to be used for Tetrimino generation.
+     *
+     * @author Xizhou Li
+     */
     public void initializeBag() {
         for (TShape shape : TShape.values()) {
             bag.add(shape);
         }
     }
 
+    /**
+     * Randomly selects an available TShape from the "grab bag," removes this
+     * from the bag, and returns it.
+     *
+     * @author Xizhou Li
+     * @return an available TShape to set as the next Tetrimino to drop
+     */
     public TShape pickTShape() {
         int size = this.bag.size();
+
+        // if this "grab bag" has been depleted, reset it with all 7 TShapes
         if (size == 0) {
             initializeBag();
         }
+
         int index = Randomizer.nextInt(size);
         TShape shape = bag.get(index);
         bag.remove(index);
