@@ -66,6 +66,8 @@ public class MainController {
     public void update(GameContainer gc, StateBasedGame s, int delta) {
         // check user input
         Input input = gc.getInput();
+        // preserve game speed in case DOWN arrow was pressed
+        int oldGameSpeed = theModel.getGameSpeed();
         // if user pressed the up arrow key, try to rotate the active tetrimino
         if (input.isKeyPressed(Input.KEY_UP)) {
             rotateActiveTetrimino(1);
@@ -75,9 +77,13 @@ public class MainController {
         } // if user pressed the right arrow key, try to move right
         else if (input.isKeyPressed(Input.KEY_RIGHT)) {
             moveActiveTetrimino(Direction.RIGHT);
+        } else if (input.isKeyDown(Input.KEY_DOWN)) {
+            // the Tetriminos should fall faster
+            theModel.setGameSpeed(50);
         }
 
         updateActiveTetrimino(gc, delta);
+        theModel.setGameSpeed(oldGameSpeed);
     }
 
     /**
@@ -91,7 +97,7 @@ public class MainController {
     public void updateActiveTetrimino(GameContainer gc, int delta) {
         int timer = theModel.getTimer();
 
-        if (timer < 100) { // TODO: Scale timer with difficulty so blocks fall faster
+        if (timer < theModel.getGameSpeed()) {
             theModel.setTimer(timer + delta);
         } else {
             theModel.setTimer(0); // reset timer event

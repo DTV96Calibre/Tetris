@@ -46,6 +46,11 @@ public class MainModel {
      */
     private Point activeTetriminoLocation;
 
+    /* The rate at which Tetriminos fall; scales with difficulty and increases
+     whenever the user holds the DOWN arrow
+     */
+    private int gameSpeed;
+
     private int timer;
 
     /**
@@ -62,6 +67,9 @@ public class MainModel {
         initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
 
         setActiveTetrimino(pickTShape()); // pick the first Tetrimino
+
+        gameSpeed = 800; // initialize to 800 ms
+
     }
 
     /* Getters and setters */
@@ -100,6 +108,14 @@ public class MainModel {
 
     public void setTimer(int timer) {
         this.timer = timer;
+    }
+
+    public int getGameSpeed() {
+        return gameSpeed;
+    }
+
+    public void setGameSpeed(int gameSpeed) {
+        this.gameSpeed = gameSpeed;
     }
     /* End of getters and setters */
 
