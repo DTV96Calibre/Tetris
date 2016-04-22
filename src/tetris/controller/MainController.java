@@ -9,7 +9,7 @@
  * Project: csci205FinalProject
  * Package: tetris.controller
  * File: MainController
- * Description:
+ * Description: Primary controller class
  *
  * ****************************************
  */
@@ -19,6 +19,7 @@ import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.newdawn.slick.Color.black;
+import static org.newdawn.slick.Color.pink;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -36,7 +37,15 @@ import tetris.view.Window;
  * @author Brooke Bullek
  */
 public class MainController {
+
+    /**
+     * Instance of the primary model class .
+     */
     private MainModel theModel;
+
+    /**
+     * Instance of the primary view class.
+     */
     private MainView theView;
 
     /**
@@ -53,15 +62,24 @@ public class MainController {
 
     /**
      * Renders various components of theView based on the state of the model.
+     *
+     * @param gc
+     * @param s
+     * @param g
      */
     public void render(GameContainer gc, StateBasedGame s, Graphics g) {
         renderTetrimino(gc, g); // draw the active tetrimino
         renderBoard(gc, g); // draw the blocks on the gameboard
+        renderScoreBoard(gc, g);
     }
 
     /**
      * Executes logic of the main game loop, both using a timer and by checking
      * for user input.
+     *
+     * @param gc
+     * @param s
+     * @param delta
      */
     public void update(GameContainer gc, StateBasedGame s, int delta) {
         // check user input
@@ -93,6 +111,8 @@ public class MainController {
      * difficulty level.
      *
      * @author Xizhou Li
+     * @param gc
+     * @param delta
      */
     public void updateActiveTetrimino(GameContainer gc, int delta) {
         int timer = theModel.getTimer();
@@ -199,6 +219,8 @@ public class MainController {
      * Blocks.
      *
      * @author Xizhou Li
+     * @param gc
+     * @param g
      */
     public void renderTetrimino(GameContainer gc, Graphics g) {
         // get the array of blocks from the active tetrimino
@@ -215,6 +237,9 @@ public class MainController {
      * Renders a Block (1/4 of a Tetrimino) within the game window.
      *
      * @author Xizhou Li
+     * @param gc
+     * @param g
+     * @param block
      */
     public void renderBlock(GameContainer gc, Graphics g, Block block) {
         g.setColor(block.getColor());
@@ -231,6 +256,21 @@ public class MainController {
         g.drawRect((int) xLocation * Window.getPIXEL_OFFSET(),
                    (int) (yLocation * Window.getPIXEL_OFFSET()),
                    Window.getPIXEL_OFFSET(), Window.getPIXEL_OFFSET());
+    }
+
+    /**
+     * Renders the <code>ScoreBoard</code> on the LEFT half of the screen
+     *
+     * @param gc
+     * @param g
+     * @author Andre Amirsaleh
+     */
+    public void renderScoreBoard(GameContainer gc, Graphics g) {
+        String sPoints = String.valueOf(
+                theModel.getMyBoard().getScoreBoard().getPoints());
+        g.setColor(pink);
+        g.drawString(sPoints, 50, 0);
+        // TODO: Make it so that the ScoreBoard renders on the RIGHT half of the screen
     }
 
     /**

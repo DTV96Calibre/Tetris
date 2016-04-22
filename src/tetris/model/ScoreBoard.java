@@ -23,11 +23,14 @@ package tetris.model;
 public class ScoreBoard {
 
     /**
-     * The current number of points that a player has
-     *
-     * @author Andre Amirsaleh
+     * Your current score.
      */
     private int points;
+
+    /**
+     * The number of points you get for clearing a line.
+     */
+    private final int POINTS_PER_LINE = 500;
 
     /**
      * Constructs a new <code>ScoreBoard</code> instance
@@ -41,11 +44,10 @@ public class ScoreBoard {
     /**
      * Adds points to the <code>points</code> attribute
      *
-     * @param pointsToAdd Number of points to add
-     * @author Andre Amirsaleh
+     * @author Andre Amirsaleh and Xizhou Li
      */
-    public void addPoints(int pointsToAdd) {
-        points += pointsToAdd;
+    public void addPoints() {
+        this.points += this.POINTS_PER_LINE;
     }
 
     /**
@@ -57,4 +59,5 @@ public class ScoreBoard {
     public int getPoints() {
         return points;
     }
+
 }
