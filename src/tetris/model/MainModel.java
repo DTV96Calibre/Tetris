@@ -136,6 +136,12 @@ public class MainModel {
             myBoard.setBlock(xPos, yPos, block); // stick this Block in the board
         }
 
+        // detect lines that may have been made, clear them, and perform the appropriate drops
+        ArrayList<Integer> lines = (ArrayList<Integer>) this.myBoard.detectLines();
+        if (!lines.isEmpty()) {
+            this.myBoard.clearLines(lines);
+            this.myBoard.dropLines(lines);
+        }
         // change the active Tetrimino
         setActiveTetrimino(pickTShape());
     }
