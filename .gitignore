@@ -7,13 +7,13 @@
 *.class
 
 # Package Files #
-*.jar
+#*.jar
 *.war
 *.ear
 
 # NetBeans specific #
 nbproject/*
-!nbproject/project.properties
+#!nbproject/project.properties
 !nbproject/project.xml
 !nbproject/licenseheader.txt
 build/
