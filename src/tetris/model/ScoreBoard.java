@@ -30,7 +30,7 @@ public class ScoreBoard {
     /**
      * The number of points you get for clearing a line.
      */
-    private final int POINTS_PER_LINE = 500;
+    private final int POINTS_PER_LINE = 1;
 
     /**
      * Constructs a new <code>ScoreBoard</code> instance
