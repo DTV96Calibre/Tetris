@@ -20,6 +20,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import tetris.controller.MainController;
 import tetris.view.GameStates.GameStates;
+import tetris.view.GameStates.MenuState;
 
 /**
  * Contains the visual components that must be rendered and everything that's
@@ -35,6 +36,8 @@ public class MainView extends StateBasedGame {
     // unfortunately integral to the Slick API
     private MainController controller;
 
+    private static final int MENU = 0;
+
     /**
      * Constructs a new <code>MainView</code> instance
      *
@@ -43,6 +46,7 @@ public class MainView extends StateBasedGame {
      */
     public MainView(String name, MainController mainController) {
         super("Tetris");
+        this.addState(new MenuState(MENU));
         this.controller = mainController;
     }
 
