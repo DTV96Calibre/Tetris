@@ -6,7 +6,6 @@
 package tetris.model;
 
 import java.awt.Point;
-import org.newdawn.slick.Color;
 
 /**
  * A shaped piece made up of four blocks. Represented as a 2D array of blocks.
@@ -73,7 +72,7 @@ public class Tetrimino {
         this.shape = shape;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return this.blockArray[0].getColor();
     }
     /* End of getters and setters */

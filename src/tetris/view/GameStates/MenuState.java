@@ -13,6 +13,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import tetris.resources.Resources;
 
 /**
  *
@@ -50,6 +51,8 @@ public class MenuState extends BasicGameState {
         g.drawString("Welcome to Tetris!", 100, 50);
         playNow.draw(100, 100);
         exitGame.draw(100, 300);
+        Resources.getImages().get("menu").draw(200, 100, 240, 160);
+        Resources.getImages().get("play").draw(223, 300, 194, 200);
     }
 
     @Override
