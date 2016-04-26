@@ -72,7 +72,7 @@ public class MainView extends StateBasedGame {
         // associate this GameStates object with the controller (important!)
         gameStates.setController(controller);
 
-        menuStates = new MenuState();
+        menuStates = new MenuState(1);
         gc.setVSync(true);
         gc.setShowFPS(false);
         this.addState(gameStates);
