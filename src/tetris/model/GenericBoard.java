@@ -51,6 +51,11 @@ public class GenericBoard {
     private Block[][] blockArray;
 
     /**
+     * Contains info/methods to access/manipulate current score.
+     */
+    private ScoreBoard scoreBoard;
+
+    /**
      * Constructs an empty standard size Tetris board with default height and
      * width.
      *
@@ -60,6 +65,7 @@ public class GenericBoard {
         this.blockArray = new Block[WIDTH][HEIGHT];
         this.width = WIDTH;
         this.height = HEIGHT;
+        this.scoreBoard = new ScoreBoard();
     }
 
     /**
@@ -82,6 +88,15 @@ public class GenericBoard {
 
     public int getHeight() {
         return height;
+    }
+
+    /**
+     * Returns <code>scoreBoard</code> attribute
+     *
+     * @return info/methods to access/manipulate current score
+     */
+    public ScoreBoard getScoreBoard() {
+        return scoreBoard;
     }
 
     /**
@@ -190,6 +205,7 @@ public class GenericBoard {
         for (int x = 0; x < this.width; x++) {
             this.blockArray[x][y] = null;
         }
+        scoreBoard.addPoints();
     }
 
     /**
