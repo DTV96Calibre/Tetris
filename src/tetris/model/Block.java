@@ -7,7 +7,6 @@ package tetris.model;
 
 import java.awt.Point;
 import java.util.Objects;
-import org.newdawn.slick.Color;
 
 /**
  * A block used in the construction of Tetriminos and other Tetris pieces.
@@ -19,7 +18,7 @@ public class Block implements Cloneable {
     /**
      * The color of the block.
      */
-    private Color color;
+    private String color;
 
     /**
      * The representation of the block's location relative to its Tetrimino.
@@ -36,7 +35,7 @@ public class Block implements Cloneable {
      * @author Daniel Vasquez
      */
     public Block() {
-        this.color = null;
+        this.color = "";
         this.location = null;
     }
 
@@ -49,17 +48,17 @@ public class Block implements Cloneable {
      *
      * @author Daniel Vasquez & Brooke Bullek
      */
-    public Block(Color color, Point location) {
+    public Block(String color, Point location) {
         this.color = color;
         this.location = location;
     }
 
     /* Getters and setters */
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 

@@ -18,6 +18,7 @@ package tetris.model;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
+import tetris.resources.Resources;
 
 /**
  * Contains all of the internal states of Tetris that are subject to change
@@ -140,6 +141,7 @@ public class MainModel {
         ArrayList<Integer> lines = (ArrayList<Integer>) this.myBoard.detectLines();
         if (!lines.isEmpty()) {
             this.myBoard.clearLines(lines);
+            Resources.getSounds().get("breakSound").play();
             this.myBoard.dropLines(lines);
         }
         // change the active Tetrimino

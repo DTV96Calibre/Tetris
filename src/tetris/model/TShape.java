@@ -16,7 +16,6 @@
 package tetris.model;
 
 import java.awt.Point;
-import org.newdawn.slick.Color;
 
 
 /* An enumerated class to store the seven possible arrangements of a
@@ -27,26 +26,26 @@ import org.newdawn.slick.Color;
  */
 public enum TShape {
     I_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(1, 0),
-                        new Point(2, 0)}, Color.cyan),
+                        new Point(2, 0)}, "cyan"),
     J_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(-1, 1),
-                        new Point(1, 0)}, Color.blue),
+                        new Point(1, 0)}, "blue"),
     L_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(1, 0),
-                        new Point(1, 1)}, Color.orange),
+                        new Point(1, 1)}, "orange"),
     O_BLOCK(new Point[]{new Point(0, 0), new Point(1, 0), new Point(0, -1),
-                        new Point(1, -1)}, Color.yellow),
+                        new Point(1, -1)}, "yellow"),
     S_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(0, 1),
-                        new Point(1, 1)}, Color.green),
+                        new Point(1, 1)}, "green"),
     T_BLOCK(new Point[]{new Point(0, 0), new Point(-1, 0), new Point(1, 0),
-                        new Point(0, 1)}, Color.magenta),
+                        new Point(0, 1)}, "magenta"),
     Z_BLOCK(new Point[]{new Point(0, 0), new Point(0, 1), new Point(1, 0),
-                        new Point(-1, 1)}, Color.red);
+                        new Point(-1, 1)}, "red");
 
     // array of Points rather than array of Blocks (to reduce dependencies)
     private final Point[] minoLocations;
     // the color of this type of Tetrimino
-    private final Color color;
+    private final String color;
 
-    TShape(Point[] minoLocations, Color color) {
+    TShape(Point[] minoLocations, String color) {
         this.color = color;
         this.minoLocations = minoLocations;
     }
@@ -56,7 +55,7 @@ public enum TShape {
         return minoLocations;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
     /* End of getters and setters */
