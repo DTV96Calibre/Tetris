@@ -11,6 +11,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import tetris.resources.Resources;
 
 /**
  *
@@ -30,11 +31,13 @@ public class MenuState extends BasicGameState {
 
     @Override
     public void render(GameContainer gc, StateBasedGame s, Graphics g) throws SlickException {
-        g.drawString("Menu State, Hoorray", 50, 50);
+        Resources.getImages().get("menu").draw(200, 100, 240, 160);
+        Resources.getImages().get("play").draw(223, 300, 194, 200);
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame s, int delta) throws SlickException {
+
         if (gc.getInput().isKeyPressed(Input.KEY_ENTER)) {
             s.enterState(state.GAME);
         }

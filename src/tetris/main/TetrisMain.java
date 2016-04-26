@@ -34,6 +34,7 @@ public class TetrisMain {
             System.setProperty("org.lwjgl.librarypath", file.getAbsolutePath());
         }
         try {
+
             // instantiate the model, view & controller
             MainModel theModel = new MainModel();
             MainView theView = new MainView("Tetris", null);

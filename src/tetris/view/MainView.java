@@ -19,7 +19,9 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import tetris.controller.MainController;
+import tetris.resources.Resources;
 import tetris.view.GameStates.GameStates;
+import tetris.view.GameStates.MenuState;
 
 /**
  * Contains the visual components that must be rendered and everything that's
@@ -29,6 +31,7 @@ import tetris.view.GameStates.GameStates;
  */
 public class MainView extends StateBasedGame {
     private GameStates gameStates;
+    private MenuState menuStates;
 
     // TODO: Refactor so MainView doesn't have a dependency on MainController.
     // However, this would require a revamp of the GameState class which is
@@ -55,6 +58,7 @@ public class MainView extends StateBasedGame {
      */
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
+        new Resources();
         // The frame will update 60 time a second
         gc.setTargetFrameRate(60);
         // This implements multiwindow rendering
@@ -64,9 +68,12 @@ public class MainView extends StateBasedGame {
         gameStates = new GameStates();
         // associate this GameStates object with the controller (important!)
         gameStates.setController(controller);
+
+        menuStates = new MenuState();
         gc.setVSync(true);
         gc.setShowFPS(false);
         this.addState(gameStates);
+        this.addState(menuStates);
     }
 
     /* Getters and setters */

@@ -18,15 +18,16 @@ package tetris.controller;
 import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static org.newdawn.slick.Color.black;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 import tetris.model.Block;
 import tetris.model.Direction;
 import tetris.model.MainModel;
 import tetris.model.Tetrimino;
+import tetris.resources.Resources;
 import tetris.view.MainView;
 import tetris.view.Window;
 
@@ -55,8 +56,15 @@ public class MainController {
      * Renders various components of theView based on the state of the model.
      */
     public void render(GameContainer gc, StateBasedGame s, Graphics g) {
+        renderBackground(gc, g); // render the background with a space picture
         renderTetrimino(gc, g); // draw the active tetrimino
         renderBoard(gc, g); // draw the blocks on the gameboard
+
+    }
+
+    public void renderBackground(GameContainer gc, Graphics g) {
+        Image image = Resources.getImages().get("background");
+        image.draw(0, 0, Window.getWIDTH(), Window.getHEIGHT());
     }
 
     /**
@@ -217,20 +225,24 @@ public class MainController {
      * @author Xizhou Li
      */
     public void renderBlock(GameContainer gc, Graphics g, Block block) {
-        g.setColor(block.getColor());
+
         int xLocation = (int) (theModel.getActiveTetriminoLocation().getX()
                                + block.getLocation().getX());
         int yLocation = (int) (theModel.getActiveTetriminoLocation().getY()
                                + block.getLocation().getY());
-
+//        g.setColor(block.getColor());
+        String color = block.getColor().toString();
         // draw the block as a small square
-        g.fillRect(xLocation * Window.getPIXEL_OFFSET(),
-                   (int) (yLocation * Window.getPIXEL_OFFSET()),
-                   Window.getPIXEL_OFFSET(), Window.getPIXEL_OFFSET());
-        g.setColor(black);
-        g.drawRect((int) xLocation * Window.getPIXEL_OFFSET(),
-                   (int) (yLocation * Window.getPIXEL_OFFSET()),
-                   Window.getPIXEL_OFFSET(), Window.getPIXEL_OFFSET());
+        Image image = Resources.getImages().get(color);
+        image.draw(xLocation * Window.getPIXEL_OFFSET(),
+                   yLocation * Window.getPIXEL_OFFSET(), 32, 32);
+//        g.fillRect(xLocation * Window.getPIXEL_OFFSET(),
+//                   (int) (yLocation * Window.getPIXEL_OFFSET()),
+//                   Window.getPIXEL_OFFSET(), Window.getPIXEL_OFFSET());
+//        g.setColor(black);
+//        g.drawRect((int) xLocation * Window.getPIXEL_OFFSET(),
+//                   (int) (yLocation * Window.getPIXEL_OFFSET()),
+//                   Window.getPIXEL_OFFSET(), Window.getPIXEL_OFFSET());
     }
 
     /**
@@ -248,18 +260,23 @@ public class MainController {
                 // be careful to check that there is indeed a block to draw
                 if (theModel.getMyBoard().getBlockArray()[i][j] != null) {
                     // set the color of this block and fill in the square
-                    g.setColor(
-                            theModel.getMyBoard().getBlockArray()[i][j].getColor());
-                    g.fillRect(i * Window.getPIXEL_OFFSET(),
-                               j * Window.getPIXEL_OFFSET(),
-                               Window.getPIXEL_OFFSET(),
-                               Window.getPIXEL_OFFSET());
-                    // draw the black border around the square
-                    g.setColor(black);
-                    g.drawRect(i * Window.getPIXEL_OFFSET(),
-                               j * Window.getPIXEL_OFFSET(),
-                               Window.getPIXEL_OFFSET(),
-                               Window.getPIXEL_OFFSET());
+                    String color = theModel.getMyBoard().getBlockArray()[i][j].getColor().toString();
+                    // draw the block as a small square
+                    Image image = Resources.getImages().get(color);
+                    image.draw(i * Window.getPIXEL_OFFSET(),
+                               j * Window.getPIXEL_OFFSET(), 32, 32);
+//                    g.setColor(
+//                            theModel.getMyBoard().getBlockArray()[i][j].getColor());
+//                    g.fillRect(i * Window.getPIXEL_OFFSET(),
+//                               j * Window.getPIXEL_OFFSET(),
+//                               Window.getPIXEL_OFFSET(),
+//                               Window.getPIXEL_OFFSET());
+//                    // draw the black border around the square
+//                    g.setColor(black);
+//                    g.drawRect(i * Window.getPIXEL_OFFSET(),
+//                               j * Window.getPIXEL_OFFSET(),
+//                               Window.getPIXEL_OFFSET(),
+//                               Window.getPIXEL_OFFSET());
                 }
             }
         }

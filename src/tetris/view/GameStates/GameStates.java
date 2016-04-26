@@ -8,10 +8,12 @@ package tetris.view.GameStates;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import tetris.controller.MainController;
+import tetris.resources.Resources;
 
 /**
  *
@@ -20,6 +22,7 @@ import tetris.controller.MainController;
 public class GameStates extends BasicGameState {
     /* The Controller object used to render & update entities */
     private MainController controller;
+    private Music music = Resources.getMusics().get("backgroundMusic");
 
 //    public static ArrayList<Tetrimino> entities;
 //    public int x = 10;
@@ -34,6 +37,7 @@ public class GameStates extends BasicGameState {
 
     @Override
     public void init(GameContainer gc, StateBasedGame s) throws SlickException {
+        music.loop();
     }
 
     /* Getters and setters */
@@ -69,6 +73,7 @@ public class GameStates extends BasicGameState {
     @Override
     public void update(GameContainer gc, StateBasedGame s, int delta) throws SlickException {
         if (gc.getInput().isKeyPressed(Input.KEY_ENTER)) {
+            music.stop();
             s.enterState(state.MENU);
         }
         this.controller.update(gc, s, delta);
