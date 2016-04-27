@@ -39,7 +39,7 @@ public class MainView extends StateBasedGame {
     private MainController controller;
 
     /**
-     * Constructs a new <code>MainView</code> instance
+     * Constructs as new <code>MainView</code> instance
      *
      * @param name The <code>GameEngine</code>'s name
      * @author Xizhou Li
@@ -66,10 +66,9 @@ public class MainView extends StateBasedGame {
         // The game will update 60 times a second
         gc.setMaximumLogicUpdateInterval(60);
         gameStates = new GameStates();
+        menuStates = new MenuState();
         // associate this GameStates object with the controller (important!)
         gameStates.setController(controller);
-
-        menuStates = new MenuState();
         gc.setVSync(true);
         gc.setShowFPS(false);
         this.addState(gameStates);
