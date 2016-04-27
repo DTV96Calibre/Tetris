@@ -183,13 +183,4 @@ public class MainModel {
 
         return shape;
     }
-
-    /**
-     * Instantly drops a Tetrimino to the bottom of the gameboard.
-     *
-     * @author Brooke Bullek
-     */
-    public void instantDropTetrimino() {
-
-    }
 }

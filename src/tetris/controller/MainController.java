@@ -29,6 +29,7 @@ import tetris.model.Direction;
 import tetris.model.MainModel;
 import tetris.model.Tetrimino;
 import tetris.resources.Resources;
+import tetris.view.GameStates.state;
 import tetris.view.MainView;
 import tetris.view.Window;
 
@@ -95,23 +96,39 @@ public class MainController {
         Input input = gc.getInput();
         // preserve game speed in case DOWN arrow was pressed
         int oldGameSpeed = theModel.getGameSpeed();
-        // if user pressed the up arrow key, try to rotate the active tetrimino
-        if (input.isKeyPressed(Input.KEY_UP)) {
-            rotateActiveTetrimino(1);
-        } // if user pressed the left arrow key, try to move the tetrimino left
-        else if (input.isKeyPressed(Input.KEY_LEFT)) {
-            moveActiveTetrimino(Direction.LEFT);
-        } // if user pressed the right arrow key, try to move right
-        else if (input.isKeyPressed(Input.KEY_RIGHT)) {
-            moveActiveTetrimino(Direction.RIGHT);
-        } else if (input.isKeyDown(Input.KEY_DOWN)) {
-            // the Tetriminos should fall faster
-            theModel.setGameSpeed(50);
-        } else if (input.isKeyPressed(Input.KEY_SPACE)) {
-            // the Tetrimino instantly drops to the bottom
+        if (s.getCurrentStateID() == 0) {
+            // if user pressed the up arrow key, try to rotate the active tetrimino
+            if (input.isKeyPressed(Input.KEY_UP)) {
+                rotateActiveTetrimino(1);
+            } // if user pressed the left arrow key, try to move the tetrimino left
+            else if (input.isKeyPressed(Input.KEY_LEFT)) {
+                moveActiveTetrimino(Direction.LEFT);
+            } // if user pressed the right arrow key, try to move right
+            else if (input.isKeyPressed(Input.KEY_RIGHT)) {
+                moveActiveTetrimino(Direction.RIGHT);
+            } else if (input.isKeyDown(Input.KEY_DOWN)) {
+                // the Tetriminos should fall faster
+                theModel.setGameSpeed(50);
+            } else if (input.isKeyPressed(Input.KEY_SPACE)) {
+                // the Tetrimino instantly drops to the bottom
+            } else if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+                s.enterState(state.MENU);
+            }
+
+        } else if (s.getCurrentStateID()
+                   == 1) {
+            int mouseXPos = input.getMouseX();
+            int mouseYPos = input.getMouseY();
+            if (mouseXPos > 250 && mouseXPos < 387
+                && mouseYPos > 325 && mouseYPos < 475) {
+                if (input.isMousePressed(0)) {
+                    s.enterState(state.GAME);
+                }
+            }
         }
 
         updateActiveTetrimino(gc, delta);
+
         theModel.setGameSpeed(oldGameSpeed);
     }
 
@@ -150,10 +167,13 @@ public class MainController {
         for (int i = 0; i < Tetrimino.TETRIMINO_ARRAY_WIDTH; i++) {
             try {
                 oldBlockArray[i] = (Block) theModel.getActiveTetrimino().getBlockArray()[i].copy();
+
             } catch (CloneNotSupportedException ex) {
-                Logger.getLogger(MainController.class.getName()).log(
-                        Level.WARNING,
-                        "Block could not be copied; Cloning not supported", ex);
+                Logger.getLogger(MainController.class
+                        .getName()).log(
+                                Level.WARNING,
+                                "Block could not be copied; Cloning not supported",
+                                ex);
             }
         }
 
@@ -184,8 +204,9 @@ public class MainController {
      *
      * @authors Daniel Vasquez & Brooke Bullek
      * @param d A Direction associated with this movement; e.g. left/right/down.
+     * @return a boolean indicating whether this Tetrimino was able to be moved
      */
-    public void moveActiveTetrimino(Direction d) {
+    public boolean moveActiveTetrimino(Direction d) {
         // for more info, see the Direction enum in tetris.model package
         int shiftAmountX = (int) d.getDirection().getX();
         int shiftAmountY = (int) d.getDirection().getY();
@@ -217,12 +238,23 @@ public class MainController {
                     (int) theModel.getActiveTetriminoLocation().getX() + shiftAmountX,
                     (int) theModel.getActiveTetriminoLocation().getY() + shiftAmountY);
             theModel.setActiveTetriminoLocation(newPosition);
+            return true;
         } // else, we check whether this Tetrimino should be locked
         else {
             if (d == Direction.DOWN) {
                 theModel.lockActiveTetrimino();
             }
+            return false;
         }
+    }
+
+    /**
+     * Instantly drops a Tetrimino to the bottom of the gameboard.
+     *
+     * @author Brooke Bullek
+     */
+    public void instantDropTetrimino() {
+
     }
 
     /**
