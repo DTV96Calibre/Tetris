@@ -38,17 +38,14 @@ public class MainView extends StateBasedGame {
     // unfortunately integral to the Slick API
     private MainController controller;
 
-    private static final int MENU = 0;
-
     /**
-     * Constructs a new <code>MainView</code> instance
+     * Constructs as new <code>MainView</code> instance
      *
      * @param name The <code>GameEngine</code>'s name
      * @author Xizhou Li
      */
     public MainView(String name, MainController mainController) {
         super("Tetris");
-        this.addState(new MenuState(MENU));
         this.controller = mainController;
     }
 
@@ -69,10 +66,9 @@ public class MainView extends StateBasedGame {
         // The game will update 60 times a second
         gc.setMaximumLogicUpdateInterval(60);
         gameStates = new GameStates();
+        menuStates = new MenuState();
         // associate this GameStates object with the controller (important!)
         gameStates.setController(controller);
-
-        menuStates = new MenuState(1);
         gc.setVSync(true);
         gc.setShowFPS(false);
         this.addState(gameStates);

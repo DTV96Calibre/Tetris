@@ -19,9 +19,6 @@ import tetris.resources.Resources;
  */
 public class MenuState extends BasicGameState {
 
-    public MenuState(int state) {
-    }
-
     @Override
     public int getID() {
         return state.MENU;
