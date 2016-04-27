@@ -49,29 +49,30 @@ public class Resources {
         sounds = new HashMap<String, Sound>();
         try {
             images.put("red", loadImage(
-                       "/Users/xizhouli/csci205FinalProject/color blocks/red.png"));
+                       "color blocks/red.png"));
             images.put("orange", loadImage(
-                       "/Users/xizhouli/csci205FinalProject/color blocks/orange.png"));
+                       "color blocks/orange.png"));
             images.put("green", loadImage(
-                       "/Users/xizhouli/csci205FinalProject/color blocks/green.png"));
+                       "color blocks/green.png"));
             images.put("yellow", loadImage(
-                       "/Users/xizhouli/csci205FinalProject/color blocks/yellow.png"));
+                       "color blocks/yellow.png"));
             images.put("blue", loadImage(
-                       "/Users/xizhouli/csci205FinalProject/color blocks/blue.png"));
+                       "color blocks/blue.png"));
             images.put("cyan", loadImage(
-                       "/Users/xizhouli/csci205FinalProject/color blocks/cyan.png"));
+                       "color blocks/cyan.png"));
             images.put("magenta", loadImage(
-                       "/Users/xizhouli/csci205FinalProject/color blocks/magenta.png"));
+                       "color blocks/magenta.png"));
+
             images.put("background", loadImage(
-                       "/Users/xizhouli/csci205FinalProject/color blocks/space.png"));
+                       "color blocks/space.png"));
             images.put("menu", loadImage(
-                       "/Users/xizhouli/csci205FinalProject/color blocks/Tetris-logo.png"));
+                       "color blocks/Tetris-logo.png"));
             images.put("play", loadImage(
-                       "/Users/xizhouli/csci205FinalProject/color blocks/play.png"));
+                       "color blocks/play.png"));
             musics.put("backgroundMusic", loadMusic(
-                       "/Users/xizhouli/csci205FinalProject/color blocks/Tetris.wav"));
+                       "color blocks/Tetris.wav"));
             sounds.put("breakSound", loadSound(
-                       "/Users/xizhouli/csci205FinalProject/color blocks/break.wav"));
+                       "color blocks/break.wav"));
 
         } catch (SlickException ex) {
             ex.printStackTrace();
@@ -89,10 +90,12 @@ public class Resources {
     }
 
     public static Image loadImage(String path) throws SlickException {
+//        String abspath = new File(path).getAbsolutePath();
         return new Image(path, false, Image.FILTER_NEAREST);
     }
 
     public static Music loadMusic(String path) throws SlickException, UnsupportedAudioFileException, IOException {
+//        String abspath = new File(path).getAbsolutePath();
         return new Music(path);
     }
 
@@ -100,6 +103,7 @@ public class Resources {
 //        File file = new File(path);
 //        AudioInputStream stream = AudioSystem.getAudioInputStream(
 //                file.getAbsoluteFile());
+//        String abspath = new File(path).getAbsolutePath();
         return new Sound(path);
     }
 

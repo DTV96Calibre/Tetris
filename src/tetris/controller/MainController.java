@@ -70,6 +70,7 @@ public class MainController {
      */
     public void render(GameContainer gc, StateBasedGame s, Graphics g) {
         renderBackground(gc, g); // render the background with a space picture
+        renderScoreBoard(gc, g);
         renderTetrimino(gc, g); // draw the active tetrimino
         renderBoard(gc, g); // draw the blocks on the gameboard
 
