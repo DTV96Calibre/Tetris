@@ -15,6 +15,7 @@
  */
 package tetris.resources;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -90,12 +91,12 @@ public class Resources {
     }
 
     public static Image loadImage(String path) throws SlickException {
-//        String abspath = new File(path).getAbsolutePath();
-        return new Image(path, false, Image.FILTER_NEAREST);
+        String abspath = new File(path).getAbsolutePath();
+        return new Image(abspath, false, Image.FILTER_NEAREST);
     }
 
     public static Music loadMusic(String path) throws SlickException, UnsupportedAudioFileException, IOException {
-//        String abspath = new File(path).getAbsolutePath();
+        String abspath = new File(path).getAbsolutePath();
         return new Music(path);
     }
 

@@ -107,6 +107,8 @@ public class MainController {
         } else if (input.isKeyDown(Input.KEY_DOWN)) {
             // the Tetriminos should fall faster
             theModel.setGameSpeed(50);
+        } else if (input.isKeyPressed(Input.KEY_SPACE)) {
+            // the Tetrimino instantly drops to the bottom
         }
 
         updateActiveTetrimino(gc, delta);
