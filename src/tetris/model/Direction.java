@@ -46,4 +46,12 @@ public enum Direction {
     public Point getDirection() {
         return d;
     }
+
+    public int getX() {
+        return (int) d.getX();
+    }
+
+    public int getY() {
+        return (int) d.getY();
+    }
 }
