@@ -205,7 +205,7 @@ public class GenericBoard {
         for (int x = 0; x < this.width; x++) {
             this.blockArray[x][y] = null;
         }
-        scoreBoard.addPoints();
+        scoreBoard.addPoints(ScoreBoard.POINTS_PER_LINE);
     }
 
     /**

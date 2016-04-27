@@ -21,16 +21,25 @@ package tetris.model;
  * @author Andre Amirsaleh
  */
 public class ScoreBoard {
+    /**
+     * The number of points you get for clearing a line.
+     */
+    public static final int POINTS_PER_LINE = 100;
+
+    /**
+     * The number of points earned per line during a hard drop
+     */
+    public static final int HARD_DROP_POINTS_PER_ROW = 2;
+
+    /**
+     * The number of points earned per line during a soft drop
+     */
+    public static final int SOFT_DROP_POINTS_PER_ROW = 1;
 
     /**
      * Your current score.
      */
     private int points;
-
-    /**
-     * The number of points you get for clearing a line.
-     */
-    private final int POINTS_PER_LINE = 100;
 
     /**
      * Constructs a new <code>ScoreBoard</code> instance
@@ -46,8 +55,8 @@ public class ScoreBoard {
      *
      * @author Andre Amirsaleh and Xizhou Li
      */
-    public void addPoints() {
-        this.points += this.POINTS_PER_LINE;
+    public void addPoints(int points) {
+        this.points += points;
     }
 
     /**

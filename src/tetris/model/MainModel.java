@@ -52,6 +52,12 @@ public class MainModel {
      */
     private int gameSpeed;
 
+    /**
+     * A toggle that indicates whether to perform a soft drop (holding the down
+     * arrow key) on the Tetrimino
+     */
+    private boolean softDropActivated;
+
     private int timer;
 
     /**
@@ -71,6 +77,7 @@ public class MainModel {
 
         gameSpeed = 800; // initialize to 800 ms
 
+        softDropActivated = false; // will change if user holds DOWN arrow key
     }
 
     /* Getters and setters */
@@ -117,6 +124,22 @@ public class MainModel {
 
     public void setGameSpeed(int gameSpeed) {
         this.gameSpeed = gameSpeed;
+    }
+
+    public int getPoints() {
+        return this.myBoard.getScoreBoard().getPoints();
+    }
+
+    public void addPoints(int points) {
+        this.myBoard.getScoreBoard().addPoints(points);
+    }
+
+    public boolean isSoftDropActivated() {
+        return softDropActivated;
+    }
+
+    public void setSoftDropActivated(boolean softDropActivated) {
+        this.softDropActivated = softDropActivated;
     }
     /* End of getters and setters */
 
