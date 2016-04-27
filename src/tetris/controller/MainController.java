@@ -18,6 +18,7 @@ package tetris.controller;
 import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static org.newdawn.slick.Color.pink;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -69,6 +70,7 @@ public class MainController {
      */
     public void render(GameContainer gc, StateBasedGame s, Graphics g) {
         renderBackground(gc, g); // render the background with a space picture
+        renderScoreBoard(gc, g);
         renderTetrimino(gc, g); // draw the active tetrimino
         renderBoard(gc, g); // draw the blocks on the gameboard
 
