@@ -206,4 +206,33 @@ public class MainModel {
 
         return shape;
     }
+
+    /**
+     * Returns an array of points corresponding to updated locations on the
+     * gameboard if we were to move the active Tetrimino.
+     *
+     * @author Brooke Bullek
+     * @param shiftAmountX the number of horizontal blocks to move the Tetrimino
+     * @param shiftAmountY the number of vertical blocks to move the Tetrimino
+     * @return an array of the new positions of the Tetrimino's blocks
+     */
+    public Point[] calculateNewBlockPositions(int shiftAmountX, int shiftAmountY) {
+        Point newBlockPositions[] = new Point[4];
+        int i = 0;
+        for (Block block : activeTetrimino.getBlockArray()) {
+            /* calculate the new coordinate, which is the absolute position
+             * of this Tetrimino on the gameboard, plus the relative position
+             * of this individual block to the Tetrimino, plus the shift amount
+             */
+            int newX = (int) (block.getLocation().getX()
+                              + activeTetriminoLocation.getX()
+                              + shiftAmountX);
+            int newY = (int) (block.getLocation().getY()
+                              + activeTetriminoLocation.getY()
+                              + shiftAmountY);
+            newBlockPositions[i] = new Point(newX, newY);
+            i++;
+        }
+        return newBlockPositions;
+    }
 }

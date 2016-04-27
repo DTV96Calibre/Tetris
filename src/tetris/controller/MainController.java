@@ -210,36 +210,17 @@ public class MainController {
      * @return a boolean indicating whether this Tetrimino was able to be moved
      */
     public boolean moveActiveTetrimino(Direction d) {
-        // for more info, see the Direction enum in tetris.model package
-        int shiftAmountX = (int) d.getDirection().getX();
-        int shiftAmountY = (int) d.getDirection().getY();
-
-        // compose a new series of Points corresponding to locations if we were
-        // to move this Tetrimino
-        Point newBlockPositions[] = new Point[4];
-        int i = 0;
-        for (Block block : theModel.getActiveTetrimino().getBlockArray()) {
-            /* calculate the new coordinate, which is the absolute position
-             * of this Tetrimino on the gameboard, plus the relative position
-             * of this individual block to the Tetrimino, plus whatever shift
-             * amount is specified by the direction of motion
-             */
-            int newX = (int) (block.getLocation().getX()
-                              + theModel.getActiveTetriminoLocation().getX()
-                              + shiftAmountX);
-            int newY = (int) (block.getLocation().getY()
-                              + theModel.getActiveTetriminoLocation().getY()
-                              + shiftAmountY);
-            newBlockPositions[i] = new Point(newX, newY);
-            i++;
-        }
+        // get new block locations if we were to move the active  Tetrimino in
+        // the given Direction
+        Point[] newBlockPositions = theModel.calculateNewBlockPositions(
+                d.getX(), d.getY());
 
         // use the validate method to make sure these pieces will fit
         if (theModel.getMyBoard().validate(newBlockPositions) == true) {
             // it's safe to move this piece down
             Point newPosition = new Point(
-                    (int) theModel.getActiveTetriminoLocation().getX() + shiftAmountX,
-                    (int) theModel.getActiveTetriminoLocation().getY() + shiftAmountY);
+                    (int) theModel.getActiveTetriminoLocation().getX() + d.getX(),
+                    (int) theModel.getActiveTetriminoLocation().getY() + d.getY());
             theModel.setActiveTetriminoLocation(newPosition);
 
             // add points if a soft drop occurs
@@ -247,13 +228,13 @@ public class MainController {
                 theModel.addPoints(ScoreBoard.SOFT_DROP_POINTS_PER_ROW);
             }
 
-            return true; // Tetrimino was moved
+            return true; // indicate that Tetrimino was moved
         } // else, we check whether this Tetrimino should be locked
         else {
             if (d == Direction.DOWN) {
                 theModel.lockActiveTetrimino();
             }
-            return false; // Tetrimino was not moved
+            return false; // indicate that Tetrimino was not moved
         }
     }
 
