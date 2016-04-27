@@ -71,8 +71,9 @@ public class MainView extends StateBasedGame {
         gameStates.setController(controller);
         gc.setVSync(true);
         gc.setShowFPS(false);
-        this.addState(gameStates);
         this.addState(menuStates);
+        this.addState(gameStates);
+
     }
 
     /* Getters and setters */
