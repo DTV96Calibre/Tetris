@@ -25,7 +25,6 @@ public class MenuState extends BasicGameState {
 
     @Override
     public void init(GameContainer gc, StateBasedGame s) throws SlickException {
-
     }
 
     @Override
