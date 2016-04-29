@@ -98,6 +98,10 @@ public class MainModel {
         return activeTetriminoLocation;
     }
 
+    public void setActiveTetriminoLocation(Point activeTetriminoLocation) {
+        this.activeTetriminoLocation = activeTetriminoLocation;
+    }
+
     public GameBoard getMyBoard() {
         return this.myBoard;
     }
@@ -143,12 +147,12 @@ public class MainModel {
         this.timer = timer;
     }
 
-    public int getGameSpeed() {
+    public int getDropSpeed() {
         return dropSpeed;
     }
 
-    public void setGameSpeed(int gameSpeed) {
-        this.dropSpeed = gameSpeed;
+    public void setDropSpeed(int dropSpeed) {
+        this.dropSpeed = dropSpeed;
     }
 
     public int getPoints() {
