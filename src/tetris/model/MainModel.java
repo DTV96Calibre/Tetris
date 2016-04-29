@@ -83,6 +83,8 @@ public class MainModel {
         // the Tetrimino should spawn at the midpoint of the top of the screen
         initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
 
+        heldTetrimino = null;
+
         setNextTetrimino(pickTShape());     // pick the first shape
         advanceTetriminoQueue(); // set the first active Tetrimino
 
@@ -106,7 +108,7 @@ public class MainModel {
     }
 
     public GenericBoard getMyBoard() {
-        return myBoard;
+        return this.myBoard;
     }
 
     public void setMyBoard(GenericBoard myBoard) {
@@ -114,7 +116,7 @@ public class MainModel {
     }
 
     public Tetrimino getActiveTetrimino() {
-        return activeTetrimino;
+        return this.activeTetrimino;
     }
 
     public void setActiveTetrimino(Tetrimino activeTetrimino) {
@@ -122,12 +124,12 @@ public class MainModel {
     }
 
     public void setActiveTetrimino(TShape shape) {
-        activeTetrimino = new Tetrimino(shape);
-        activeTetriminoLocation = initialTetriminoLocation;
+        this.activeTetrimino = new Tetrimino(shape);
+        this.activeTetriminoLocation = initialTetriminoLocation;
     }
 
     public TShape getNextTetrimino() {
-        return nextTetrimino;
+        return this.nextTetrimino;
     }
 
     public void setNextTetrimino(TShape nextTetrimino) {
@@ -135,11 +137,28 @@ public class MainModel {
     }
 
     public Tetrimino getHeldTetrimino() {
-        return heldTetrimino;
+        return this.heldTetrimino;
     }
 
     public void setHeldTetrimino(Tetrimino heldTetrimino) {
         this.heldTetrimino = heldTetrimino;
+    }
+
+    /**
+     * Swaps the active Tetrimino with the held Tetrimino.
+     *
+     * @author Daniel Vasquez
+     */
+    public void holdActiveTetrimino() {
+        if (this.heldTetrimino == null) {
+            this.heldTetrimino = this.activeTetrimino;
+            this.setActiveTetrimino(pickTShape());
+        } else {
+            Tetrimino oldHeldTetrimino = this.heldTetrimino;
+            this.heldTetrimino = this.activeTetrimino;
+            this.activeTetrimino = oldHeldTetrimino;
+        }
+
     }
 
     public int getTimer() {
