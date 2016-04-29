@@ -42,37 +42,30 @@ public class MainModel {
     /* The Tetrimino that is currently being placed */
     private Tetrimino activeTetrimino;
 
-    /* The Tetrimino that will be available to the
-     player when the active Tetrimino is placed
-     */
+    /* The Tetrimino that will be available to the player when the active
+     Tetrimino is placed */
     private TShape nextTetrimino;
 
-    /* The Tetrimino stored in the hold place.
-     Switched with the active Tetrimino when the hold button is pressed.
-     */
+    /* The Tetrimino stored in the hold place. Switched with the active
+     Tetrimino when the hold button is pressed. */
     private Tetrimino heldTetrimino;
 
     /* The location of the center block of the active Tetrimino RELATIVE to the
-     game board
-     */
+     game board */
     private Point activeTetriminoLocation;
 
     /* The rate at which Tetriminos fall; scales with difficulty and increases
-     whenever the user holds the DOWN arrow
-     */
+     whenever the user performs a "soft drop" */
     private int dropSpeed;
 
-    /**
-     * A toggle that indicates whether to perform a soft drop (holding the down
-     * arrow key) on the Tetrimino
-     */
+    /* A toggle that indicates whether to perform a soft drop (holding the down
+     arrow key) on the Tetrimino */
     private boolean softDropActivated;
 
+    /* Marks the elapsed time since the last game update */
     private int timer;
 
-    /**
-     * Indicates whether the current game is still active or has been lost
-     */
+    /* Indicates whether the current game is still active or has been lost */
     private boolean gameOver;
 
     /**
@@ -90,7 +83,7 @@ public class MainModel {
 
         heldTetrimino = null;
 
-        setNextTetrimino(pickTShape());     // pick the first shape
+        setNextTetrimino(pickTShape()); // pick the first shape
         advanceTetriminoQueue(); // set the first active Tetrimino
 
         dropSpeed = 800; // initialize to 800 ms
@@ -100,18 +93,9 @@ public class MainModel {
         gameOver = false;
     }
 
-    private void advanceTetriminoQueue() {
-        setActiveTetrimino(nextTetrimino);
-        setNextTetrimino(pickTShape());
-    }
-
     /* Getters and setters */
     public Point getActiveTetriminoLocation() {
         return activeTetriminoLocation;
-    }
-
-    public void setActiveTetriminoLocation(Point activeTetriminoLocation) {
-        this.activeTetriminoLocation = activeTetriminoLocation;
     }
 
     public GameBoard getMyBoard() {
@@ -151,23 +135,6 @@ public class MainModel {
         this.heldTetrimino = heldTetrimino;
     }
 
-    /**
-     * Swaps the active Tetrimino with the held Tetrimino.
-     *
-     * @author Daniel Vasquez
-     */
-    public void holdActiveTetrimino() {
-        if (this.heldTetrimino == null) {
-            this.heldTetrimino = this.activeTetrimino;
-            this.setActiveTetrimino(pickTShape());
-        } else {
-            Tetrimino oldHeldTetrimino = this.heldTetrimino;
-            this.heldTetrimino = this.activeTetrimino;
-            this.activeTetrimino = oldHeldTetrimino;
-        }
-
-    }
-
     public int getTimer() {
         return timer;
     }
@@ -204,53 +171,10 @@ public class MainModel {
         return gameOver;
     }
 
-    /**
-     * Sets the gameOver attribute and will reset the model if gameOver == true.
-     *
-     * @author Brooke Bullek
-     * @param gameOver
-     */
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
-        if (gameOver) {
-            // reset attributes to start a new game
-
-        }
-
     }
     /* End of getters and setters */
-
-    /**
-     * Places the blocks in the active Tetrimino into the gameboard and load a
-     * new Tetrimino at the top of the screen.
-     *
-     * TODO: Fix this function
-     *
-     * @author Daniel Vasquez
-     */
-    public void lockActiveTetrimino() {
-        if (gameOver) {
-            return; // prevent loading new Tetriminos if the game is over
-        }
-
-        for (Block block : activeTetrimino.getBlockArray()) {
-            // extract the location (x/y coordinates) of this block
-            int xPos = (int) (block.getLocation().getX() + activeTetriminoLocation.getX());
-            int yPos = (int) (block.getLocation().getY() + activeTetriminoLocation.getY());
-
-            myBoard.setBlock(xPos, yPos, block); // stick this Block in the board
-        }
-
-        // detect lines that may have been made, clear them, and perform the appropriate drops
-        ArrayList<Integer> lines = (ArrayList<Integer>) this.myBoard.detectLines();
-        if (!lines.isEmpty()) {
-            this.myBoard.clearLines(lines);
-            Resources.getSounds().get("breakSound").play();
-            this.myBoard.dropLines(lines);
-        }
-        // change the active Tetrimino and add shape to queue
-        advanceTetriminoQueue();
-    }
 
     /**
      * Inserts each of the 7 Tetrimino types (from the TShape enum) into the
@@ -286,6 +210,62 @@ public class MainModel {
         bag.remove(index);
 
         return shape;
+    }
+
+    /**
+     * Sets the active Tetrimino to the next Tetrimino in the queue and
+     * generates a new next Tetrimino.
+     *
+     * @author Daniel Vasquez
+     */
+    private void advanceTetriminoQueue() {
+        setActiveTetrimino(nextTetrimino);
+        setNextTetrimino(pickTShape());
+    }
+
+    /**
+     * Places the blocks in the active Tetrimino into the gameboard and load a
+     * new Tetrimino at the top of the screen.
+     *
+     * @author Brooke Bullek & Daniel Vasquez
+     */
+    public void lockActiveTetrimino() {
+        if (gameOver) {
+            return; // prevent loading new Tetriminos if the game is over
+        }
+
+        for (Block block : activeTetrimino.getBlockArray()) {
+            // extract the location (x/y coordinates) of this block
+            int xPos = (int) (block.getLocation().getX() + activeTetriminoLocation.getX());
+            int yPos = (int) (block.getLocation().getY() + activeTetriminoLocation.getY());
+            myBoard.setBlock(xPos, yPos, block); // stick this Block in the board
+        }
+
+        // detect lines that may have been made, clear them, and perform the appropriate drops
+        ArrayList<Integer> lines = (ArrayList<Integer>) this.myBoard.detectLines();
+        if (!lines.isEmpty()) {
+            this.myBoard.clearLines(lines);
+            Resources.getSounds().get("breakSound").play();
+            this.myBoard.dropLines(lines);
+        }
+        // change the active Tetrimino and add shape to queue
+        advanceTetriminoQueue();
+    }
+
+    /**
+     * Swaps the active Tetrimino with the held Tetrimino.
+     *
+     * @author Daniel Vasquez
+     */
+    public void holdActiveTetrimino() {
+        if (this.heldTetrimino == null) {
+            this.heldTetrimino = this.activeTetrimino;
+            this.setActiveTetrimino(pickTShape());
+        } else {
+            Tetrimino oldHeldTetrimino = this.heldTetrimino;
+            this.heldTetrimino = this.activeTetrimino;
+            this.activeTetrimino = oldHeldTetrimino;
+        }
     }
 
     /**
