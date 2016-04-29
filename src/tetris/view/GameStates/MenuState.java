@@ -22,6 +22,9 @@ public class MenuState extends BasicGameState {
     /* The Controller object used to render & update entities */
     private MainController controller;
 
+    /* Menu background image */
+    private Image background = Resources.getImages().get("menuNoHighlightPlay");
+
     /* The title logo for the menu */
     private Image tetrisLogo;
 
@@ -54,6 +57,14 @@ public class MenuState extends BasicGameState {
 
     public Image getPlayButton() {
         return playButton;
+    }
+
+    public Image getBackground() {
+        return background;
+    }
+
+    public void setBackground(Image background) {
+        this.background = background;
     }
     /* End of getters and setters */
 

@@ -21,9 +21,9 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 import tetris.model.Direction;
 import tetris.model.MainModel;
+import tetris.resources.Resources;
 import tetris.view.GameStates.state;
 import tetris.view.MainView;
-import tetris.view.Window;
 
 /**
  * The controller of the Tetris program, which syncs the model and view.
@@ -174,13 +174,16 @@ public class MainController {
         // validate user mouse position and check for button presses
         int mouseXPos = input.getMouseX();
         int mouseYPos = input.getMouseY();
-        if (mouseXPos > Window.WIDTH / 2 - (int) (Window.WIDTH / 6.33)
-            && mouseXPos < (Window.WIDTH / 2 - (int) (Window.WIDTH / 6.33) + 194)
-            && mouseYPos > Window.HEIGHT / 2
-            && mouseYPos < Window.HEIGHT / 2 + 200) {
+        System.out.println(mouseXPos + " " + mouseYPos);
+        if (mouseXPos > 178 && mouseXPos < 436 && mouseYPos > 263 && mouseYPos < 328) {
+            theView.getMenuState().setBackground(Resources.getImages().get(
+                    "menuHighlightPlay"));
             if (input.isMousePressed(0)) {
                 s.enterState(state.GAME);
             }
+        } else {
+            theView.getMenuState().setBackground(Resources.getImages().get(
+                    "menuNoHighlightPlay"));
         }
     }
 

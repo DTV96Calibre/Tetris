@@ -180,12 +180,15 @@ public class MainView extends StateBasedGame {
      * @param g A graphics context used to render primitives to the canvas
      */
     public void renderMenuState(GameContainer gc, Graphics g) {
+        // draw the menu's background
+        menuState.getBackground().draw(0, 0, Window.WIDTH, Window.HEIGHT);
+
         menuState.getTetrisLogo().draw(
                 Window.WIDTH / 2 - (int) (Window.WIDTH / 5.33),
                 Window.HEIGHT / 12, 240, 160);
-        menuState.getPlayButton().draw(
-                Window.WIDTH / 2 - (int) (Window.WIDTH / 6.33),
-                Window.HEIGHT / 2, 194, 200);
+//        menuState.getPlayButton().draw(
+//                Window.WIDTH / 2 - (int) (Window.WIDTH / 6.33),
+//                Window.HEIGHT / 2, 194, 200);
     }
 
     /**

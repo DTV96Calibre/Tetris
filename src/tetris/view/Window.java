@@ -21,7 +21,7 @@ package tetris.view;
  */
 public class Window {
     /* The ratio between the sizes of the sidebar and the main gameboard */
-    public static double SIDEBAR_RATIO = 0.25;
+    public static double SIDEBAR_RATIO = 0.5;
 
     /* Default width of the window in pixels */
     public static int WIDTH = 640;
