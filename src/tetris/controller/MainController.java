@@ -41,6 +41,7 @@ import tetris.view.Window;
  */
 public class MainController {
     public static final int INPUT_PAUSE = Input.KEY_ESCAPE;
+    public static final int INPUT_HOLD_TETRIMINO = Input.KEY_LCONTROL;
     public static final int INPUT_HARD_DROP = Input.KEY_SPACE;
     public static final int INPUT_SOFT_DROP = Input.KEY_DOWN;
     public static final int INPUT_MOVE_RIGHT = Input.KEY_RIGHT;
@@ -123,6 +124,8 @@ public class MainController {
             } else if (input.isKeyPressed(INPUT_HARD_DROP)) {
                 // the Tetrimino instantly drops to the bottom
                 instantDropTetrimino();
+            } else if (input.isKeyPressed(INPUT_HOLD_TETRIMINO)) {
+                theModel.holdActiveTetrimino();
             } else if (input.isKeyPressed(INPUT_PAUSE)) {
                 s.enterState(state.MENU);
             }
