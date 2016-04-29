@@ -39,8 +39,18 @@ public class MainModel {
     /* A bag of 7 different types of T-shapes*/
     private ArrayList<TShape> bag = new ArrayList<TShape>();
 
-    /* the Tetrimino that is currently being placed */
+    /* The Tetrimino that is currently being placed */
     private Tetrimino activeTetrimino;
+
+    /* The Tetrimino that will be available to the
+     player when the active Tetrimino is placed
+     */
+    private TShape nextTetrimino;
+
+    /* The Tetrimino stored in the hold place.
+     Switched with the active Tetrimino when the hold button is pressed.
+     */
+    private Tetrimino heldTetrimino;
 
     /* The location of the center block of the active Tetrimino RELATIVE to the
      game board
@@ -50,7 +60,7 @@ public class MainModel {
     /* The rate at which Tetriminos fall; scales with difficulty and increases
      whenever the user holds the DOWN arrow
      */
-    private int gameSpeed;
+    private int dropSpeed;
 
     /**
      * A toggle that indicates whether to perform a soft drop (holding the down
@@ -73,11 +83,17 @@ public class MainModel {
         // the Tetrimino should spawn at the midpoint of the top of the screen
         initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
 
-        setActiveTetrimino(pickTShape()); // pick the first Tetrimino
+        setNextTetrimino(pickTShape());     // pick the first shape
+        advanceTetriminoQueue(); // set the first active Tetrimino
 
-        gameSpeed = 800; // initialize to 800 ms
+        dropSpeed = 800; // initialize to 800 ms
 
         softDropActivated = false; // will change if user holds DOWN arrow key
+    }
+
+    private void advanceTetriminoQueue() {
+        setActiveTetrimino(nextTetrimino);
+        setNextTetrimino(pickTShape());
     }
 
     /* Getters and setters */
@@ -110,6 +126,22 @@ public class MainModel {
         activeTetriminoLocation = initialTetriminoLocation;
     }
 
+    public TShape getNextTetrimino() {
+        return nextTetrimino;
+    }
+
+    public void setNextTetrimino(TShape nextTetrimino) {
+        this.nextTetrimino = nextTetrimino;
+    }
+
+    public Tetrimino getHeldTetrimino() {
+        return heldTetrimino;
+    }
+
+    public void setHeldTetrimino(Tetrimino heldTetrimino) {
+        this.heldTetrimino = heldTetrimino;
+    }
+
     public int getTimer() {
         return timer;
     }
@@ -119,11 +151,11 @@ public class MainModel {
     }
 
     public int getGameSpeed() {
-        return gameSpeed;
+        return dropSpeed;
     }
 
     public void setGameSpeed(int gameSpeed) {
-        this.gameSpeed = gameSpeed;
+        this.dropSpeed = gameSpeed;
     }
 
     public int getPoints() {
@@ -167,8 +199,8 @@ public class MainModel {
             Resources.getSounds().get("breakSound").play();
             this.myBoard.dropLines(lines);
         }
-        // change the active Tetrimino
-        setActiveTetrimino(pickTShape());
+        // change the active Tetrimino and add shape to queue
+        advanceTetriminoQueue();
     }
 
     /**
