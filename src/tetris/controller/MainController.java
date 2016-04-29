@@ -233,6 +233,10 @@ public class MainController {
         else {
             if (d == Direction.DOWN) {
                 theModel.lockActiveTetrimino();
+                checkGameOver();
+                {
+
+                }
             }
             return false; // indicate that Tetrimino was not moved
         }
@@ -249,6 +253,21 @@ public class MainController {
             theModel.addPoints(ScoreBoard.HARD_DROP_POINTS_PER_ROW);
             continue;
         }
+    }
+
+    /**
+     * Checks whether the game is over (i.e the Tetrimino has reached the top of
+     * the screen).
+     */
+    public void checkGameOver() {
+        int row = 0; // we'll only check row 0 (the top of the board)
+        // iterate through columns of the top row and check for non-empty slots
+        for (int i = 0; i < theModel.getMyBoard().getWidth(); i++) {
+            if (theModel.getMyBoard().getBlockArray()[i][row] != null) {
+                theModel.setGameOver(true);
+            }
+        }
+        theModel.setGameOver(false);
     }
 
     /**

@@ -61,6 +61,11 @@ public class MainModel {
     private int timer;
 
     /**
+     * Indicates whether the current game is still active or has been lost
+     */
+    private boolean gameOver;
+
+    /**
      * Constructs a new instance of MainModel.
      *
      * @author Brooke Bullek
@@ -78,6 +83,8 @@ public class MainModel {
         gameSpeed = 800; // initialize to 800 ms
 
         softDropActivated = false; // will change if user holds DOWN arrow key
+
+        gameOver = false;
     }
 
     /* Getters and setters */
@@ -140,6 +147,14 @@ public class MainModel {
 
     public void setSoftDropActivated(boolean softDropActivated) {
         this.softDropActivated = softDropActivated;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
     }
     /* End of getters and setters */
 
