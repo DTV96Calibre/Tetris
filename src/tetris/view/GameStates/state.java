@@ -20,8 +20,14 @@ package tetris.view.GameStates;
  *
  * @author xizhouli
  */
+// TODO: THIS CLASS SHOULD TOTALLY BE AN ENUM!!!
 public class state {
     public static final int GAME = 0;
     public static final int MENU = 1;
     public static final int GAME_OVER = 2;
+
+    /**
+     * The ID for the <code>HighScoresState</code>
+     */
+    public static final int HIGH_SCORES = 3;
 }

@@ -92,6 +92,8 @@ public class MainController {
             theView.renderMenuState(gc, g);
         } else if (s.getCurrentStateID() == state.GAME_OVER) {
             theView.renderGameOverState(gc, g);
+        } else if (s.getCurrentStateID() == state.HIGH_SCORES) {
+            theView.renderHighScoresState(gc, g);
         }
     }
 
@@ -112,6 +114,8 @@ public class MainController {
             updateMenuState(gc, s, delta);
         } else if (s.getCurrentStateID() == state.GAME_OVER) {
             updateGameOverState(gc, s, delta);
+        } else if (s.getCurrentStateID() == state.HIGH_SCORES) {
+            updateHighScoresState(gc, s, delta);
         }
     }
 
@@ -180,6 +184,10 @@ public class MainController {
             if (input.isMousePressed(0)) {
                 s.enterState(state.GAME);
             }
+        } else if (mouseXPos > 0 && mouseXPos < 100 && mouseYPos > 0 && mouseYPos < 100) {
+            if (input.isMousePressed(0)) {
+                s.enterState(state.HIGH_SCORES);
+            }
         } else {
             theView.getMenuState().setBackground(Resources.getImages().get(
                     "menuNoHighlightPlay"));
@@ -213,6 +221,7 @@ public class MainController {
      *
      * @author Xizhou Li
      * @param gc A generic game container that handles the game loop
+     * @param s
      * @param delta An increment of elapsed time in milliseconds
      */
     public void updateActiveTetrimino(GameContainer gc, StateBasedGame s,
@@ -224,6 +233,25 @@ public class MainController {
         } else {
             theModel.setTimer(0); // reset timer event
             theModel.moveActiveTetrimino(Direction.DOWN); // drop Tetrimino by 1 space
+        }
+    }
+
+    /**
+     *
+     * @param gc
+     * @param s
+     * @param delta
+     * @author Andre Amirsaleh
+     */
+    private void updateHighScoresState(GameContainer gc, StateBasedGame s,
+                                       int delta) {
+        Input input = gc.getInput(); // check user input
+        int mouseXPos = input.getMouseX();
+        int mouseYPos = input.getMouseY();
+        if (mouseXPos > 0 && mouseXPos < 100 && mouseYPos > 0 && mouseYPos < 100) {
+            if (input.isMousePressed(0)) {
+                s.enterState(state.MENU);
+            }
         }
     }
 }
