@@ -24,27 +24,27 @@ import java.util.List;
  *
  * @author Daniel Vasquez
  */
-public class GenericBoard {
+public class GameBoard {
     // default board sizes
     public static final int WIDTH = 10;
     public static final int HEIGHT = 20;
 
     /**
-     * Width of the <code>GenericBoard</code>'s grid
+     * Width of the <code>GameBoard</code>'s grid
      *
      * @author Daniel Vasquez
      */
     private int width;
 
     /**
-     * Height of the <code>GenericBoard</code>'s grid
+     * Height of the <code>GameBoard</code>'s grid
      *
      * @author Daniel Vasquez
      */
     private int height;
 
     /**
-     * The <code>GenericBoard</code>'s grid
+     * The <code>GameBoard</code>'s grid
      *
      * @author Daniel Vasquez
      */
@@ -61,7 +61,7 @@ public class GenericBoard {
      *
      * @author Daniel Vasquez
      */
-    public GenericBoard() {
+    public GameBoard() {
         this.blockArray = new Block[WIDTH][HEIGHT];
         this.width = WIDTH;
         this.height = HEIGHT;
@@ -75,7 +75,7 @@ public class GenericBoard {
      * @param height Height of the <code>Board</code>'s grid
      * @author Daniel Vasquez
      */
-    public GenericBoard(int width, int height) {
+    public GameBoard(int width, int height) {
         this.blockArray = new Block[width][height];
         this.width = width;
         this.height = height;
@@ -102,7 +102,7 @@ public class GenericBoard {
     /**
      * Returns the <code>blockArray</code> attribute
      *
-     * @return The <code>GenericBoard</code>'s grid
+     * @return The <code>GameBoard</code>'s grid
      * @author Daniel Vasquez
      */
     public Block[][] getBlockArray() {

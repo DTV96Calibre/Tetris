@@ -34,7 +34,7 @@ public class MainModel {
     private Point initialTetriminoLocation;
 
     /* The active game board for this game */
-    public GenericBoard myBoard;
+    public GameBoard myBoard;
 
     /* A bag of 7 different types of T-shapes*/
     private ArrayList<TShape> bag = new ArrayList<TShape>();
@@ -83,7 +83,7 @@ public class MainModel {
     public MainModel() {
         // TODO: Modify gameboard selection to change with user's choice of
         // game mode?
-        myBoard = new GenericBoard();
+        myBoard = new GameBoard();
 
         // the Tetrimino should spawn at the midpoint of the top of the screen
         initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 0);
@@ -114,11 +114,11 @@ public class MainModel {
         this.activeTetriminoLocation = activeTetriminoLocation;
     }
 
-    public GenericBoard getMyBoard() {
+    public GameBoard getMyBoard() {
         return this.myBoard;
     }
 
-    public void setMyBoard(GenericBoard myBoard) {
+    public void setMyBoard(GameBoard myBoard) {
         this.myBoard = myBoard;
     }
 
