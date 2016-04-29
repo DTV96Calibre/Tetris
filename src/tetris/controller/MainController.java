@@ -174,7 +174,6 @@ public class MainController {
         // validate user mouse position and check for button presses
         int mouseXPos = input.getMouseX();
         int mouseYPos = input.getMouseY();
-        System.out.println(mouseXPos + " " + mouseYPos);
         if (mouseXPos > 178 && mouseXPos < 436 && mouseYPos > 263 && mouseYPos < 328) {
             theView.getMenuState().setBackground(Resources.getImages().get(
                     "menuHighlightPlay"));
