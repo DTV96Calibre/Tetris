@@ -76,7 +76,7 @@ public class MainModel {
         myBoard = new GenericBoard();
 
         // the Tetrimino should spawn at the midpoint of the top of the screen
-        initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 1);
+        initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 0);
 
         setActiveTetrimino(pickTShape()); // pick the first Tetrimino
 
@@ -153,8 +153,19 @@ public class MainModel {
         return gameOver;
     }
 
+    /**
+     * Sets the gameOver attribute and will reset the model if gameOver == true.
+     *
+     * @author Brooke Bullek
+     * @param gameOver
+     */
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
+        if (gameOver) {
+            // reset attributes to start a new game
+
+        }
+
     }
     /* End of getters and setters */
 
@@ -167,6 +178,10 @@ public class MainModel {
      * @author Daniel Vasquez
      */
     public void lockActiveTetrimino() {
+        if (gameOver) {
+            return; // prevent loading new Tetriminos if the game is over
+        }
+
         for (Block block : activeTetrimino.getBlockArray()) {
             // extract the location (x/y coordinates) of this block
             int xPos = (int) (block.getLocation().getX() + activeTetriminoLocation.getX());

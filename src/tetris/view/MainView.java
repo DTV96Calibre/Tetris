@@ -20,7 +20,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import tetris.controller.MainController;
 import tetris.resources.Resources;
-import tetris.view.GameStates.GameStates;
+import tetris.view.GameStates.GameOverState;
+import tetris.view.GameStates.GameState;
 import tetris.view.GameStates.MenuState;
 
 /**
@@ -30,8 +31,9 @@ import tetris.view.GameStates.MenuState;
  * @author Xizhou Li
  */
 public class MainView extends StateBasedGame {
-    private GameStates gameStates;
-    private MenuState menuStates;
+    private GameState gameState;
+    private MenuState menuState;
+    private GameOverState gameOverState;
 
     // TODO: Refactor so MainView doesn't have a dependency on MainController.
     // However, this would require a revamp of the GameState class which is
@@ -65,24 +67,42 @@ public class MainView extends StateBasedGame {
         gc.setAlwaysRender(true);
         // The game will update 60 times a second
         gc.setMaximumLogicUpdateInterval(60);
-        gameStates = new GameStates();
-        menuStates = new MenuState();
-        // associate this GameStates object with the controller (important!)
-        gameStates.setController(controller);
+        gameState = new GameState();
+        menuState = new MenuState();
+        gameOverState = new GameOverState();
+        // associate this GameState object with the controller (important!)
+        gameState.setController(controller);
+        gameOverState.setController(controller);
         gc.setVSync(true);
         gc.setShowFPS(false);
-        this.addState(menuStates);
-        this.addState(gameStates);
-
+        this.addState(menuState);
+        this.addState(gameState);
+        this.addState(gameOverState);
     }
 
     /* Getters and setters */
-    public GameStates getGameStates() {
-        return gameStates;
+    public GameState getGameState() {
+        return gameState;
     }
 
-    public void setGameStates(GameStates gameStates) {
-        this.gameStates = gameStates;
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+    }
+
+    public MenuState getMenuState() {
+        return menuState;
+    }
+
+    public void setMenuState(MenuState menuState) {
+        this.menuState = menuState;
+    }
+
+    public GameOverState getGameOverState() {
+        return gameOverState;
+    }
+
+    public void setGameOverState(GameOverState gameOverState) {
+        this.gameOverState = gameOverState;
     }
 
     public MainController getMainController() {

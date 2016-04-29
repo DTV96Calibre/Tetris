@@ -22,10 +22,12 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
+import org.newdawn.slick.SpriteSheet;
 
 /**
  *
@@ -35,20 +37,15 @@ public class Resources {
     private static Map<String, Image> images;
     private static Map<String, Sound> sounds;
     private static Map<String, Music> musics;
-
-    public static Map<String, Sound> getSounds() {
-        return sounds;
-    }
-
-    public static Map<String, Music> getMusics() {
-        return musics;
-    }
+    private static Map<String, Animation> animations;
 
     public Resources() {
-        images = new HashMap<String, Image>();
-        musics = new HashMap<String, Music>();
-        sounds = new HashMap<String, Sound>();
+        images = new HashMap<>();
+        musics = new HashMap<>();
+        sounds = new HashMap<>();
+        animations = new HashMap<>();
         try {
+            // load all of the game assets into the resource hash maps
             images.put("red", loadImage(
                        "color blocks/red.png"));
             images.put("orange", loadImage(
@@ -75,6 +72,11 @@ public class Resources {
             sounds.put("breakSound", loadSound(
                        "color blocks/break.wav"));
 
+            // load the game over animation
+            SpriteSheet gameOverSheet = new SpriteSheet(
+                    "color blocks/gameOverSheet.png", 1800, 400);
+            animations.put("gameOverAnimation",
+                           new Animation(gameOverSheet, 200));
         } catch (SlickException ex) {
             ex.printStackTrace();
         } catch (UnsupportedAudioFileException ex) {
@@ -86,8 +88,20 @@ public class Resources {
         }
     }
 
+    public static Map<String, Sound> getSounds() {
+        return sounds;
+    }
+
+    public static Map<String, Music> getMusics() {
+        return musics;
+    }
+
     public static Map<String, Image> getImages() {
         return images;
+    }
+
+    public static Map<String, Animation> getAnimations() {
+        return animations;
     }
 
     public static Image loadImage(String path) throws SlickException {
@@ -111,5 +125,4 @@ public class Resources {
     public static Image getImageFromImage(String getter) {
         return images.get(getter);
     }
-
 }
