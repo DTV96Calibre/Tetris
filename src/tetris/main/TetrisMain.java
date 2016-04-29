@@ -42,7 +42,7 @@ public class TetrisMain {
             theView.setMainController(theController);
 
             AppGameContainer game = new AppGameContainer(theView);
-            game.setDisplayMode(Window.getWIDTH(), Window.getHEIGHT(), false);
+            game.setDisplayMode(Window.WIDTH, Window.HEIGHT, false);
             game.start();
         } catch (SlickException ex) {
             ex.printStackTrace();

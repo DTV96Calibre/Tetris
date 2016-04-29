@@ -90,21 +90,10 @@ public class GameBoard {
         return height;
     }
 
-    /**
-     * Returns <code>scoreBoard</code> attribute
-     *
-     * @return info/methods to access/manipulate current score
-     */
     public ScoreBoard getScoreBoard() {
         return scoreBoard;
     }
 
-    /**
-     * Returns the <code>blockArray</code> attribute
-     *
-     * @return The <code>GameBoard</code>'s grid
-     * @author Daniel Vasquez
-     */
     public Block[][] getBlockArray() {
         return blockArray;
     }

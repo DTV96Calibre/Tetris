@@ -67,8 +67,10 @@ public class Resources {
                        "color blocks/Tetris-logo.png"));
             images.put("play", loadImage(
                        "color blocks/play.png"));
-            musics.put("backgroundMusic", loadMusic(
-                       "color blocks/Tetris.wav"));
+            musics.put("backgroundMusic2", loadMusic(
+                       "color blocks/Tetris2.wav"));
+            musics.put("backgroundMusic1", loadMusic(
+                       "color blocks/Tetris1.wav"));
             sounds.put("breakSound", loadSound(
                        "color blocks/break.wav"));
 

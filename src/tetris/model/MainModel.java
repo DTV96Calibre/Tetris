@@ -242,7 +242,10 @@ public class MainModel {
             // extract the location (x/y coordinates) of this block
             int xPos = (int) (block.getLocation().getX() + activeTetriminoLocation.getX());
             int yPos = (int) (block.getLocation().getY() + activeTetriminoLocation.getY());
-            myBoard.setBlock(xPos, yPos, block); // stick this Block in the board
+            Point[] newBlockPosition = {new Point(xPos, yPos)};
+            if (myBoard.validate(newBlockPosition) == true) {
+                myBoard.setBlock(xPos, yPos, block); // stick this Block in the board
+            }
         }
 
         // detect lines that may have been made, clear them, and perform the appropriate drops
@@ -299,5 +302,98 @@ public class MainModel {
             i++;
         }
         return newBlockPositions;
+    }
+
+    /**
+     * Checks whether the game is over (i.e the Tetrimino has reached the top of
+     * the screen).
+     *
+     * @author Brooke Bullek
+     * @return a boolean indicating whether the player has lost the game
+     */
+    public boolean checkGameOver() {
+        int row = 0; // we'll only check row 0 (the top of the board)
+        for (int i = 0; i < myBoard.getWidth(); i++) {
+            if (myBoard.getBlockArray()[i][row] != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Moves the active Tetrimino in a specified direction if there is room on
+     * the gameboard. If so, this position is updated; else, nothing happens.
+     *
+     * @authors Daniel Vasquez & Brooke Bullek
+     * @param d A Direction associated with this movement; e.g. left/right/down
+     * @return a boolean indicating whether this Tetrimino was able to be moved
+     */
+    public boolean moveActiveTetrimino(Direction d) {
+        Point[] newBlockPositions = calculateNewBlockPositions(d.getX(),
+                                                               d.getY());
+
+        if (myBoard.validate(newBlockPositions) == true) {
+            Point newPosition = new Point(
+                    (int) activeTetriminoLocation.getX() + d.getX(),
+                    (int) activeTetriminoLocation.getY() + d.getY());
+            activeTetriminoLocation = newPosition;
+
+            if (softDropActivated) {
+                // performing a soft drop adds 1 point per row
+                addPoints(ScoreBoard.SOFT_DROP_POINTS_PER_ROW);
+            }
+            return true;
+        } else {
+            if (d == Direction.DOWN) {
+                // lock this Tetrimino if it can't be moved downward
+                lockActiveTetrimino();
+            }
+            return false;
+        }
+    }
+
+    /**
+     * Instantly drops a Tetrimino to the bottom of the gameboard.
+     *
+     * @author Brooke Bullek
+     */
+    public void instantDropTetrimino() {
+        while (moveActiveTetrimino(Direction.DOWN)) {
+            addPoints(ScoreBoard.HARD_DROP_POINTS_PER_ROW);
+            continue;
+        }
+    }
+
+    /**
+     * Allows the active Tetrimino to rotate if there is room on the gameboard.
+     * If so, this position is updated; else, nothing happens.
+     *
+     * @author Brooke Bullek
+     * @param factor
+     */
+    public void rotateActiveTetrimino(int factor) {
+        // create a deep copy of the old arrangement of Tetrimino blocks
+        Block[] oldBlockArray = new Block[Tetrimino.TETRIMINO_ARRAY_WIDTH];
+        for (int i = 0; i < Tetrimino.TETRIMINO_ARRAY_WIDTH; i++) {
+            oldBlockArray[i] = (Block) activeTetrimino.getBlockArray()[i].copy();
+        }
+
+        Point[] newBlockPositions = new Point[Tetrimino.TETRIMINO_ARRAY_WIDTH];
+        activeTetrimino.rotate(factor);
+
+        // grab the new absolute positions (i.e. their positions on the board)
+        int i = 0;
+        for (Block block : activeTetrimino.getBlockArray()) {
+            int newX = (int) (block.getLocation().getX() + activeTetriminoLocation.getX());
+            int newY = (int) (block.getLocation().getY() + activeTetriminoLocation.getY());
+            newBlockPositions[i] = new Point(newX, newY);
+            i++;
+        }
+
+        // reset to the old block array if this rotation is illegal
+        if (myBoard.validate(newBlockPositions) == false) {
+            activeTetrimino.setBlockArray(oldBlockArray);
+        }
     }
 }

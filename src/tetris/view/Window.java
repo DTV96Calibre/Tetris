@@ -20,19 +20,15 @@ package tetris.view;
  * @author xizhouli
  */
 public class Window {
-    private static int WIDTH = 640;
-    private static int HEIGHT = 640;
-    private static final int PIXEL_OFFSET = 32;
+    /* The ratio between the sizes of the sidebar and the main gameboard */
+    public static double SIDEBAR_RATIO = 0.25;
 
-    public static int getWIDTH() {
-        return WIDTH;
-    }
+    /* Default width of the window in pixels */
+    public static int WIDTH = 640;
 
-    public static int getHEIGHT() {
-        return HEIGHT;
-    }
+    /* Default height of the window in pixels */
+    public static int HEIGHT = 640;
 
-    public static int getPIXEL_OFFSET() {
-        return PIXEL_OFFSET;
-    }
+    /* The pixel offset of a Block */
+    public static final int PIXEL_OFFSET = 32;
 }

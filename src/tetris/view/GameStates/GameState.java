@@ -7,6 +7,7 @@ package tetris.view.GameStates;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -22,8 +23,13 @@ public class GameState extends BasicGameState {
     /* The Controller object used to render & update entities */
     private MainController controller;
 
-    private Music music = Resources.getMusics().get("backgroundMusic");
+    /* Background music */
+    private Music music = Resources.getMusics().get("backgroundMusic1");
 
+    /* Background image */
+    private Image background = Resources.getImages().get("background");
+
+    /* Timer that records elapsed time since the last game update */
     public int timer = 0;
 
     @Override
@@ -44,11 +50,18 @@ public class GameState extends BasicGameState {
     public void setController(MainController controller) {
         this.controller = controller;
     }
+
+    public Image getBackground() {
+        return background;
+    }
     /* End of getters and setters */
 
     /**
-     * Renders Tetrimino.
+     * Renders on-screen elements while the game is in the GameState.
      *
+     * @param gc A generic game container that handles the game loop
+     * @param s A state based game isolated into different stages
+     * @param g A graphics context used to render primitives to the canvas
      * @throws SlickException
      */
     @Override
@@ -62,5 +75,4 @@ public class GameState extends BasicGameState {
         // delegate this method to the game's controller
         this.controller.update(gc, s, delta);
     }
-
 }

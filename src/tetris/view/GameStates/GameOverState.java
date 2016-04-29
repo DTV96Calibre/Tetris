@@ -40,7 +40,7 @@ public class GameOverState extends BasicGameState {
     private Animation gameOverAnimation;
 
     /**
-     * Initializes the GameOverState.
+     * Initializes a new GameOverState.
      *
      * @param gc
      * @param s
@@ -70,6 +70,14 @@ public class GameOverState extends BasicGameState {
     }
     /* End of getters and setters */
 
+    /**
+     * Renders on-screen elements while the game is in the GameOverState.
+     *
+     * @param gc A generic game container that handles the game loop
+     * @param s A state based game isolated into different stages
+     * @param g A graphics context used to render primitives to the canvas
+     * @throws SlickException
+     */
     @Override
     public void render(GameContainer gc, StateBasedGame s, Graphics g) throws SlickException {
         // delegate this method to the game's controller

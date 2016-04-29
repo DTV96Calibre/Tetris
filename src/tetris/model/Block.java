@@ -7,6 +7,8 @@ package tetris.model;
 
 import java.awt.Point;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A block used in the construction of Tetriminos and other Tetris pieces.
@@ -99,7 +101,16 @@ public class Block implements Cloneable {
      * @return a copy of this Block object
      * @throws CloneNotSupportedException
      */
-    public Block copy() throws CloneNotSupportedException {
-        return (Block) this.clone();
+    public Block copy() {
+        Block block = null;
+        try {
+            block = (Block) this.clone();
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(Block.class.getName()).log(
+                    Level.WARNING,
+                    "Block could not be copied; Cloning not supported",
+                    ex);
+        }
+        return block;
     }
 }
