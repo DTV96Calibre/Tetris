@@ -159,6 +159,10 @@ public class MainView extends StateBasedGame {
     public TetriminoComponent getTetriminoComponent() {
         return tetriminoComponent;
     }
+
+    public HighScoresState getHighScoresState() {
+        return highScoresState;
+    }
     /* End of getters and setters */
 
     /**

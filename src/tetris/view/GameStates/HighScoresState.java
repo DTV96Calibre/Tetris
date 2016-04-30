@@ -23,6 +23,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import tetris.controller.MainController;
+import tetris.utility.HighScoresUtility;
 
 /**
  * Displays the high scores
@@ -58,7 +59,7 @@ public class HighScoresState extends BasicGameState {
      */
     public HighScoresState(MainController controller) {
         this.controller = controller;
-        iHighScores = new int[NUM_SCORES_TO_DISPLAY];
+        iHighScores = HighScoresUtility.getHighScores();
         sHighScores = new ArrayList<>();
         String sScore;
         for (int iScore : iHighScores) {
@@ -136,12 +137,13 @@ public class HighScoresState extends BasicGameState {
         return NUM_SCORES_TO_DISPLAY;
     }
 
-    public void setIHighScores(int[] iHighScores) {
-        this.iHighScores = iHighScores;
-    }
-
-    public void setSHighScores(List<String> sHighScores) {
-        this.sHighScores = sHighScores;
+    public void setHighScores(int[] newHighScores) {
+        this.iHighScores = newHighScores;
+        String sHighScore;
+        for (int i = 0; i < this.iHighScores.length; i++) {
+            sHighScore = String.valueOf(this.iHighScores[i]);
+            this.sHighScores.set(i, sHighScore);
+        }
     }
 
     public void setController(MainController controller) {

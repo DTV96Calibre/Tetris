@@ -22,6 +22,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import tetris.model.Direction;
 import tetris.model.MainModel;
 import tetris.resources.Resources;
+import tetris.utility.HighScoresUtility;
 import tetris.view.GameStates.state;
 import tetris.view.MainView;
 
@@ -159,6 +160,9 @@ public class MainController {
         // check for game over and update the state appropriately
         if (theModel.checkGameOver()) {
             theModel.setGameOver(true);
+            HighScoresUtility.updateHighScores(theModel.getPoints());
+            theView.getHighScoresState().setHighScores(
+                    HighScoresUtility.getHighScores());
             s.enterState(2);
         }
     }
