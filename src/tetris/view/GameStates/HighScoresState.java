@@ -72,7 +72,7 @@ public class HighScoresState extends BasicGameState {
      */
     @Override
     public int getID() {
-        return State.HIGH_SCORES;
+        return State.HIGH_SCORES.getID();
     }
 
     /**

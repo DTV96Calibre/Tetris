@@ -59,12 +59,14 @@ public class Resources {
             images.put("menuNoHighlightPlay", loadImage(
                        "res/menu_bg_nohl.jpg"));
             images.put("menuHighlightPlay", loadImage(
-                       "res/menu_bg_hl.jpg"));
-            images.put("menu", loadImage("res/Tetris-logo.png"));
-            images.put("play", loadImage("res/play.png"));
-            musics.put("backgroundMusic2", loadMusic("res/Tetris2.wav"));
-            musics.put("backgroundMusic1", loadMusic("res/Tetris1.wav"));
-            sounds.put("breakSound", loadSound("res/break.wav"));
+                       "color blocks/menu_bg_hl.jpg"));
+            images.put("menu", loadImage("color blocks/Tetris-logo.png"));
+            images.put("play", loadImage("color blocks/play.png"));
+            musics.put("backgroundMusicRemix", loadMusic(
+                       "color blocks/bgremix.wav"));
+            musics.put("backgroundMusic2", loadMusic("color blocks/Tetris2.wav"));
+            musics.put("backgroundMusic1", loadMusic("color blocks/Tetris1.wav"));
+            sounds.put("breakSound", loadSound("color blocks/break.wav"));
 
             // load the game over animation
             SpriteSheet gameOverSheet = new SpriteSheet(

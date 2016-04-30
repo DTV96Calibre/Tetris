@@ -34,7 +34,7 @@ public class GameState extends BasicGameState {
     private MainController controller;
 
     /* Background music */
-    private Music music = Resources.getMusics().get("backgroundMusic1");
+    private Music music = Resources.getMusics().get("backgroundMusicRemix");
 
     /* Background image */
     private Image background = Resources.getImages().get("background");
@@ -50,7 +50,7 @@ public class GameState extends BasicGameState {
     /* Getters and setters */
     @Override
     public int getID() {
-        return State.GAME;
+        return State.GAME.getID();
     }
 
     public MainController getController() {

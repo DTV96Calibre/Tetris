@@ -58,8 +58,8 @@ public class MainController {
     /**
      * Updates the graphical components of the MainView with the internal data
      * of the MainModel. This method merely updates the components; the render()
- method actually draws these components in a window depending on the
- active game State.
+     * method actually draws these components in a window depending on the
+     * active game State.
      *
      * @author Brooke Bullek
      */
@@ -87,13 +87,13 @@ public class MainController {
         updateViewFromModel();
 
         // render the appropriate GUI elements depending on the active State
-        if (s.getCurrentStateID() == State.GAME) {
+        if (s.getCurrentStateID() == State.GAME.getID()) {
             theView.renderGameState(gc, g);
-        } else if (s.getCurrentStateID() == State.MENU) {
+        } else if (s.getCurrentStateID() == State.MENU.getID()) {
             theView.renderMenuState(gc, g);
-        } else if (s.getCurrentStateID() == State.GAME_OVER) {
+        } else if (s.getCurrentStateID() == State.GAME_OVER.getID()) {
             theView.renderGameOverState(gc, g);
-        } else if (s.getCurrentStateID() == State.HIGH_SCORES) {
+        } else if (s.getCurrentStateID() == State.HIGH_SCORES.getID()) {
             theView.renderHighScoresState(gc, g);
         }
     }
@@ -109,13 +109,13 @@ public class MainController {
      */
     public void update(GameContainer gc, StateBasedGame s, int delta) {
         // perform the appropriate updates depending on the active State
-        if (s.getCurrentStateID() == State.GAME) {
+        if (s.getCurrentStateID() == State.GAME.getID()) {
             updateGameState(gc, s, delta);
-        } else if (s.getCurrentStateID() == State.MENU) {
+        } else if (s.getCurrentStateID() == State.MENU.getID()) {
             updateMenuState(gc, s, delta);
-        } else if (s.getCurrentStateID() == State.GAME_OVER) {
+        } else if (s.getCurrentStateID() == State.GAME_OVER.getID()) {
             updateGameOverState(gc, s, delta);
-        } else if (s.getCurrentStateID() == State.HIGH_SCORES) {
+        } else if (s.getCurrentStateID() == State.HIGH_SCORES.getID()) {
             updateHighScoresState(gc, s, delta);
         }
     }
@@ -149,7 +149,7 @@ public class MainController {
         } else if (input.isKeyPressed(Keymap.HOLD_TETRIMINO.getKey())) {
             theModel.holdActiveTetrimino();
         } else if (input.isKeyPressed(Keymap.PAUSE.getKey())) {
-            s.enterState(State.MENU);
+            s.enterState(State.MENU.getID());
         }
 
         // updates that occur while in the game State
@@ -186,11 +186,11 @@ public class MainController {
             theView.getMenuState().setBackground(Resources.getImages().get(
                     "menuHighlightPlay"));
             if (input.isMousePressed(0)) {
-                s.enterState(State.GAME);
+                s.enterState(State.GAME.getID());
             }
         } else if (mouseXPos > 0 && mouseXPos < 100 && mouseYPos > 0 && mouseYPos < 100) {
             if (input.isMousePressed(0)) {
-                s.enterState(State.HIGH_SCORES);
+                s.enterState(State.HIGH_SCORES.getID());
             }
         } else {
             theView.getMenuState().setBackground(Resources.getImages().get(
@@ -213,7 +213,7 @@ public class MainController {
 
         if (input.isKeyPressed(Keymap.START_NEW_GAME.getKey())) {
             theModel = new MainModel();
-            s.enterState(State.GAME);
+            s.enterState(State.MENU.getID());
         }
     }
 
@@ -254,7 +254,7 @@ public class MainController {
         int mouseYPos = input.getMouseY();
         if (mouseXPos > 0 && mouseXPos < 100 && mouseYPos > 0 && mouseYPos < 100) {
             if (input.isMousePressed(0)) {
-                s.enterState(State.MENU);
+                s.enterState(State.MENU.getID());
             }
         }
     }

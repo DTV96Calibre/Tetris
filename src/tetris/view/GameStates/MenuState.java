@@ -50,7 +50,7 @@ public class MenuState extends BasicGameState {
     /* Getters and setters */
     @Override
     public int getID() {
-        return State.MENU;
+        return State.MENU.getID();
     }
 
     public MainController getController() {
