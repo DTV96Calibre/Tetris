@@ -15,6 +15,8 @@
  */
 package tetris.view;
 
+import java.util.List;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -24,6 +26,7 @@ import tetris.model.GameBoard;
 import tetris.resources.Resources;
 import tetris.view.GameStates.GameOverState;
 import tetris.view.GameStates.GameState;
+import tetris.view.GameStates.HighScoresState;
 import tetris.view.GameStates.MenuState;
 
 /**
@@ -37,6 +40,7 @@ public class MainView extends StateBasedGame {
     private GameState gameState;
     private MenuState menuState;
     private GameOverState gameOverState;
+    private HighScoresState highScoresState;
 
     // components
     private GameBoardComponent gameBoardComponent;
@@ -91,6 +95,10 @@ public class MainView extends StateBasedGame {
         gameState = new GameState();
         menuState = new MenuState();
         gameOverState = new GameOverState();
+        // TODO: Make the controller a required parameter to construct a state!!
+        // Rather than calling the setController method right after
+        // As shown for the HighScoresState constructor below:
+        highScoresState = new HighScoresState(controller);
 
         // associate each State object with the controller (important!)
         gameState.setController(controller);
@@ -104,6 +112,7 @@ public class MainView extends StateBasedGame {
         this.addState(menuState);
         this.addState(gameState);
         this.addState(gameOverState);
+        this.addState(highScoresState);
     }
 
     /* Getters and setters */
@@ -149,6 +158,10 @@ public class MainView extends StateBasedGame {
 
     public TetriminoComponent getTetriminoComponent() {
         return tetriminoComponent;
+    }
+
+    public HighScoresState getHighScoresState() {
+        return highScoresState;
     }
     /* End of getters and setters */
 
@@ -210,5 +223,40 @@ public class MainView extends StateBasedGame {
         gameOverState.getGameOverAnimation().draw(widthOffset, heightOffset,
                                                   animationWidth,
                                                   animationHeight);
+    }
+
+    /**
+     * Renders the high scores screen
+     *
+     * @param gc
+     * @param g
+     * @author Andre Amirsaleh
+     */
+    public void renderHighScoresState(GameContainer gc, Graphics g) {
+        // Draw title:
+        int xTitleLoc = 0;
+        int yTitleLoc = 0;
+        g.setColor(Color.pink);
+        g.drawString("High Scores", xTitleLoc, yTitleLoc);
+
+        // Draw high scores and rankings
+        int[] iHighScores = highScoresState.getIHighScores();
+        List<String> sHighScores = highScoresState.getSHighScores();
+        int rank = 0;
+        int yRankLoc = yTitleLoc + 20;
+        int xRankLoc = xTitleLoc;
+        String sRank;
+        for (String sScore : sHighScores) {
+            yRankLoc += 20;
+            rank++;
+            sRank = String.valueOf(rank);
+            if (rank < 10) {
+                sRank = " " + sRank;
+            }
+            g.drawString(sRank, xRankLoc, yRankLoc); // Draws rank (integer)
+
+            // Now draw score next to rank:
+            g.drawString(sScore, xRankLoc + 40, yRankLoc);
+        }
     }
 }

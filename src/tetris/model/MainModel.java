@@ -27,6 +27,7 @@ import tetris.resources.Resources;
  * @author Brooke Bullek
  */
 public class MainModel {
+
     /* The default location of a new Tetrimino when it's first being loaded.
      Traditionally, the Tetrimino starts at the top of the middle of the
      screen.
@@ -396,4 +397,5 @@ public class MainModel {
             activeTetrimino.setBlockArray(oldBlockArray);
         }
     }
+
 }
