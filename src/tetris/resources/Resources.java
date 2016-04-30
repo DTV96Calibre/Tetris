@@ -55,13 +55,15 @@ public class Resources {
             images.put("magenta", loadImage("color blocks/magenta.png"));
 
             // other assets
-            images.put("background", loadImage("color blocks/space.png"));
+            images.put("background", loadImage("color blocks/spaceHalf.png"));
             images.put("menuNoHighlightPlay", loadImage(
                        "color blocks/menu_bg_nohl.jpg"));
             images.put("menuHighlightPlay", loadImage(
                        "color blocks/menu_bg_hl.jpg"));
             images.put("menu", loadImage("color blocks/Tetris-logo.png"));
             images.put("play", loadImage("color blocks/play.png"));
+            musics.put("backgroundMusicRemix", loadMusic(
+                       "color blocks/bgremix.wav"));
             musics.put("backgroundMusic2", loadMusic("color blocks/Tetris2.wav"));
             musics.put("backgroundMusic1", loadMusic("color blocks/Tetris1.wav"));
             sounds.put("breakSound", loadSound("color blocks/break.wav"));

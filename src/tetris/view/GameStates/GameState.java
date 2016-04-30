@@ -24,7 +24,7 @@ public class GameState extends BasicGameState {
     private MainController controller;
 
     /* Background music */
-    private Music music = Resources.getMusics().get("backgroundMusic1");
+    private Music music = Resources.getMusics().get("backgroundMusicRemix");
 
     /* Background image */
     private Image background = Resources.getImages().get("background");

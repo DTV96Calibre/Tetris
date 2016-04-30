@@ -201,7 +201,7 @@ public class MainController {
 
         if (input.isKeyPressed(Keymap.START_NEW_GAME.getKey())) {
             theModel = new MainModel();
-            s.enterState(state.GAME);
+            s.enterState(state.MENU);
         }
     }
 
