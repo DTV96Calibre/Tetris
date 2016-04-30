@@ -18,27 +18,26 @@ package tetris.view.GameStates;
 /**
  * A collection of states that represent allowable game screens/modes.
  *
- * @author xizhouli
+ * @author Xizhou Li & Brooke Bullek
  */
-// TODO: THIS CLASS SHOULD TOTALLY BE AN ENUM!!!
-public class State {
-    /**
-     * The ID for the <code>GameState</code> class.
-     */
-    public static final int GAME = 0;
+public enum State {
+    GAME(0), MENU(1), GAME_OVER(2), HIGH_SCORES(3);
+
+    /* Each state has an ID which identifies the active state to render/update
+     * in Slick. */
+    private final int ID;
 
     /**
-     * The ID for the <code>MenuState</code> class.
+     * Constructor for the State enum.
+     *
+     * @author Brooke Bullek
+     * @param ID The ID associated with this state
      */
-    public static final int MENU = 1;
+    State(int ID) {
+        this.ID = ID;
+    }
 
-    /**
-     * The ID for the <code>GameOverState</code> class.
-     */
-    public static final int GAME_OVER = 2;
-
-    /**
-     * The ID for the <code>HighScoresState</code> class.
-     */
-    public static final int HIGH_SCORES = 3;
+    public int getID() {
+        return this.ID;
+    }
 }

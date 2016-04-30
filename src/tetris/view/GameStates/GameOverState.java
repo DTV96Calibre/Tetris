@@ -54,7 +54,7 @@ public class GameOverState extends BasicGameState {
     /* Getters and setters */
     @Override
     public int getID() {
-        return State.GAME_OVER;
+        return State.GAME_OVER.getID();
     }
 
     public MainController getController() {

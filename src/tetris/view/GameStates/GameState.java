@@ -50,7 +50,7 @@ public class GameState extends BasicGameState {
     /* Getters and setters */
     @Override
     public int getID() {
-        return State.GAME;
+        return State.GAME.getID();
     }
 
     public MainController getController() {
