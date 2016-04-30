@@ -9,7 +9,7 @@
  * Project: csci205FinalProject
  * Package: tetris.view.GameStates
  * File: HighScoresState
- * Description: Implementation of the high score screen
+ * Description: The "High Scores" screen
  *
  * ****************************************
  */
@@ -48,14 +48,10 @@ public class HighScoresState extends BasicGameState {
     private MainController controller;
 
     /**
-     * The number of high scores to display.
-     */
-    private static final int NUM_SCORES_TO_DISPLAY = 10;
-
-    /**
      * Constructs a new <code>HighScoresState</code> instance
      *
      * @param controller an instance of the primary controller class
+     * @author Andre Amirsaleh
      */
     public HighScoresState(MainController controller) {
         this.controller = controller;
@@ -72,18 +68,21 @@ public class HighScoresState extends BasicGameState {
      * Returns the <code>HighScoresState</code> ID
      *
      * @return Integer representing the <code>HighScoresState</code>
+     * @author Andre Amirsaleh
      */
     @Override
     public int getID() {
-        return state.HIGH_SCORES;
+        return State.HIGH_SCORES;
     }
 
     /**
-     * Automatically called by slick but doesn't do anything
+     * Automatically called by slick but doesn't do anything. (This method is
+     * required for all <code>BasicGameState</code>s.)
      *
      * @param gc
      * @param sbg
      * @throws SlickException
+     * @author Andre Amirsaleh
      */
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
@@ -97,6 +96,7 @@ public class HighScoresState extends BasicGameState {
      * @param sbg
      * @param grphcs
      * @throws SlickException
+     * @author Andre Amirsaleh
      */
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
@@ -121,20 +121,31 @@ public class HighScoresState extends BasicGameState {
     // *************************************************************************
     // GETTERS/SETTERS:
     // *************************************************************************
+    /**
+     * Returns the <code>iHighScores</code> attribute
+     *
+     * @return An array of the high scores as <code>int</code>s
+     */
     public int[] getIHighScores() {
         return iHighScores;
     }
 
+    /**
+     * Returns the <code>sHighScores</code> attribute
+     *
+     * @return An array of the high scores as <code>String</code>s.
+     */
     public List<String> getSHighScores() {
         return sHighScores;
     }
 
+    /**
+     * Returns the <code>controller</code> attribute
+     *
+     * @return An instance of the primary controller class
+     */
     public MainController getController() {
         return controller;
-    }
-
-    public static int getNumScoresToDisplay() {
-        return NUM_SCORES_TO_DISPLAY;
     }
 
     public void setHighScores(int[] newHighScores) {

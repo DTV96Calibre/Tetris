@@ -1,7 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* *****************************************
+ * CSCI205 - Software Engineering and Design
+ * Spring 2016
+ *
+ * Name: Andre Amirsaleh, Brooke Bullek, Daniel Vasquez, Xizhou Li
+ * Date: Apr 21, 2016
+ * Time: 1:45:59 PM
+ *
+ * Project: csci205FinalProject
+ * Package: tetris.view.GameStates
+ * File: HighScoresState
+ * Description: The "menu" screen
+ *
+ * ****************************************
  */
 package tetris.view.GameStates;
 
@@ -16,7 +26,7 @@ import tetris.resources.Resources;
 
 /**
  *
- * @author xizhouli
+ * @author Xizhou Li
  */
 public class MenuState extends BasicGameState {
     /* The Controller object used to render & update entities */
@@ -40,7 +50,7 @@ public class MenuState extends BasicGameState {
     /* Getters and setters */
     @Override
     public int getID() {
-        return state.MENU;
+        return State.MENU;
     }
 
     public MainController getController() {

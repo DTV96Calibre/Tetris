@@ -23,7 +23,7 @@ import tetris.model.Direction;
 import tetris.model.MainModel;
 import tetris.resources.Resources;
 import tetris.utility.HighScoresUtility;
-import tetris.view.GameStates.state;
+import tetris.view.GameStates.State;
 import tetris.view.MainView;
 
 /**
@@ -58,8 +58,8 @@ public class MainController {
     /**
      * Updates the graphical components of the MainView with the internal data
      * of the MainModel. This method merely updates the components; the render()
-     * method actually draws these components in a window depending on the
-     * active game state.
+ method actually draws these components in a window depending on the
+ active game State.
      *
      * @author Brooke Bullek
      */
@@ -74,26 +74,26 @@ public class MainController {
     }
 
     /**
-     * Renders various components of theView based on the game's state. Uses
+     * Renders various components of theView based on the game's State. Uses
      * delegation to redirect rendering functionality to the View.
      *
      * @author Brooke Bullek
      * @param gc A generic game container that handles the game loop
-     * @param s A state based game isolated into different stages
+     * @param s A State based game isolated into different stages
      * @param g A graphics context used to render primitives to the canvas
      */
     public void render(GameContainer gc, StateBasedGame s, Graphics g) {
         // update components of the View first
         updateViewFromModel();
 
-        // render the appropriate GUI elements depending on the active state
-        if (s.getCurrentStateID() == state.GAME) {
+        // render the appropriate GUI elements depending on the active State
+        if (s.getCurrentStateID() == State.GAME) {
             theView.renderGameState(gc, g);
-        } else if (s.getCurrentStateID() == state.MENU) {
+        } else if (s.getCurrentStateID() == State.MENU) {
             theView.renderMenuState(gc, g);
-        } else if (s.getCurrentStateID() == state.GAME_OVER) {
+        } else if (s.getCurrentStateID() == State.GAME_OVER) {
             theView.renderGameOverState(gc, g);
-        } else if (s.getCurrentStateID() == state.HIGH_SCORES) {
+        } else if (s.getCurrentStateID() == State.HIGH_SCORES) {
             theView.renderHighScoresState(gc, g);
         }
     }
@@ -104,18 +104,18 @@ public class MainController {
      *
      * @author Brooke Bullek & Daniel Vasquez
      * @param gc A generic game container that handles the game loop
-     * @param s A state based game isolated into different stages
+     * @param s A State based game isolated into different stages
      * @param delta An increment of elapsed time in milliseconds
      */
     public void update(GameContainer gc, StateBasedGame s, int delta) {
-        // perform the appropriate updates depending on the active state
-        if (s.getCurrentStateID() == state.GAME) {
+        // perform the appropriate updates depending on the active State
+        if (s.getCurrentStateID() == State.GAME) {
             updateGameState(gc, s, delta);
-        } else if (s.getCurrentStateID() == state.MENU) {
+        } else if (s.getCurrentStateID() == State.MENU) {
             updateMenuState(gc, s, delta);
-        } else if (s.getCurrentStateID() == state.GAME_OVER) {
+        } else if (s.getCurrentStateID() == State.GAME_OVER) {
             updateGameOverState(gc, s, delta);
-        } else if (s.getCurrentStateID() == state.HIGH_SCORES) {
+        } else if (s.getCurrentStateID() == State.HIGH_SCORES) {
             updateHighScoresState(gc, s, delta);
         }
     }
@@ -126,7 +126,7 @@ public class MainController {
      *
      * @author Brooke Bullek
      * @param gc A generic game container that handles the game loop
-     * @param s A state based game isolated into different stages
+     * @param s A State based game isolated into different stages
      * @param delta An increment of elapsed time in milliseconds
      */
     public void updateGameState(GameContainer gc, StateBasedGame s, int delta) {
@@ -149,15 +149,15 @@ public class MainController {
         } else if (input.isKeyPressed(Keymap.HOLD_TETRIMINO.getKey())) {
             theModel.holdActiveTetrimino();
         } else if (input.isKeyPressed(Keymap.PAUSE.getKey())) {
-            s.enterState(state.MENU);
+            s.enterState(State.MENU);
         }
 
-        // updates that occur while in the game state
+        // updates that occur while in the game State
         updateActiveTetrimino(gc, s, delta);
         theModel.setSoftDropActivated(false);
         theModel.setDropSpeed(oldGameSpeed);
 
-        // check for game over and update the state appropriately
+        // check for game over and update the State appropriately
         if (theModel.checkGameOver()) {
             theModel.setGameOver(true);
             HighScoresUtility.updateHighScores(theModel.getPoints());
@@ -173,7 +173,7 @@ public class MainController {
      *
      * @author Brooke Bullek
      * @param gc A generic game container that handles the game loop
-     * @param s A state based game isolated into different stages
+     * @param s A State based game isolated into different stages
      * @param delta An increment of elapsed time in milliseconds
      */
     public void updateMenuState(GameContainer gc, StateBasedGame s, int delta) {
@@ -186,11 +186,11 @@ public class MainController {
             theView.getMenuState().setBackground(Resources.getImages().get(
                     "menuHighlightPlay"));
             if (input.isMousePressed(0)) {
-                s.enterState(state.GAME);
+                s.enterState(State.GAME);
             }
         } else if (mouseXPos > 0 && mouseXPos < 100 && mouseYPos > 0 && mouseYPos < 100) {
             if (input.isMousePressed(0)) {
-                s.enterState(state.HIGH_SCORES);
+                s.enterState(State.HIGH_SCORES);
             }
         } else {
             theView.getMenuState().setBackground(Resources.getImages().get(
@@ -204,7 +204,7 @@ public class MainController {
      *
      * @author Brooke Bullek
      * @param gc A generic game container that handles the game loop
-     * @param s A state based game isolated into different stages
+     * @param s A State based game isolated into different stages
      * @param delta An increment of elapsed time in milliseconds
      */
     public void updateGameOverState(GameContainer gc, StateBasedGame s,
@@ -213,7 +213,7 @@ public class MainController {
 
         if (input.isKeyPressed(Keymap.START_NEW_GAME.getKey())) {
             theModel = new MainModel();
-            s.enterState(state.GAME);
+            s.enterState(State.GAME);
         }
     }
 
@@ -254,7 +254,7 @@ public class MainController {
         int mouseYPos = input.getMouseY();
         if (mouseXPos > 0 && mouseXPos < 100 && mouseYPos > 0 && mouseYPos < 100) {
             if (input.isMousePressed(0)) {
-                s.enterState(state.MENU);
+                s.enterState(State.MENU);
             }
         }
     }

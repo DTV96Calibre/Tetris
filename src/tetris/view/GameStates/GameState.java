@@ -1,7 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* *****************************************
+ * CSCI205 - Software Engineering and Design
+ * Spring 2016
+ *
+ * Name: Andre Amirsaleh, Brooke Bullek, Daniel Vasquez, Xizhou Li
+ * Date: Apr 20, 2016
+ * Time: 1:45:59 PM
+ *
+ * Project: csci205FinalProject
+ * Package: tetris.view.GameStates
+ * File: HighScoresState
+ * Description: The "in-game" screen
+ *
+ * ****************************************
  */
 package tetris.view.GameStates;
 
@@ -17,7 +27,7 @@ import tetris.resources.Resources;
 
 /**
  *
- * @author xizhouli
+ * @author Xizhou Li
  */
 public class GameState extends BasicGameState {
     /* The Controller object used to render & update entities */
@@ -40,7 +50,7 @@ public class GameState extends BasicGameState {
     /* Getters and setters */
     @Override
     public int getID() {
-        return state.GAME;
+        return State.GAME;
     }
 
     public MainController getController() {
@@ -60,7 +70,7 @@ public class GameState extends BasicGameState {
      * Renders on-screen elements while the game is in the GameState.
      *
      * @param gc A generic game container that handles the game loop
-     * @param s A state based game isolated into different stages
+     * @param s A State based game isolated into different stages
      * @param g A graphics context used to render primitives to the canvas
      * @throws SlickException
      */

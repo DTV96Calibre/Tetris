@@ -9,8 +9,8 @@
  * Project: csci205FinalProject
  * Package: tetris.utility
  * File: HighScoresUtility
- * Description:
- *
+ * Description: Used by MainController and HighScoresState to manage the high
+ * scores
  * ****************************************
  */
 package tetris.utility;
@@ -27,6 +27,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
+ * Contains all of the necessary data/methods to access/manage the high scores
  *
  * @author Andre Amirsaleh
  */
@@ -104,24 +105,6 @@ public class HighScoresUtility {
         }
 
         return highScores;
-    }
-
-    /**
-     * Checks if <code>score</code> belongs on the high highScores screen
-     *
-     * @param score The score to check whether it belongs on the high highScores
-     * screens
-     * @return true if <code>score</code> is greater than at least one of the
-     * high highScores; returns false otherwise.
-     */
-    private static boolean isHighScore(int score) {
-        int[] highScores = getHighScores();
-        for (int highScore : highScores) {
-            if (score > highScore) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

@@ -9,7 +9,7 @@
  * Project: csci205FinalProject
  * Package: tetris.view.GameStates
  * File: GameOverState
- * Description:
+ * Description: Tetris enters this state when a player loses a game
  *
  * ****************************************
  */
@@ -25,7 +25,7 @@ import tetris.controller.MainController;
 import tetris.resources.Resources;
 
 /**
- * The state entered when the player loses the game and is greeted by a Game
+ * The State entered when the player loses the game and is greeted by a Game
  * Over screen.
  *
  * @author Brooke Bullek
@@ -54,7 +54,7 @@ public class GameOverState extends BasicGameState {
     /* Getters and setters */
     @Override
     public int getID() {
-        return state.GAME_OVER;
+        return State.GAME_OVER;
     }
 
     public MainController getController() {
@@ -74,7 +74,7 @@ public class GameOverState extends BasicGameState {
      * Renders on-screen elements while the game is in the GameOverState.
      *
      * @param gc A generic game container that handles the game loop
-     * @param s A state based game isolated into different stages
+     * @param s A State based game isolated into different stages
      * @param g A graphics context used to render primitives to the canvas
      * @throws SlickException
      */
