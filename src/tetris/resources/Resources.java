@@ -55,7 +55,7 @@ public class Resources {
             images.put("magenta", loadImage("res/magenta.png"));
 
             // other assets
-            images.put("background", loadImage("res/space.png"));
+            images.put("background", loadImage("res/spaceHalf.png"));
             images.put("menuNoHighlightPlay", loadImage(
                        "res/menu_bg_nohl.jpg"));
             images.put("menuHighlightPlay", loadImage(
