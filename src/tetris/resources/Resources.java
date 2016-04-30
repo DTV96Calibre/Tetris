@@ -46,29 +46,29 @@ public class Resources {
         animations = new HashMap<>();
         try {
             // load block assets into the resource hash maps
-            images.put("red", loadImage("color blocks/red.png"));
-            images.put("orange", loadImage("color blocks/orange.png"));
-            images.put("green", loadImage("color blocks/green.png"));
-            images.put("yellow", loadImage("color blocks/yellow.png"));
-            images.put("blue", loadImage("color blocks/blue.png"));
-            images.put("cyan", loadImage("color blocks/cyan.png"));
-            images.put("magenta", loadImage("color blocks/magenta.png"));
+            images.put("red", loadImage("res/red.png"));
+            images.put("orange", loadImage("res/orange.png"));
+            images.put("green", loadImage("res/green.png"));
+            images.put("yellow", loadImage("res/yellow.png"));
+            images.put("blue", loadImage("res/blue.png"));
+            images.put("cyan", loadImage("res/cyan.png"));
+            images.put("magenta", loadImage("res/magenta.png"));
 
             // other assets
-            images.put("background", loadImage("color blocks/space.png"));
+            images.put("background", loadImage("res/space.png"));
             images.put("menuNoHighlightPlay", loadImage(
-                       "color blocks/menu_bg_nohl.jpg"));
+                       "res/menu_bg_nohl.jpg"));
             images.put("menuHighlightPlay", loadImage(
-                       "color blocks/menu_bg_hl.jpg"));
-            images.put("menu", loadImage("color blocks/Tetris-logo.png"));
-            images.put("play", loadImage("color blocks/play.png"));
-            musics.put("backgroundMusic2", loadMusic("color blocks/Tetris2.wav"));
-            musics.put("backgroundMusic1", loadMusic("color blocks/Tetris1.wav"));
-            sounds.put("breakSound", loadSound("color blocks/break.wav"));
+                       "res/menu_bg_hl.jpg"));
+            images.put("menu", loadImage("res/Tetris-logo.png"));
+            images.put("play", loadImage("res/play.png"));
+            musics.put("backgroundMusic2", loadMusic("res/Tetris2.wav"));
+            musics.put("backgroundMusic1", loadMusic("res/Tetris1.wav"));
+            sounds.put("breakSound", loadSound("res/break.wav"));
 
             // load the game over animation
             SpriteSheet gameOverSheet = new SpriteSheet(
-                    "color blocks/gameOverSheet.png", 1800, 400);
+                    "res/gameOverSheet.png", 1800, 400);
             animations.put("gameOverAnimation",
                            new Animation(gameOverSheet, 200));
         } catch (SlickException ex) {
