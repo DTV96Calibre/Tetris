@@ -47,8 +47,7 @@ public class ScoreBoardComponent {
     /* End of getters and setters */
 
     /**
-     * Renders a Tetrimino within the game window by drawing each of its 4
-     * Blocks.
+     * Renders the ScoreBoard.
      *
      * @author Andre Amirsaleh
      * @param gc A generic game container that handles the game loop
@@ -58,7 +57,7 @@ public class ScoreBoardComponent {
         String points = String.valueOf(scoreBoard.getPoints());
         String title = "Score:";
         g.setColor(pink);
-        g.drawString(title, 32 * 11, 0);
+        g.drawString(title, 32 * 11, 0); // TODO: Eliminate magic numbers
         g.drawString(points, 32 * 11, 32);
     }
 }
