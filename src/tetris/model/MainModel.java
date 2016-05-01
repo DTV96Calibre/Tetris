@@ -274,6 +274,7 @@ public class MainModel {
             this.heldTetrimino = this.activeTetrimino;
             this.activeTetrimino = oldHeldTetrimino;
         }
+        this.initialTetriminoLocation = initialTetriminoLocation;
     }
 
     /**
