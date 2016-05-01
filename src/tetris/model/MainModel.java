@@ -51,6 +51,10 @@ public class MainModel {
      Tetrimino when the hold button is pressed. */
     private Tetrimino heldTetrimino;
 
+    /* Flagged when Tetrimino is held and reset when a new Tetrimino is moved from
+     the queue into the activeTetrimino slot. */
+    private boolean tetriminoHasBeenHeldThisMove;
+
     /* The location of the center block of the active Tetrimino RELATIVE to the
      game board */
     private Point activeTetriminoLocation;
@@ -83,6 +87,7 @@ public class MainModel {
         initialTetriminoLocation = new Point(myBoard.getWidth() / 2, 0);
 
         heldTetrimino = null;
+        tetriminoHasBeenHeldThisMove = false;
 
         setNextTetrimino(pickTShape()); // pick the first shape
         advanceTetriminoQueue(); // set the first active Tetrimino
@@ -226,6 +231,7 @@ public class MainModel {
     private void advanceTetriminoQueue() {
         setActiveTetrimino(nextTetrimino);
         setNextTetrimino(pickTShape());
+        this.tetriminoHasBeenHeldThisMove = false;
     }
 
     /**
@@ -266,15 +272,18 @@ public class MainModel {
      * @author Daniel Vasquez
      */
     public void holdActiveTetrimino() {
-        if (this.heldTetrimino == null) {
-            this.heldTetrimino = this.activeTetrimino;
-            this.setActiveTetrimino(pickTShape());
-        } else {
-            Tetrimino oldHeldTetrimino = this.heldTetrimino;
-            this.heldTetrimino = this.activeTetrimino;
-            this.activeTetrimino = oldHeldTetrimino;
+        if (!this.tetriminoHasBeenHeldThisMove) {
+            if (this.heldTetrimino == null) {
+                this.heldTetrimino = this.activeTetrimino;
+                this.setActiveTetrimino(pickTShape());
+            } else {
+                Tetrimino oldHeldTetrimino = this.heldTetrimino;
+                this.heldTetrimino = this.activeTetrimino;
+                this.activeTetrimino = oldHeldTetrimino;
+            }
+            this.activeTetriminoLocation = initialTetriminoLocation;
+            this.tetriminoHasBeenHeldThisMove = true;
         }
-        this.initialTetriminoLocation = initialTetriminoLocation;
     }
 
     /**
