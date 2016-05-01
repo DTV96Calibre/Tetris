@@ -72,8 +72,9 @@ public class MainController {
                 theModel.getActiveTetrimino());
         theView.getTetriminoComponent().setRelativeTetriminoLocation(
                 theModel.getActiveTetriminoLocation());
-        theView.getTetriminoContainersComponent().setNextTetrimino(new Tetrimino(
-                theModel.getNextTetrimino()));
+        theView.getTetriminoContainersComponent().setNextTetrimino(
+                new Tetrimino(
+                        theModel.getNextTetrimino()));
         theView.getTetriminoContainersComponent().setHoldTetrimino(
                 theModel.getHeldTetrimino());
     }
@@ -187,19 +188,30 @@ public class MainController {
         // validate user mouse position and check for button presses
         int mouseXPos = input.getMouseX();
         int mouseYPos = input.getMouseY();
-        if (mouseXPos > 178 && mouseXPos < 436 && mouseYPos > 263 && mouseYPos < 328) {
+        // if the mouse hovers over the "PLAY" button
+        if (mouseXPos > 52 && mouseXPos < 144 && mouseYPos > 266 && mouseYPos < 323) {
             theView.getMenuState().setBackground(Resources.getImages().get(
                     "menuHighlightPlay"));
             if (input.isMousePressed(0)) {
                 s.enterState(State.GAME.getID());
             }
-        } else if (mouseXPos > 0 && mouseXPos < 100 && mouseYPos > 0 && mouseYPos < 100) {
+        } // if the mouse hovers over the "HIGH SCORES" button
+        else if (mouseXPos > 225 && mouseXPos < 422 && mouseYPos > 266 && mouseYPos < 323) {
+            theView.getMenuState().setBackground(Resources.getImages().get(
+                    "menuHighlightScores"));
             if (input.isMousePressed(0)) {
                 s.enterState(State.HIGH_SCORES.getID());
             }
+        } // if the mouse hovers over the "EXIT " button
+        else if (mouseXPos > 511 && mouseXPos < 585 && mouseYPos > 266 && mouseYPos < 323) {
+            theView.getMenuState().setBackground(Resources.getImages().get(
+                    "menuHighlightExit"));
+            if (input.isMousePressed(0)) {
+                gc.exit(); // close the game container
+            }
         } else {
             theView.getMenuState().setBackground(Resources.getImages().get(
-                    "menuNoHighlightPlay"));
+                    "menuNoHighlight"));
         }
     }
 

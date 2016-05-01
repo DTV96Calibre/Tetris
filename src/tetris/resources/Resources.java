@@ -56,10 +56,14 @@ public class Resources {
 
             // other assets
             images.put("background", loadImage("res/spaceHalf.png"));
-            images.put("menuNoHighlightPlay", loadImage(
-                       "res/menu_bg_nohl.jpg"));
+            images.put("menuNoHighlight", loadImage(
+                       "res/menu_bg_nohl.png"));
             images.put("menuHighlightPlay", loadImage(
-                       "res/menu_bg_hl.jpg"));
+                       "res/menu_bg_hl_play.png"));
+            images.put("menuHighlightScores", loadImage(
+                       "res/menu_bg_hl_scores.png"));
+            images.put("menuHighlightExit", loadImage(
+                       "res/menu_bg_hl_exit.png"));
             images.put("menu", loadImage("res/Tetris-logo.png"));
             images.put("play", loadImage("res/play.png"));
             musics.put("backgroundMusicRemix", loadMusic(
