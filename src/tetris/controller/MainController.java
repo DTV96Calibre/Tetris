@@ -72,8 +72,10 @@ public class MainController {
                 theModel.getActiveTetrimino());
         theView.getTetriminoComponent().setRelativeTetriminoLocation(
                 theModel.getActiveTetriminoLocation());
-        theView.getNextTetriminoComponent().setNextTetrimino(new Tetrimino(
+        theView.getTetriminoContainersComponent().setNextTetrimino(new Tetrimino(
                 theModel.getNextTetrimino()));
+        theView.getTetriminoContainersComponent().setHoldTetrimino(
+                theModel.getHeldTetrimino());
     }
 
     /**

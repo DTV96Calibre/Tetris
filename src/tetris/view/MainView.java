@@ -46,7 +46,7 @@ public class MainView extends StateBasedGame {
     private GameBoardComponent gameBoardComponent;
     private ScoreBoardComponent scoreBoardComponent;
     private TetriminoComponent tetriminoComponent;
-    private NextTetriminoComponent nextTetriminoComponent;
+    private TetriminoContainersComponent nextTetriminoComponent;
 
     // TODO: Refactor so MainView doesn't have a dependency on MainController.
     // However, this would require a revamp of the GameState class which is
@@ -73,7 +73,7 @@ public class MainView extends StateBasedGame {
         gameBoardComponent = new GameBoardComponent();
         scoreBoardComponent = new ScoreBoardComponent();
         tetriminoComponent = new TetriminoComponent();
-        nextTetriminoComponent = new NextTetriminoComponent();
+        nextTetriminoComponent = new TetriminoContainersComponent();
     }
 
     /**
@@ -162,7 +162,7 @@ public class MainView extends StateBasedGame {
         return tetriminoComponent;
     }
 
-    public NextTetriminoComponent getNextTetriminoComponent() {
+    public TetriminoContainersComponent getTetriminoContainersComponent() {
         return nextTetriminoComponent;
     }
 
