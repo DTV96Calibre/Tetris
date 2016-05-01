@@ -21,6 +21,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 import tetris.model.Direction;
 import tetris.model.MainModel;
+import tetris.model.Tetrimino;
 import tetris.resources.Resources;
 import tetris.utility.HighScoresUtility;
 import tetris.view.GameStates.State;
@@ -71,6 +72,8 @@ public class MainController {
                 theModel.getActiveTetrimino());
         theView.getTetriminoComponent().setRelativeTetriminoLocation(
                 theModel.getActiveTetriminoLocation());
+        theView.getNextTetriminoComponent().setNextTetrimino(new Tetrimino(
+                theModel.getNextTetrimino()));
     }
 
     /**

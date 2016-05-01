@@ -46,6 +46,7 @@ public class MainView extends StateBasedGame {
     private GameBoardComponent gameBoardComponent;
     private ScoreBoardComponent scoreBoardComponent;
     private TetriminoComponent tetriminoComponent;
+    private NextTetriminoComponent nextTetriminoComponent;
 
     // TODO: Refactor so MainView doesn't have a dependency on MainController.
     // However, this would require a revamp of the GameState class which is
@@ -72,6 +73,7 @@ public class MainView extends StateBasedGame {
         gameBoardComponent = new GameBoardComponent();
         scoreBoardComponent = new ScoreBoardComponent();
         tetriminoComponent = new TetriminoComponent();
+        nextTetriminoComponent = new NextTetriminoComponent();
     }
 
     /**
@@ -160,6 +162,10 @@ public class MainView extends StateBasedGame {
         return tetriminoComponent;
     }
 
+    public NextTetriminoComponent getNextTetriminoComponent() {
+        return nextTetriminoComponent;
+    }
+
     public HighScoresState getHighScoresState() {
         return highScoresState;
     }
@@ -176,12 +182,13 @@ public class MainView extends StateBasedGame {
     public void renderGameState(GameContainer gc, Graphics g) {
         // draw the background underneath the game elements
         gameState.getBackground().draw(0, 0,
-                                       GameBoard.WIDTH * Window.PIXEL_OFFSET,
-                                       GameBoard.HEIGHT * Window.PIXEL_OFFSET);
+                                       GameBoard.WIDTH * Window.BLOCK_PIXEL_OFFSET,
+                                       GameBoard.HEIGHT * Window.BLOCK_PIXEL_OFFSET);
 
         scoreBoardComponent.render(gc, g); // draw the ScoreBoard
         tetriminoComponent.render(gc, g); // draw the active Tetrimino
         gameBoardComponent.render(gc, g); // draw the GameBoard
+        nextTetriminoComponent.render(gc, g); // draw the next tetrimino indicator
     }
 
     /**

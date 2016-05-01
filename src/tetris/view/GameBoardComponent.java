@@ -67,8 +67,8 @@ public class GameBoardComponent {
                     String color = gameBoard.getBlockArray()[i][j].getColor();
                     // draw the block as a small square
                     Image image = Resources.getImages().get(color);
-                    image.draw(i * Window.PIXEL_OFFSET,
-                               j * Window.PIXEL_OFFSET, 32, 32);
+                    image.draw(i * Window.BLOCK_PIXEL_OFFSET,
+                               j * Window.BLOCK_PIXEL_OFFSET, 32, 32);
                 }
             }
         }

@@ -82,8 +82,8 @@ public class TetriminoComponent {
             String color = block.getColor();
             // draw the block as a small square
             Image image = Resources.getImages().get(color);
-            image.draw(xLocation * Window.PIXEL_OFFSET,
-                       yLocation * Window.PIXEL_OFFSET, 32, 32);  //TODO: Eliminate magic numbers!
+            image.draw(xLocation * Window.BLOCK_PIXEL_OFFSET,
+                       yLocation * Window.BLOCK_PIXEL_OFFSET, 32, 32);  //TODO: Eliminate magic numbers!
         }
     }
 }
