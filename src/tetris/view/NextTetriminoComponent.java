@@ -40,6 +40,7 @@ public class NextTetriminoComponent {
      * A TetriminoComponent used to draw the Tetrimino preview.
      */
     private Tetrimino nextTetrimino;
+    private Tetrimino holdTetrimino;
 
     /**
      * Constructs a NextTetriminoComponent object.
@@ -47,7 +48,9 @@ public class NextTetriminoComponent {
      * @author Daniel Vasquez
      */
     public NextTetriminoComponent() {
+        // Initialize tetriminos to something
         this.nextTetrimino = new Tetrimino(TShape.Z_BLOCK);
+        this.holdTetrimino = new Tetrimino(TShape.O_BLOCK);
     }
 
     /**
@@ -56,8 +59,10 @@ public class NextTetriminoComponent {
      * @author Daniel Vasquez
      * @param nextTetrimino
      */
-    public NextTetriminoComponent(Tetrimino nextTetrimino) {
+    public NextTetriminoComponent(Tetrimino nextTetrimino,
+                                  Tetrimino holdTetrimino) {
         this.nextTetrimino = nextTetrimino;
+        this.holdTetrimino = holdTetrimino;
     }
 
     public void setNextTetrimino(Tetrimino nextTetrimino) {
@@ -66,20 +71,31 @@ public class NextTetriminoComponent {
         }
     }
 
-    public void render(GameContainer gc, Graphics g) {
-        for (Block block : this.nextTetrimino.getBlockArray()) {
-            // record absolute position of this Block
-            int xLocation = (int) (RELATIVE_LOCATION.getX()
-                                   + block.getLocation().getX());
-            int yLocation = (int) (RELATIVE_LOCATION.getY()
-                                   + block.getLocation().getY());
+    public void setHoldTetrimino(Tetrimino holdTetrimino) {
+        if (holdTetrimino != this.nextTetrimino) {
+            this.nextTetrimino = holdTetrimino;
+        }
+    }
 
-            // extract the color of this Block
-            String color = block.getColor();
-            // draw the block as a small square
-            Image image = Resources.getImages().get(color);
-            image.draw(xLocation * Window.BLOCK_PIXEL_OFFSET,
-                       yLocation * Window.BLOCK_PIXEL_OFFSET, 32, 32);  //TODO: Eliminate magic numbers!
+    public void render(GameContainer gc, Graphics g) {
+        Point[] offsets = {NEXT_OFFSET, HOLD_OFFSET};
+        Tetrimino[] tetriminos = {nextTetrimino, holdTetrimino};
+        for (int i = 0; i < tetriminos.length; i++) {
+
+            for (Block block : tetriminos[i].getBlockArray()) {
+                // record absolute position of this Block
+                int xLocation = (int) (RELATIVE_LOCATION.getX() + offsets[i].getX()
+                                       + block.getLocation().getX());
+                int yLocation = (int) (RELATIVE_LOCATION.getY() + offsets[i].getY()
+                                       + block.getLocation().getY());
+
+                // extract the color of this Block
+                String color = block.getColor();
+                // draw the block as a small square
+                Image image = Resources.getImages().get(color);
+                image.draw(xLocation * Window.BLOCK_PIXEL_OFFSET,
+                           yLocation * Window.BLOCK_PIXEL_OFFSET, 32, 32);  //TODO: Eliminate magic numbers!
+            }
         }
     }
 }
