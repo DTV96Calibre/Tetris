@@ -68,9 +68,6 @@ public class TetriminoComponent {
      * @author Xizhou Li & Brooke Bullek
      * @param gc A generic game container that handles the game loop
      * @param g A graphics context used to render primitives to the canvas
-     * @param tetrimino The Tetrimino to render
-     * @param relativeTetriminoLocation The location of the "pivot block" of
-     * this Tetrimino on the GameBoard
      */
     public void render(GameContainer gc, Graphics g) {
         // draw each block of this Tetrimino relative to the gameboard
@@ -82,11 +79,11 @@ public class TetriminoComponent {
                                    + block.getLocation().getY());
 
             // extract the color of this Block
-            String color = block.getColor().toString();
+            String color = block.getColor();
             // draw the block as a small square
             Image image = Resources.getImages().get(color);
             image.draw(xLocation * Window.PIXEL_OFFSET,
-                       yLocation * Window.PIXEL_OFFSET, 32, 32);
+                       yLocation * Window.PIXEL_OFFSET, 32, 32);  //TODO: Eliminate magic numbers!
         }
     }
 }
