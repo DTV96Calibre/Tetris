@@ -235,6 +235,35 @@ public class MainController {
     }
 
     /**
+     * Checks for input and executes the appropriate command to update the game
+     * while it's in the High Scores State.
+     *
+     * @author Andre Amirsaleh
+     * @param gc A generic game container that handles the game loop
+     * @param s A State based game isolated into different stages
+     * @param delta An increment of elapsed time in milliseconds
+     */
+    private void updateHighScoresState(GameContainer gc, StateBasedGame s,
+                                       int delta) {
+        Input input = gc.getInput(); // check user input
+        int mouseXPos = input.getMouseX();
+        int mouseYPos = input.getMouseY();
+
+        // if the mouse hovers over the "RETURN" button
+        if (mouseXPos > 254 && mouseXPos < 354 && mouseYPos > 586 && mouseYPos < 623) {
+            theView.getHighScoresState().setBackground(
+                    Resources.getImages().get("backgroundScoresHighLight"));
+            // return to the menu if the user clicks return
+            if (input.isMousePressed(0)) {
+                s.enterState(State.MENU.getID());
+            }
+        } else {
+            theView.getHighScoresState().setBackground(
+                    Resources.getImages().get("backgroundScores"));
+        }
+    }
+
+    /**
      * Allows the active Tetrimino to fall downward by 1 block if enough time
      * has passed since the last fall. This method is constantly called within
      * the main game loop and its timer threshold should scale with the current
@@ -254,25 +283,6 @@ public class MainController {
         } else {
             theModel.setTimer(0); // reset timer event
             theModel.moveActiveTetrimino(Direction.DOWN); // drop Tetrimino by 1 space
-        }
-    }
-
-    /**
-     *
-     * @param gc
-     * @param s
-     * @param delta
-     * @author Andre Amirsaleh
-     */
-    private void updateHighScoresState(GameContainer gc, StateBasedGame s,
-                                       int delta) {
-        Input input = gc.getInput(); // check user input
-        int mouseXPos = input.getMouseX();
-        int mouseYPos = input.getMouseY();
-        if (mouseXPos > 0 && mouseXPos < 100 && mouseYPos > 0 && mouseYPos < 100) {
-            if (input.isMousePressed(0)) {
-                s.enterState(State.MENU.getID());
-            }
         }
     }
 }

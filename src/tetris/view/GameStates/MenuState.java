@@ -25,8 +25,9 @@ import tetris.controller.MainController;
 import tetris.resources.Resources;
 
 /**
+ * The state of Tetris while the main menu is active.
  *
- * @author Xizhou Li
+ * @author Xizhou Li & Brooke Bullek
  */
 public class MenuState extends BasicGameState {
     /* The Controller object used to render & update entities */

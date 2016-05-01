@@ -206,9 +206,6 @@ public class MainView extends StateBasedGame {
         menuState.getTetrisLogo().draw(
                 Window.WIDTH / 2 - (int) (Window.WIDTH / 5.33),
                 Window.HEIGHT / 12, 240, 160);
-//        menuState.getPlayButton().draw(
-//                Window.WIDTH / 2 - (int) (Window.WIDTH / 6.33),
-//                Window.HEIGHT / 2, 194, 200);
     }
 
     /**
@@ -235,16 +232,17 @@ public class MainView extends StateBasedGame {
     /**
      * Renders the high scores screen
      *
-     * @param gc
-     * @param g
+     * @param gc A generic game container that handles the game loop
+     * @param g A graphics context used to render primitives to the canvas
      * @author Andre Amirsaleh
      */
     public void renderHighScoresState(GameContainer gc, Graphics g) {
-        // Draw title:
-        int xTitleLoc = 0;
-        int yTitleLoc = 0;
-        g.setColor(Color.pink);
-        g.drawString("High Scores", xTitleLoc, yTitleLoc);
+        // draw the background
+        highScoresState.getBackground().draw(0, 0, Window.WIDTH, Window.HEIGHT);
+
+        // initialize location to draw strings
+        int xTitleLoc = 200;
+        int yTitleLoc = 50;
 
         // Draw high scores and rankings
         int[] iHighScores = highScoresState.getIHighScores();
@@ -257,12 +255,16 @@ public class MainView extends StateBasedGame {
             yRankLoc += 20;
             rank++;
             sRank = String.valueOf(rank);
-            if (rank < 10) {
-                sRank = " " + sRank;
+            if (rank <= 10) {
+                sRank = " " + sRank + ".";
             }
-            g.drawString(sRank, xRankLoc, yRankLoc); // Draws rank (integer)
 
-            // Now draw score next to rank:
+            // Draw rank (integer)
+            g.setColor(Color.white);
+            g.drawString(sRank, xRankLoc, yRankLoc);
+
+            // Now draw score next to rank
+            g.setColor(Color.pink);
             g.drawString(sScore, xRankLoc + 40, yRankLoc);
         }
     }

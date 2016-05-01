@@ -19,14 +19,16 @@ import java.util.ArrayList;
 import java.util.List;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import tetris.controller.MainController;
+import tetris.resources.Resources;
 import tetris.utility.HighScoresUtility;
 
 /**
- * Displays the high scores
+ * The state of Tetris while the high scores screen is active.
  *
  * @author Andre Amirsaleh
  */
@@ -46,6 +48,11 @@ public class HighScoresState extends BasicGameState {
      * An instance of the primary controller class.
      */
     private MainController controller;
+
+    /**
+     * The background drawn underneath the high score listing.
+     */
+    private Image background = Resources.getImages().get("backgroundScores");
 
     /**
      * Constructs a new <code>HighScoresState</code> instance
@@ -139,11 +146,6 @@ public class HighScoresState extends BasicGameState {
         return sHighScores;
     }
 
-    /**
-     * Returns the <code>controller</code> attribute
-     *
-     * @return An instance of the primary controller class
-     */
     public MainController getController() {
         return controller;
     }
@@ -159,5 +161,13 @@ public class HighScoresState extends BasicGameState {
 
     public void setController(MainController controller) {
         this.controller = controller;
+    }
+
+    public Image getBackground() {
+        return background;
+    }
+
+    public void setBackground(Image background) {
+        this.background = background;
     }
 }
