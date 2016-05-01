@@ -184,6 +184,7 @@ public class MainModel {
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
     }
+
     /* End of getters and setters */
 
     /**
@@ -207,7 +208,7 @@ public class MainModel {
      */
     public TShape pickTShape() {
         // if this "grab bag" has been depleted, reset it with all 7 TShapes
-        if (this.bag.size() == 0) {
+        if (this.bag.isEmpty()) {
             initializeBag();
         }
 
