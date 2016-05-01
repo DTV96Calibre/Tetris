@@ -30,9 +30,7 @@ public class Window {
      */
     public static int WIDTH = 640;
 
-    /**
-     * Default height of the window in pixels
-     */
+    /* Default height of the window in pixels */
     public static int HEIGHT = 640;
 
     /**

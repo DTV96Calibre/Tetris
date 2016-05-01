@@ -15,9 +15,10 @@
  */
 package tetris.view;
 
-import static org.newdawn.slick.Color.pink;
+import static org.newdawn.slick.Color.white;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import tetris.model.ScoreBoard;
 
 /**
@@ -52,12 +53,11 @@ public class ScoreBoardComponent {
      * @author Andre Amirsaleh
      * @param gc A generic game container that handles the game loop
      * @param g A graphics context used to render primitives to the canvas
+     * @throws org.newdawn.slick.SlickException
      */
-    public void render(GameContainer gc, Graphics g) {
+    public void render(GameContainer gc, Graphics g) throws SlickException {
         String points = String.valueOf(scoreBoard.getPoints());
-        String title = "Score:";
-        g.setColor(pink);
-        g.drawString(title, 32 * 11, 0); // TODO: Eliminate magic numbers
-        g.drawString(points, 32 * 11, 32);
+        g.setColor(white);
+        g.drawString(points, Window.BLOCK_PIXEL_OFFSET * 14, 30);
     }
 }

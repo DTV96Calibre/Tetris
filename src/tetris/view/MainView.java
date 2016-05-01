@@ -185,9 +185,14 @@ public class MainView extends StateBasedGame {
                                        GameBoard.WIDTH * Window.BLOCK_PIXEL_OFFSET,
                                        GameBoard.HEIGHT * Window.BLOCK_PIXEL_OFFSET);
 
+        // draw the background underneath this component
+        gameState.getPanelComponent().draw(Window.WIDTH / 2, 0, Window.WIDTH / 2,
+                                           Window.HEIGHT);
+
         scoreBoardComponent.render(gc, g); // draw the ScoreBoard
         tetriminoComponent.render(gc, g); // draw the active Tetrimino
         gameBoardComponent.render(gc, g); // draw the GameBoard
+
         nextTetriminoComponent.render(gc, g); // draw the next tetrimino indicator
     }
 

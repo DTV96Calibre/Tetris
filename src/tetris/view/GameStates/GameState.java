@@ -40,6 +40,10 @@ public class GameState extends BasicGameState {
     /* Background image */
     private Image background = Resources.getImages().get("background");
 
+    /* The background to render underneath these elements */
+    private final Image panelComponent = Resources.getImages().get(
+            "gameComponent");
+
     /* Timer that records elapsed time since the last game update */
     public int timer = 0;
 
@@ -64,6 +68,10 @@ public class GameState extends BasicGameState {
 
     public Image getBackground() {
         return background;
+    }
+
+    public Image getPanelComponent() {
+        return panelComponent;
     }
     /* End of getters and setters */
 

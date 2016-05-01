@@ -21,6 +21,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import tetris.model.Block;
+import tetris.model.TShape;
 import tetris.model.Tetrimino;
 import tetris.resources.Resources;
 
@@ -30,13 +31,14 @@ import tetris.resources.Resources;
  * @author Daniel Vasquez
  */
 public class TetriminoContainersComponent {
+    /* The point at which to begin drawing the Tetrimino */
+    private final Point RELATIVE_LOCATION = new Point(14, 7);
 
-    public static final int PIXELS_IN_BLOCK_WIDTH = 32;
-
-    private final Point RELATIVE_LOCATION = new Point(14, 5);
-
+    /* The offset at which to draw the next Tetrimino */
     private final Point NEXT_OFFSET = new Point(0, 0);
-    private final Point HOLD_OFFSET = new Point(0, 8);
+
+    /* The offset at which to draw the held Tetrimino */
+    private final Point HOLD_OFFSET = new Point(0, 7);
 
     /**
      * A TetriminoComponent used to draw the Tetrimino preview.
@@ -69,6 +71,7 @@ public class TetriminoContainersComponent {
         this.holdTetrimino = holdTetrimino;
     }
 
+    /* Getters and setters */
     public void setNextTetrimino(Tetrimino nextTetrimino) {
         if (nextTetrimino != this.nextTetrimino) {
             this.nextTetrimino = nextTetrimino;
@@ -80,6 +83,7 @@ public class TetriminoContainersComponent {
             this.holdTetrimino = holdTetrimino;
         }
     }
+    /* End of getters and setters */
 
     /**
      * Renders the Hold and Next Tetrimino previews and their graphical
@@ -101,13 +105,18 @@ public class TetriminoContainersComponent {
                     int yLocation = (int) (RELATIVE_LOCATION.getY() + offsets[i].getY()
                                            + block.getLocation().getY());
 
+                    if (tetriminos[i].getShape() == TShape.O_BLOCK) {
+                        yLocation += 1;
+                    }
+
                     // extract the color of this Block
                     String color = block.getColor();
                     // draw the block as a small square
                     Image image = Resources.getImages().get(color);
                     image.draw(xLocation * Window.BLOCK_PIXEL_OFFSET,
                                yLocation * Window.BLOCK_PIXEL_OFFSET,
-                               PIXELS_IN_BLOCK_WIDTH, PIXELS_IN_BLOCK_WIDTH);
+                               Window.BLOCK_PIXEL_OFFSET,
+                               Window.BLOCK_PIXEL_OFFSET);
                 }
             }
         }

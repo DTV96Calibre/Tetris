@@ -162,6 +162,10 @@ public class Resources {
         images.put("backgroundScoresHighLight", loadImage(
                    "res/high_scores_bg_hl.png"));
 
+        // load panel component for the game state
+        images.put("gameComponent", loadImage(
+                   "res/game_component.png"));
+
         // load Tetris logo
         images.put("menu", loadImage("res/Tetris-logo.png"));
     }
