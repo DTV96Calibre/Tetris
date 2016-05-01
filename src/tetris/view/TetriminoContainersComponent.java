@@ -9,7 +9,8 @@
  * Project: csci205FinalProject
  * Package: tetris.view
  * File: TetriminoContainersComponent
- * Description:
+ * Description: Component class used to display elements
+ * relevant to blocks/Tetriminos not on the gameboard.
  *
  * ****************************************
  */
@@ -20,7 +21,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import tetris.model.Block;
-import tetris.model.TShape;
 import tetris.model.Tetrimino;
 import tetris.resources.Resources;
 
@@ -31,10 +31,12 @@ import tetris.resources.Resources;
  */
 public class TetriminoContainersComponent {
 
+    public static final int PIXELS_IN_BLOCK_WIDTH = 32;
+
     private final Point RELATIVE_LOCATION = new Point(14, 5);
 
-    private final Point NEXT_OFFSET = new Point(0, 8);
-    private final Point HOLD_OFFSET = new Point(0, 0);
+    private final Point NEXT_OFFSET = new Point(0, 0);
+    private final Point HOLD_OFFSET = new Point(0, 8);
 
     /**
      * A TetriminoComponent used to draw the Tetrimino preview.
@@ -49,15 +51,17 @@ public class TetriminoContainersComponent {
      */
     public TetriminoContainersComponent() {
         // Initialize tetriminos to something
-        this.nextTetrimino = new Tetrimino(TShape.Z_BLOCK);
-        this.holdTetrimino = new Tetrimino(TShape.O_BLOCK);
+        this.nextTetrimino = null;
+        this.holdTetrimino = null;
     }
 
     /**
-     * Constructs a NextTetriminoComponent object with nextShape preinitialized.
+     * Constructs a NextTetriminoComponent object with nextShape and
+     * holdTetrimino preinitialized.
      *
      * @author Daniel Vasquez
      * @param nextTetrimino
+     * @param holdTetrimino
      */
     public TetriminoContainersComponent(Tetrimino nextTetrimino,
                                         Tetrimino holdTetrimino) {
@@ -72,11 +76,19 @@ public class TetriminoContainersComponent {
     }
 
     public void setHoldTetrimino(Tetrimino holdTetrimino) {
-        if (holdTetrimino != this.nextTetrimino) {
-            this.nextTetrimino = holdTetrimino;
+        if (holdTetrimino != this.holdTetrimino) {
+            this.holdTetrimino = holdTetrimino;
         }
     }
 
+    /**
+     * Renders the Hold and Next Tetrimino previews and their graphical
+     * elements.
+     *
+     * @author Daniel Vasquez
+     * @param gc A generic game container that handles the game loop
+     * @param g A graphics context used to render primitives to the canvas
+     */
     public void render(GameContainer gc, Graphics g) {
         Point[] offsets = {NEXT_OFFSET, HOLD_OFFSET};
         Tetrimino[] tetriminos = {nextTetrimino, holdTetrimino};
@@ -94,9 +106,11 @@ public class TetriminoContainersComponent {
                     // draw the block as a small square
                     Image image = Resources.getImages().get(color);
                     image.draw(xLocation * Window.BLOCK_PIXEL_OFFSET,
-                               yLocation * Window.BLOCK_PIXEL_OFFSET, 32, 32);  //TODO: Eliminate magic numbers!
+                               yLocation * Window.BLOCK_PIXEL_OFFSET,
+                               PIXELS_IN_BLOCK_WIDTH, PIXELS_IN_BLOCK_WIDTH);
                 }
             }
         }
     }
+
 }
