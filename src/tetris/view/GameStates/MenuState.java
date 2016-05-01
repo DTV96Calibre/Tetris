@@ -33,7 +33,7 @@ public class MenuState extends BasicGameState {
     private MainController controller;
 
     /* Menu background image */
-    private Image background = Resources.getImages().get("menuNoHighlightPlay");
+    private Image background = Resources.getImages().get("menuNoHighlight");
 
     /* The title logo for the menu */
     private Image tetrisLogo;
