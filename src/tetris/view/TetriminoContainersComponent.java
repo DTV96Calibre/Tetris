@@ -41,9 +41,13 @@ public class TetriminoContainersComponent {
     private final Point HOLD_OFFSET = new Point(0, 7);
 
     /**
-     * A TetriminoComponent used to draw the Tetrimino preview.
+     * Used to draw the next Tetrimino preview.
      */
     private Tetrimino nextTetrimino;
+
+    /**
+     * Used to draw the hold Tetrimino preview.
+     */
     private Tetrimino holdTetrimino;
 
     /**

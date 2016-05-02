@@ -36,27 +36,65 @@ import tetris.view.GameStates.MenuState;
  * @author Xizhou Li
  */
 public class MainView extends StateBasedGame {
-    // states
+
+    // States:
+    /**
+     * The state wherein the user is actually playing a game.
+     */
     private GameState gameState;
+
+    /**
+     * The state wherein the user is in the menu screen.
+     */
     private MenuState menuState;
+
+    /**
+     * The state wherein the player has lost the game.
+     */
     private GameOverState gameOverState;
+
+    /**
+     * The state wherein the user is in the high scores screen.
+     */
     private HighScoresState highScoresState;
 
-    // components
+    // Components:
+    /**
+     * Handles the rendering of the GameBoard (left of the GameState screen).
+     */
     private GameBoardComponent gameBoardComponent;
+
+    /**
+     * Handles the rendering of the ScoreBoard (in the right half of the
+     * GameState screen).
+     */
     private ScoreBoardComponent scoreBoardComponent;
+
+    /**
+     * Handles the rendering of a Tetrimino (within a GameBoardComponent).
+     */
     private TetriminoComponent tetriminoComponent;
+
+    /**
+     * Handles the rendering of the nextTetrimino (in the right half of the
+     * GameState screen).
+     */
     private TetriminoContainersComponent nextTetriminoComponent;
 
     // TODO: Refactor so MainView doesn't have a dependency on MainController.
     // However, this would require a revamp of the GameState class which is
     // unfortunately integral to the Slick API
+    /**
+     * The initialized controller object
+     */
     private MainController controller;
 
     /**
      * Constructs as new <code>MainView</code> instance
      *
      * @param name The <code>GameEngine</code>'s name
+     * @param mainController An instance of the initialized primary controller
+     * class
      */
     public MainView(String name, MainController mainController) {
         super("Tetris");

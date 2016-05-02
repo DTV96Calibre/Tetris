@@ -90,8 +90,9 @@ public class HighScoresState extends BasicGameState {
     }
 
     /**
-     * Automatically called by slick but doesn't do anything. (This method is
-     * required for all <code>BasicGameState</code>s.)
+     * Initializes this HighScoresState. Automatically called by slick but
+     * doesn't do anything (This method is required for all
+     * <code>BasicGameState</code>s.)
      *
      * @param gc
      * @param sbg
@@ -106,7 +107,7 @@ public class HighScoresState extends BasicGameState {
      * Renders the High Score screen. This method merely calls the
      * <code>controller</code>'s render method.
      *
-     * @param gc
+     * @param gc A generic game container that handles the game loop
      * @param sbg
      * @param grphcs
      * @throws SlickException
@@ -122,9 +123,9 @@ public class HighScoresState extends BasicGameState {
      * the main menu screen. This method merely calls the <code>controller<code>'s
      * update method.
      *
-     * @param gc
-     * @param sbg
-     * @param i
+     * @param gc A generic game container that handles the game loop
+     * @param sbg A State based game isolated into different stages
+     * @param i Factor that alter the game's clock/timer
      * @throws SlickException
      */
     @Override
@@ -157,6 +158,12 @@ public class HighScoresState extends BasicGameState {
         return controller;
     }
 
+    /**
+     * Sets the <code>iHighScores</code> and <code>sHighScores</code> attributes
+     *
+     * @param newHighScores The new high scores to set the
+     * <code>iHighScores</code> and <code>sHighScores</code> attributes as
+     */
     public void setHighScores(int[] newHighScores) {
         this.iHighScores = newHighScores;
         String sHighScore;

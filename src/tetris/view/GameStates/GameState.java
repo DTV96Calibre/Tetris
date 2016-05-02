@@ -31,22 +31,41 @@ import tetris.resources.Resources;
  * @author Xizhou Li & Brooke Bullek
  */
 public class GameState extends BasicGameState {
-    /* The Controller object used to render & update entities */
+
+    /**
+     * The Controller object used to render and update entities.
+     */
     private MainController controller;
 
-    /* Background music */
+    /**
+     * Background music that plays regardless of the state/screen the player is
+     * in.
+     */
     private Music music = Resources.getMusics().get("backgroundMusicRemix");
 
-    /* Background image */
+    /**
+     * Background image to display on the GameBoard.
+     */
     private Image background = Resources.getImages().get("background");
 
-    /* The background to render underneath these elements */
+    /**
+     * The background to render underneath these elements.
+     */
     private final Image panelComponent = Resources.getImages().get(
             "gameComponent");
 
-    /* Timer that records elapsed time since the last game update */
+    /**
+     * Timer that records elapsed time since the last game update.
+     */
     public int timer = 0;
 
+    /**
+     * Initializes a new GameState.
+     *
+     * @param gc A generic game container that handles the game loop
+     * @param s A State based game isolated into different stages
+     * @throws SlickException
+     */
     @Override
     public void init(GameContainer gc, StateBasedGame s) throws SlickException {
         music.loop();
@@ -89,6 +108,13 @@ public class GameState extends BasicGameState {
         this.controller.render(gc, s, g);
     }
 
+    /**
+     *
+     * @param gc A generic game container that handles the game loop
+     * @param s A State based game isolated into different stages
+     * @param delta Factor that alter the game's clock/timer
+     * @throws SlickException
+     */
     @Override
     public void update(GameContainer gc, StateBasedGame s, int delta) throws SlickException {
         // delegate this method to the game's controller

@@ -9,13 +9,15 @@
  * Project: csci205FinalProject
  * Package: tetris.view
  * File: Window
- * Description:
- *
+ * Description: Contains constants for rendering the window and
+ * objects/components within the window
  * ****************************************
  */
 package tetris.view;
 
 /**
+ * Contains constants for rendering the window and objects/components within the
+ * window
  *
  * @author xizhouli
  */
@@ -30,7 +32,9 @@ public class Window {
      */
     public static int WIDTH = 640;
 
-    /* Default height of the window in pixels */
+    /**
+     * Default height of the window in pixels
+     */
     public static int HEIGHT = 640;
 
     /**

@@ -9,7 +9,7 @@
  * Project: csci205FinalProject
  * Package: tetris.model
  * File: ScoreBoard
- * Description:
+ * Description: The IDs for the different State classes
  *
  * ****************************************
  */
@@ -23,8 +23,10 @@ package tetris.view.GameStates;
 public enum State {
     GAME(0), MENU(1), GAME_OVER(2), HIGH_SCORES(3);
 
-    /* Each state has an ID which identifies the active state to render/update
-     * in Slick. */
+    /**
+     * Each state has an ID which identifies the active state to render/update
+     * in Slick.
+     */
     private final int ID;
 
     /**

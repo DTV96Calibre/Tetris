@@ -25,8 +25,14 @@ import java.util.List;
  * @author Daniel Vasquez
  */
 public class GameBoard {
-    // default board sizes
+    /**
+     * Standard width in <code>Block</code>s
+     */
     public static final int WIDTH = 10;
+
+    /**
+     * Standard width in <code>Block</code>s
+     */
     public static final int HEIGHT = 20;
 
     /**
@@ -34,14 +40,14 @@ public class GameBoard {
      *
      * @author Daniel Vasquez
      */
-    private int width;
+    private final int width;
 
     /**
      * Height of the <code>GameBoard</code>'s grid
      *
      * @author Daniel Vasquez
      */
-    private int height;
+    private final int height;
 
     /**
      * The <code>GameBoard</code>'s grid
@@ -121,6 +127,8 @@ public class GameBoard {
      * @author Brooke Bullek
      * @param newPositions An array of points being checked for occupency on the
      * board.
+     * @return Whether <code>newPositions</code> are valid spots on this
+     * GameBoard
      */
     public boolean validate(Point[] newPositions) {
         int newXPos;

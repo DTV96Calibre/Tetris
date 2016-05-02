@@ -31,7 +31,10 @@ import tetris.resources.Resources;
  * @author Brooke Bullek
  */
 public class GameOverState extends BasicGameState {
-    /* The Controller object used to render & update entities */
+
+    /**
+     * The Controller object used to render and update entities.
+     */
     private MainController controller;
 
     /**
@@ -42,8 +45,8 @@ public class GameOverState extends BasicGameState {
     /**
      * Initializes a new GameOverState.
      *
-     * @param gc
-     * @param s
+     * @param gc A generic game container that handles the game loop
+     * @param s A State based game isolated into different stages
      * @throws SlickException
      */
     @Override
@@ -84,6 +87,14 @@ public class GameOverState extends BasicGameState {
         this.controller.render(gc, s, g);
     }
 
+    /**
+     * Handles user input to update this state
+     *
+     * @param gc A generic game container that handles the game loop
+     * @param s A State based game isolated into different stages
+     * @param delta Factor that alter the game's clock/timer
+     * @throws SlickException
+     */
     @Override
     public void update(GameContainer gc, StateBasedGame s, int delta) throws SlickException {
         // delegate this method to the game's controller

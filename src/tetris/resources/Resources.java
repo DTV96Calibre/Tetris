@@ -9,7 +9,7 @@
  * Project: csci205FinalProject
  * Package: tetris.resources
  * File: Resources
- * Description:
+ * Description: Images, sounds, songs, and animations
  *
  * ****************************************
  */
@@ -39,12 +39,35 @@ import org.newdawn.slick.util.ResourceLoader;
  * @author Xizhou Li & Brooke Bullek
  */
 public class Resources {
+
+    /**
+     * Image files
+     */
     private static Map<String, Image> images;
+
+    /**
+     * Sounds files
+     */
     private static Map<String, Sound> sounds;
+
+    /**
+     * Music files
+     */
     private static Map<String, Music> musics;
+
+    /**
+     * Animation files
+     */
     private static Map<String, Animation> animations;
+
+    /**
+     * font files
+     */
     private static Map<String, TrueTypeFont> fonts;
 
+    /**
+     * Constructs a new Resources instance
+     */
     public Resources() {
         images = new HashMap<>();
         musics = new HashMap<>();

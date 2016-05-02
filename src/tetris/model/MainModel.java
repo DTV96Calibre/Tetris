@@ -464,7 +464,7 @@ public class MainModel {
 
         // reset to the old block array if this rotation is illegal
         if (myBoard.validate(newBlockPositions) == false) {
-            activeTetrimino.setBlockArray(oldBlockArray);
+            activeTetrimino.setFourBlocks(oldBlockArray);
         }
     }
 }

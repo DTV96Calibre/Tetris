@@ -271,7 +271,7 @@ public class MainController {
      *
      * @author Xizhou Li
      * @param gc A generic game container that handles the game loop
-     * @param s
+     * @param s A State based game isolated into different stages
      * @param delta An increment of elapsed time in milliseconds
      */
     public void updateActiveTetrimino(GameContainer gc, StateBasedGame s,

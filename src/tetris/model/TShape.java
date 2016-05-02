@@ -9,7 +9,7 @@
  * Project: csci205FinalProject
  * Package: tetris.model
  * File: TShape
- * Description:
+ * Description: Types of Tetriminos
  *
  * ****************************************
  */
@@ -17,10 +17,10 @@ package tetris.model;
 
 import java.awt.Point;
 
-
-/* An enumerated class to store the seven possible arrangements of a
- * Tetrimino. These reflect the initial state of the Tetrimino upon being
- * loaded into the game as well as the Tetrimino's official color.
+/**
+ * An enumerated class to store the seven possible arrangements of a Tetrimino.
+ * These reflect the initial state of the Tetrimino upon being loaded into the
+ * game as well as the Tetrimino's official color.
  *
  * @author Brooke Bullek
  */
@@ -40,11 +40,22 @@ public enum TShape {
     Z_BLOCK(new Point[]{new Point(0, 0), new Point(0, 1), new Point(1, 0),
                         new Point(-1, 1)}, "red");
 
-    // array of Points rather than array of Blocks (to reduce dependencies)
+    /**
+     * Array of Points rather than array of Blocks (to reduce dependencies)
+     */
     private final Point[] minoLocations;
-    // the color of this type of Tetrimino
+
+    /**
+     * The color of this type of Tetrimino
+     */
     private final String color;
 
+    /**
+     * Constructs a new TShape instance
+     *
+     * @param minoLocations Block locations
+     * @param color The color of this TShape instance
+     */
     TShape(Point[] minoLocations, String color) {
         this.color = color;
         this.minoLocations = minoLocations;

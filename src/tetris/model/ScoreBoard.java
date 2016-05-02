@@ -9,14 +9,15 @@
  * Project: csci205FinalProject
  * Package: tetris.model
  * File: ScoreBoard
- * Description: Class that represents the score board.
+ * Description: Class that represents the score board. Keeps track of the points
  *
  * ****************************************
  */
 package tetris.model;
 
 /**
- * Contains data and methods for the score board
+ * Contains data and methods for the score board. Keeps track of the player's
+ * points
  *
  * @author Andre Amirsaleh
  */

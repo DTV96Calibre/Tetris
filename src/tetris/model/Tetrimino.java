@@ -1,7 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* *****************************************
+ * CSCI205 - Software Engineering and Design
+ * Spring 2016
+ *
+ * Name: Andre Amirsaleh, Brooke Bullek, Daniel Vasquez, Xizhou Li
+ * Date: Apr 13, 2016
+ * Time: 12:15:47 AM
+ *
+ * Project: csci205FinalProject
+ * Package: tetris.model
+ * File: TShape
+ * Description: Representation of a Tetrimino
+ *
+ * ****************************************
  */
 package tetris.model;
 
@@ -21,13 +31,16 @@ public class Tetrimino {
      */
     public static final int TETRIMINO_ARRAY_WIDTH = 4;
 
-    /* An array of four Blocks that stores the internal layout of the Tetrimino
+    /**
+     * An array of four Blocks that stores the internal layout of the Tetrimino
      * piece. Each Block contains a Point where (0, 0) is the center (pivot)
      * block of the Tetrimino.
      */
-    private Block[] blockArray;
+    private Block[] fourBlocks;
 
-    /* The general "shape" of this Tetrimino (e.g. S-block, L-block). */
+    /**
+     * The general "shape" of this Tetrimino (S-block, L-block, etc.).
+     */
     private TShape shape;
 
     /**
@@ -39,15 +52,21 @@ public class Tetrimino {
     public Tetrimino(TShape shape) {
         Block[] blockArray = new Block[TETRIMINO_ARRAY_WIDTH];
 
-        initBlockArray(shape, blockArray);
+        initFourBlocks(shape, blockArray);
         /* Assign attributes to this Tetrimino. No need to assign a Color
          * since that information is contained within the TShape enum.
          */
         this.shape = shape;
-        this.blockArray = blockArray;
+        this.fourBlocks = blockArray;
     }
 
-    private void initBlockArray(TShape shape1, Block[] blockArray1) {
+    /**
+     * Initializes the <code>fourBlocks</code> attribute
+     *
+     * @param shape1
+     * @param blockArray1
+     */
+    private void initFourBlocks(TShape shape1, Block[] blockArray1) {
         // iterate through the Point array of this TShape and create four Blocks
         for (int i = 0; i < shape1.getMinoLocations().length; i++) {
             blockArray1[i] = new Block(shape1.getColor(),
@@ -57,11 +76,11 @@ public class Tetrimino {
 
     /* Getters and setters */
     public Block[] getBlockArray() {
-        return blockArray;
+        return fourBlocks;
     }
 
-    public void setBlockArray(Block[] blockArray) {
-        this.blockArray = blockArray;
+    public void setFourBlocks(Block[] newFourBlocks) {
+        this.fourBlocks = newFourBlocks;
     }
 
     public TShape getShape() {
@@ -73,7 +92,7 @@ public class Tetrimino {
     }
 
     public String getColor() {
-        return this.blockArray[0].getColor();
+        return this.fourBlocks[0].getColor();
     }
     /* End of getters and setters */
 
@@ -98,15 +117,15 @@ public class Tetrimino {
         // update each of the Blocks (i.e. their locations) of this Tetrimino
         for (int i = 0; i < TETRIMINO_ARRAY_WIDTH; i++) {
             // first extract old x, y coordinates of this block
-            int oldX = (int) this.blockArray[i].getLocation().getX();
-            int oldY = (int) this.blockArray[i].getLocation().getY();
+            int oldX = (int) this.fourBlocks[i].getLocation().getX();
+            int oldY = (int) this.fourBlocks[i].getLocation().getY();
 
             // if performing a right (clockwise) rotation
             if (factor > 0) {
-                this.blockArray[i].setLocation(new Point(oldY, -oldX));
+                this.fourBlocks[i].setLocation(new Point(oldY, -oldX));
             } // if performing a left (counter-clockwise) rotation
             else if (factor < 0) {
-                this.blockArray[i].setLocation(new Point(-oldY, oldX));
+                this.fourBlocks[i].setLocation(new Point(-oldY, oldX));
             }
         }
     }
