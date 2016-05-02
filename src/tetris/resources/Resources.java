@@ -264,6 +264,6 @@ public class Resources {
 
         // load the font for the high scores screen
         fonts.put("oldHighScore", loadFont("res/digitalism.ttf", 30f));
-        fonts.put("scoreRetro", loadFont("res/prstartk.ttf", 25f));
+        fonts.put("scoreRetro", loadFont("res/prstartk.ttf", 15f));
     }
 }

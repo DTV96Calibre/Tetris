@@ -270,7 +270,7 @@ public class MainView extends StateBasedGame {
             // Now draw score next to rank
             g.setColor(Color.pink);
             g.setFont(highScoresState.getValuesFont());
-            g.drawString(sScore, xRankLoc + 45, yRankLoc);
+            g.drawString(sScore, xRankLoc + 45, yRankLoc + 5);
         }
     }
 }
