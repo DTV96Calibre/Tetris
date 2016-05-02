@@ -15,9 +15,10 @@
  */
 package tetris.view;
 
-import static org.newdawn.slick.Color.pink;
+import static org.newdawn.slick.Color.white;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.TrueTypeFont;
 import tetris.model.ScoreBoard;
 
 /**
@@ -29,11 +30,15 @@ public class ScoreBoardComponent {
     /* The ScoreBoard to be rendered by this component */
     private ScoreBoard scoreBoard;
 
+    /* The font used to draw the user's active high score */
+    private TrueTypeFont font;
+
     /**
      * The constructor for the ScoreBoardComponent class.
      */
     public ScoreBoardComponent() {
         scoreBoard = null;
+        font = null;
     }
 
     /* Getters and setters */
@@ -43,6 +48,14 @@ public class ScoreBoardComponent {
 
     public void setScoreBoard(ScoreBoard scoreBoard) {
         this.scoreBoard = scoreBoard;
+    }
+
+    public TrueTypeFont getFont() {
+        return font;
+    }
+
+    public void setFont(TrueTypeFont font) {
+        this.font = font;
     }
     /* End of getters and setters */
 
@@ -55,9 +68,8 @@ public class ScoreBoardComponent {
      */
     public void render(GameContainer gc, Graphics g) {
         String points = String.valueOf(scoreBoard.getPoints());
-        String title = "Score:";
-        g.setColor(pink);
-        g.drawString(title, 32 * 11, 0); // TODO: Eliminate magic numbers
-        g.drawString(points, 32 * 11, 32);
+        g.setColor(white);
+        g.setFont(font);
+        g.drawString(points, Window.BLOCK_PIXEL_OFFSET * 13, 27);
     }
 }

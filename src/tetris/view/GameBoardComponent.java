@@ -68,7 +68,9 @@ public class GameBoardComponent {
                     // draw the block as a small square
                     Image image = Resources.getImages().get(color);
                     image.draw(i * Window.BLOCK_PIXEL_OFFSET,
-                               j * Window.BLOCK_PIXEL_OFFSET, 32, 32);
+                               j * Window.BLOCK_PIXEL_OFFSET,
+                               Window.BLOCK_PIXEL_OFFSET,
+                               Window.BLOCK_PIXEL_OFFSET);
                 }
             }
         }

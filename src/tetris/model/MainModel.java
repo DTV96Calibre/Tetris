@@ -73,6 +73,16 @@ public class MainModel {
     /* Indicates whether the current game is still active or has been lost */
     private boolean gameOver;
 
+    /* The number of lines cleared so far in the current game */
+    private int numLinesCleared;
+
+    /* The index of the LEVELS array corresponds to the number of lines that
+     have been cleared, and the value at each index is the drop speed (in
+     milliseconds) at this level. */
+    private static final int[] LEVELS = {800, 720, 630, 550, 470, 380, 300,
+                                         220, 130, 100, 80, 80, 80, 70, 70, 70, 50, 50, 50, 30, 30, 30, 30, 30,
+                                         30, 30, 30, 30, 20};
+
     /**
      * Constructs a new instance of MainModel.
      *
@@ -95,6 +105,8 @@ public class MainModel {
         dropSpeed = 800; // initialize to 800 ms
 
         softDropActivated = false; // will change if user holds DOWN arrow key
+
+        numLinesCleared = 0;
 
         gameOver = false;
     }
@@ -186,7 +198,6 @@ public class MainModel {
     }
 
     /* End of getters and setters */
-
     /**
      * Inserts each of the 7 Tetrimino types (from the TShape enum) into the
      * "grab bag" to be used for Tetrimino generation.
@@ -259,12 +270,32 @@ public class MainModel {
         // detect lines that may have been made, clear them, and perform the appropriate drops
         ArrayList<Integer> lines = (ArrayList<Integer>) this.myBoard.detectLines();
         if (!lines.isEmpty()) {
+            increaseDifficulty(lines.size());
             this.myBoard.clearLines(lines);
             Resources.getSounds().get("breakSound").play();
             this.myBoard.dropLines(lines);
         }
         // change the active Tetrimino and add shape to queue
         advanceTetriminoQueue();
+    }
+
+    /**
+     * Increases the model's numLinesCleared by a given amount and updates the
+     * game's difficulty accordingly.
+     *
+     * @author Brooke Bullek
+     * @param lines The number of lines that were recently cleared
+     */
+    public void increaseDifficulty(int lines) {
+        numLinesCleared += lines;
+
+        /* 28 lines cleared corresponds to the max level of the game; difficulty
+         will not increase after this */
+        if (numLinesCleared > 28) {
+            dropSpeed = LEVELS[28];
+        } else {
+            dropSpeed = LEVELS[numLinesCleared];
+        }
     }
 
     /**
@@ -373,7 +404,6 @@ public class MainModel {
     public void instantDropTetrimino() {
         while (moveActiveTetrimino(Direction.DOWN)) {
             addPoints(ScoreBoard.HARD_DROP_POINTS_PER_ROW);
-            continue;
         }
     }
 
@@ -408,5 +438,4 @@ public class MainModel {
             activeTetrimino.setBlockArray(oldBlockArray);
         }
     }
-
 }
