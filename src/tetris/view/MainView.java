@@ -93,6 +93,8 @@ public class MainView extends StateBasedGame {
         // The game will update 60 times a second
         gc.setMaximumLogicUpdateInterval(60);
 
+        scoreBoardComponent.setFont(Resources.getFonts().get("activeHighScore"));
+
         // create new game states
         gameState = new GameState();
         menuState = new MenuState();
@@ -245,32 +247,30 @@ public class MainView extends StateBasedGame {
         // draw the background
         highScoresState.getBackground().draw(0, 0, Window.WIDTH, Window.HEIGHT);
 
-        // initialize location to draw strings
-        int xTitleLoc = 200;
-        int yTitleLoc = 50;
-
         // Draw high scores and rankings
         int[] iHighScores = highScoresState.getIHighScores();
         List<String> sHighScores = highScoresState.getSHighScores();
         int rank = 0;
-        int yRankLoc = yTitleLoc + 20;
-        int xRankLoc = xTitleLoc;
+        int yRankLoc = 70;
+        int xRankLoc = 200;
         String sRank;
         for (String sScore : sHighScores) {
-            yRankLoc += 20;
+            yRankLoc += 40;
             rank++;
             sRank = String.valueOf(rank);
             if (rank <= 10) {
-                sRank = " " + sRank + ".";
+                sRank = " " + sRank + ".  ";
             }
 
             // Draw rank (integer)
             g.setColor(Color.white);
+            g.setFont(highScoresState.getRanksFont());
             g.drawString(sRank, xRankLoc, yRankLoc);
 
             // Now draw score next to rank
             g.setColor(Color.pink);
-            g.drawString(sScore, xRankLoc + 40, yRankLoc);
+            g.setFont(highScoresState.getValuesFont());
+            g.drawString(sScore, xRankLoc + 45, yRankLoc);
         }
     }
 }

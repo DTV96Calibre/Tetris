@@ -21,6 +21,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import tetris.controller.MainController;
@@ -53,6 +54,12 @@ public class HighScoresState extends BasicGameState {
      * The background drawn underneath the high score listing.
      */
     private Image background = Resources.getImages().get("backgroundScores");
+
+    /* The font used to draw the scoreboard ranks */
+    private TrueTypeFont ranksFont = Resources.getFonts().get("oldHighScore");
+
+    /* The font used to draw the scoreboard values */
+    private TrueTypeFont valuesFont = Resources.getFonts().get("scoreRetro");
 
     /**
      * Constructs a new <code>HighScoresState</code> instance
@@ -169,5 +176,13 @@ public class HighScoresState extends BasicGameState {
 
     public void setBackground(Image background) {
         this.background = background;
+    }
+
+    public TrueTypeFont getRanksFont() {
+        return ranksFont;
+    }
+
+    public TrueTypeFont getValuesFont() {
+        return valuesFont;
     }
 }

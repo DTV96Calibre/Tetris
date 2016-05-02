@@ -18,7 +18,7 @@ package tetris.view;
 import static org.newdawn.slick.Color.white;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import tetris.model.ScoreBoard;
 
 /**
@@ -30,11 +30,15 @@ public class ScoreBoardComponent {
     /* The ScoreBoard to be rendered by this component */
     private ScoreBoard scoreBoard;
 
+    /* The font used to draw the user's active high score */
+    private TrueTypeFont font;
+
     /**
      * The constructor for the ScoreBoardComponent class.
      */
     public ScoreBoardComponent() {
         scoreBoard = null;
+        font = null;
     }
 
     /* Getters and setters */
@@ -45,6 +49,14 @@ public class ScoreBoardComponent {
     public void setScoreBoard(ScoreBoard scoreBoard) {
         this.scoreBoard = scoreBoard;
     }
+
+    public TrueTypeFont getFont() {
+        return font;
+    }
+
+    public void setFont(TrueTypeFont font) {
+        this.font = font;
+    }
     /* End of getters and setters */
 
     /**
@@ -53,11 +65,11 @@ public class ScoreBoardComponent {
      * @author Andre Amirsaleh
      * @param gc A generic game container that handles the game loop
      * @param g A graphics context used to render primitives to the canvas
-     * @throws org.newdawn.slick.SlickException
      */
-    public void render(GameContainer gc, Graphics g) throws SlickException {
+    public void render(GameContainer gc, Graphics g) {
         String points = String.valueOf(scoreBoard.getPoints());
         g.setColor(white);
-        g.drawString(points, Window.BLOCK_PIXEL_OFFSET * 14, 30);
+        g.setFont(font);
+        g.drawString(points, Window.BLOCK_PIXEL_OFFSET * 13, 27);
     }
 }

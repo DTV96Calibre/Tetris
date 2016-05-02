@@ -15,8 +15,10 @@
  */
 package tetris.resources;
 
+import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -28,6 +30,8 @@ import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.util.ResourceLoader;
 
 /**
  * Collects all of the game assets for reference.
@@ -39,17 +43,20 @@ public class Resources {
     private static Map<String, Sound> sounds;
     private static Map<String, Music> musics;
     private static Map<String, Animation> animations;
+    private static Map<String, TrueTypeFont> fonts;
 
     public Resources() {
         images = new HashMap<>();
         musics = new HashMap<>();
         sounds = new HashMap<>();
         animations = new HashMap<>();
+        fonts = new HashMap<>();
         try {
             collectImages(); // put images into the image hashmap
             collectSounds(); // put sounds into the sound hashmap
             collectMusic(); // put music into the music hashmap
-            collectAnimations(); // put animations into the animations hashmap
+            collectAnimations(); // put animations into the animation hashmap
+            collectFonts(); // put fonts into the font hashmap
         } catch (SlickException ex) {
             ex.printStackTrace();
         } catch (UnsupportedAudioFileException ex) {
@@ -76,6 +83,10 @@ public class Resources {
 
     public static Map<String, Animation> getAnimations() {
         return animations;
+    }
+
+    public static Map<String, TrueTypeFont> getFonts() {
+        return fonts;
     }
 
     public static Image getImageFromImage(String getter) {
@@ -126,6 +137,33 @@ public class Resources {
      */
     public static Sound loadSound(String path) throws SlickException, UnsupportedAudioFileException, IOException {
         return new Sound(path);
+    }
+
+    /**
+     * Loads a custom font from a .ttf file into the game's default font.
+     *
+     * @author Brooke Bullek
+     * @see
+     * <a href="http://wiki.lwjgl.org/wiki/Slick-Util_Library_-_Part_3_-_TrueType_Fonts_for_LWJGL">
+     * http://wiki.lwjgl.org/wiki/Slick-Util_Library_-_Part_3_-_TrueType_Fonts_for_LWJGL</a>
+     * @param path The relative path to the .ttf file
+     * @param fontSize the size of the font to create
+     * @return A TrueTypeFont object which can be used to set the font of
+     * Slick's Graphics object when drawing strings
+     */
+    public static TrueTypeFont loadFont(String path, float fontSize) {
+        TrueTypeFont font = null;
+        // load font from a .ttf file
+        try {
+            InputStream inputStream = ResourceLoader.getResourceAsStream(
+                    path);
+            Font awtFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+            awtFont = awtFont.deriveFont(fontSize); // set font size
+            font = new TrueTypeFont(awtFont, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return font;
     }
 
     /**
@@ -212,5 +250,20 @@ public class Resources {
                 "res/gameOverSheet.png", 1800, 400);
         animations.put("gameOverAnimation",
                        new Animation(gameOverSheet, 200));
+    }
+
+    /**
+     * Collects all of the relevant fonts from the project directory and places
+     * them into Resource's font hashmap.
+     *
+     * @author Brooke Bullek
+     */
+    public static void collectFonts() {
+        // load the font for the active score of the game window
+        fonts.put("activeHighScore", loadFont("res/digitalism.ttf", 40f));
+
+        // load the font for the high scores screen
+        fonts.put("oldHighScore", loadFont("res/digitalism.ttf", 30f));
+        fonts.put("scoreRetro", loadFont("res/prstartk.ttf", 25f));
     }
 }
