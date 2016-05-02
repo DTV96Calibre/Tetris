@@ -21,7 +21,7 @@ import org.newdawn.slick.SlickException;
 import tetris.controller.MainController;
 import tetris.model.MainModel;
 import tetris.view.MainView;
-import tetris.view.Window;
+import tetris.view.PixelDimension;
 
 /**
  * Contains the necessary methods to launch and run the Tetris application
@@ -29,6 +29,10 @@ import tetris.view.Window;
  * @author Xizhou Li
  */
 public class TetrisMain {
+
+    /**
+     * Slick convention: false while game is running.
+     */
     public static boolean _APPLET = true;
 
     /**
@@ -52,7 +56,8 @@ public class TetrisMain {
             theView.setMainController(theController);
 
             AppGameContainer game = new AppGameContainer(theView);
-            game.setDisplayMode(Window.WIDTH, Window.HEIGHT, false);
+            game.setDisplayMode(PixelDimension.WINDOW_WIDTH.getPixels(),
+                                PixelDimension.WINDOW_HEIGHT.getPixels(), false);
             game.start();
         } catch (SlickException ex) {
             ex.printStackTrace();

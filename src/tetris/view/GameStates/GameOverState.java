@@ -17,9 +17,7 @@ package tetris.view.GameStates;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import tetris.controller.MainController;
 import tetris.resources.Resources;
@@ -30,17 +28,21 @@ import tetris.resources.Resources;
  *
  * @author Brooke Bullek
  */
-public class GameOverState extends BasicGameState {
-
-    /**
-     * The Controller object used to render and update entities.
-     */
-    private MainController controller;
+public class GameOverState extends BasicTetrisState {
 
     /**
      * The "game over" animation.
      */
     private Animation gameOverAnimation;
+
+    /**
+     * The ID associated with the GameOverState
+     */
+    private static final int ID = State.GAME_OVER.getID();
+
+    public GameOverState(MainController controller) {
+        super(controller);
+    }
 
     /**
      * Initializes a new GameOverState.
@@ -57,47 +59,11 @@ public class GameOverState extends BasicGameState {
     /* Getters and setters */
     @Override
     public int getID() {
-        return State.GAME_OVER.getID();
-    }
-
-    public MainController getController() {
-        return controller;
-    }
-
-    public void setController(MainController controller) {
-        this.controller = controller;
+        return ID;
     }
 
     public Animation getGameOverAnimation() {
         return gameOverAnimation;
     }
     /* End of getters and setters */
-
-    /**
-     * Renders on-screen elements while the game is in the GameOverState.
-     *
-     * @param gc A generic game container that handles the game loop
-     * @param s A State based game isolated into different stages
-     * @param g A graphics context used to render primitives to the canvas
-     * @throws SlickException
-     */
-    @Override
-    public void render(GameContainer gc, StateBasedGame s, Graphics g) throws SlickException {
-        // delegate this method to the game's controller
-        this.controller.render(gc, s, g);
-    }
-
-    /**
-     * Handles user input to update this state
-     *
-     * @param gc A generic game container that handles the game loop
-     * @param s A State based game isolated into different stages
-     * @param delta Factor that alter the game's clock/timer
-     * @throws SlickException
-     */
-    @Override
-    public void update(GameContainer gc, StateBasedGame s, int delta) throws SlickException {
-        // delegate this method to the game's controller
-        this.controller.update(gc, s, delta);
-    }
 }
