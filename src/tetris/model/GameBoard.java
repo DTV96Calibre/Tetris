@@ -54,7 +54,7 @@ public class GameBoard {
      *
      * @author Daniel Vasquez
      */
-    private Block[][] blockArray;
+    private Block[][] theBoard;
 
     /**
      * Contains info/methods to access/manipulate current score.
@@ -68,7 +68,7 @@ public class GameBoard {
      * @author Daniel Vasquez
      */
     public GameBoard() {
-        this.blockArray = new Block[WIDTH][HEIGHT];
+        this.theBoard = new Block[WIDTH][HEIGHT];
         this.width = WIDTH;
         this.height = HEIGHT;
         this.scoreBoard = new ScoreBoard();
@@ -82,7 +82,7 @@ public class GameBoard {
      * @author Daniel Vasquez
      */
     public GameBoard(int width, int height) {
-        this.blockArray = new Block[width][height];
+        this.theBoard = new Block[width][height];
         this.width = width;
         this.height = height;
     }
@@ -100,8 +100,8 @@ public class GameBoard {
         return scoreBoard;
     }
 
-    public Block[][] getBlockArray() {
-        return blockArray;
+    public Block[][] getTheBoard() {
+        return theBoard;
     }
 
     /**
@@ -114,7 +114,7 @@ public class GameBoard {
      * @param block the new Block to insert
      */
     public void setBlock(int xPos, int yPos, Block block) {
-        blockArray[xPos][yPos] = block;
+        theBoard[xPos][yPos] = block;
     }
     /* End of getters and setters */
 
@@ -149,7 +149,7 @@ public class GameBoard {
                 return false;
             }
             // return false if this is a valid cell that is already occupied
-            if (this.blockArray[newXPos][newYPos] != null) {
+            if (this.theBoard[newXPos][newYPos] != null) {
                 return false;
             }
         }
@@ -169,7 +169,7 @@ public class GameBoard {
             // Iterate over each column
             for (int i = 0; i < this.width; i++) {
                 // If the block is empty, ignore this line
-                if (this.blockArray[i][j] == null) {
+                if (this.theBoard[i][j] == null) {
                     break;
                     // If the line was full, flag the line as full
                 } else if (i + 1 == this.width) {
@@ -200,7 +200,7 @@ public class GameBoard {
      */
     public void clearLine(int y) {
         for (int x = 0; x < this.width; x++) {
-            this.blockArray[x][y] = null;
+            this.theBoard[x][y] = null;
         }
         scoreBoard.addPoints(ScoreBoard.POINTS_PER_LINE);
     }
@@ -228,7 +228,7 @@ public class GameBoard {
             // Iterate over each block in the line
             for (int i = 0; i < this.width; i++) {
                 // Set the line to the line above it
-                this.blockArray[i][j] = this.blockArray[i][j - 1];
+                this.theBoard[i][j] = this.theBoard[i][j - 1];
             }
         }
     }

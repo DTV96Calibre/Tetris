@@ -62,9 +62,9 @@ public class GameBoardComponent {
         for (int i = 0; i < gameBoard.getWidth(); i++) {
             for (int j = 0; j < gameBoard.getHeight(); j++) {
                 // be careful to check that there is indeed a block to draw
-                if (gameBoard.getBlockArray()[i][j] != null) {
+                if (gameBoard.getTheBoard()[i][j] != null) {
                     // set the color of this block and fill in the square
-                    String color = gameBoard.getBlockArray()[i][j].getColor();
+                    String color = gameBoard.getTheBoard()[i][j].getColor();
                     // draw the block as a small square
                     Image image = Resources.getImages().get(color);
                     image.draw(i * Window.BLOCK_PIXEL_OFFSET,

@@ -29,7 +29,7 @@ public class Tetrimino {
     /**
      * The number of blocks that form a Tetrimino.
      */
-    public static final int TETRIMINO_ARRAY_WIDTH = 4;
+    public static final int NUM_BLOCKS = 4;
 
     /**
      * An array of four Blocks that stores the internal layout of the Tetrimino
@@ -50,7 +50,7 @@ public class Tetrimino {
      * @param shape the TShape of this piece (e.g. S-block, L-block)
      */
     public Tetrimino(TShape shape) {
-        Block[] blockArray = new Block[TETRIMINO_ARRAY_WIDTH];
+        Block[] blockArray = new Block[NUM_BLOCKS];
 
         initFourBlocks(shape, blockArray);
         /* Assign attributes to this Tetrimino. No need to assign a Color
@@ -68,9 +68,9 @@ public class Tetrimino {
      */
     private void initFourBlocks(TShape shape1, Block[] blockArray1) {
         // iterate through the Point array of this TShape and create four Blocks
-        for (int i = 0; i < shape1.getMinoLocations().length; i++) {
+        for (int i = 0; i < shape1.getBlockLocations().length; i++) {
             blockArray1[i] = new Block(shape1.getColor(),
-                                       shape1.getMinoLocations()[i]);
+                                       shape1.getBlockLocations()[i]);
         }
     }
 
@@ -115,7 +115,7 @@ public class Tetrimino {
         }
 
         // update each of the Blocks (i.e. their locations) of this Tetrimino
-        for (int i = 0; i < TETRIMINO_ARRAY_WIDTH; i++) {
+        for (int i = 0; i < NUM_BLOCKS; i++) {
             // first extract old x, y coordinates of this block
             int oldX = (int) this.fourBlocks[i].getLocation().getX();
             int oldY = (int) this.fourBlocks[i].getLocation().getY();

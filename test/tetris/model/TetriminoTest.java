@@ -239,7 +239,7 @@ public class TetriminoTest {
      * @param expResult
      */
     public void checkPoints(Block[] result, Block[] expResult) {
-        for (int i = 0; i < Tetrimino.TETRIMINO_ARRAY_WIDTH; i++) {
+        for (int i = 0; i < Tetrimino.NUM_BLOCKS; i++) {
             System.out.printf("EXPECTED: (%f, %f), ",
                               expResult[i].getLocation().getX(),
                               expResult[i].getLocation().getY());

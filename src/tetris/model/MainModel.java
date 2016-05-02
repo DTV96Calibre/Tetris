@@ -386,7 +386,7 @@ public class MainModel {
     public boolean checkGameOver() {
         int row = 0; // we'll only check row 0 (the top of the board)
         for (int i = 0; i < myBoard.getWidth(); i++) {
-            if (myBoard.getBlockArray()[i][row] != null) {
+            if (myBoard.getTheBoard()[i][row] != null) {
                 return true;
             }
         }
@@ -445,12 +445,12 @@ public class MainModel {
      */
     public void rotateActiveTetrimino(int factor) {
         // create a deep copy of the old arrangement of Tetrimino blocks
-        Block[] oldBlockArray = new Block[Tetrimino.TETRIMINO_ARRAY_WIDTH];
-        for (int i = 0; i < Tetrimino.TETRIMINO_ARRAY_WIDTH; i++) {
+        Block[] oldBlockArray = new Block[Tetrimino.NUM_BLOCKS];
+        for (int i = 0; i < Tetrimino.NUM_BLOCKS; i++) {
             oldBlockArray[i] = (Block) activeTetrimino.getBlockArray()[i].copy();
         }
 
-        Point[] newBlockPositions = new Point[Tetrimino.TETRIMINO_ARRAY_WIDTH];
+        Point[] newBlockPositions = new Point[Tetrimino.NUM_BLOCKS];
         activeTetrimino.rotate(factor);
 
         // grab the new absolute positions (i.e. their positions on the board)
