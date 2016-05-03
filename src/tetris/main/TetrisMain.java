@@ -1,7 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* *****************************************
+ * CSCI205 - Software Engineering and Design
+ * Spring 2016
+ *
+ * Name: Andre Amirsaleh, Brooke Bullek, Daniel Vasquez, Xizhou Li
+ * Date: Apr, 2016
+ * Time:
+ *
+ * Project: csci205FinalProject
+ * Package: tetris.controller
+ * File: MainController
+ * Description: Contains main method to launch the program
+ *
+ * ****************************************
  */
 package tetris.main;
 
@@ -11,7 +21,7 @@ import org.newdawn.slick.SlickException;
 import tetris.controller.MainController;
 import tetris.model.MainModel;
 import tetris.view.MainView;
-import tetris.view.Window;
+import tetris.view.PixelDimension;
 
 /**
  * Contains the necessary methods to launch and run the Tetris application
@@ -19,6 +29,10 @@ import tetris.view.Window;
  * @author Xizhou Li
  */
 public class TetrisMain {
+
+    /**
+     * Slick convention: false while game is running.
+     */
     public static boolean _APPLET = true;
 
     /**
@@ -42,7 +56,8 @@ public class TetrisMain {
             theView.setMainController(theController);
 
             AppGameContainer game = new AppGameContainer(theView);
-            game.setDisplayMode(Window.WIDTH, Window.HEIGHT, false);
+            game.setDisplayMode(PixelDimension.WINDOW_WIDTH.getPixels(),
+                                PixelDimension.WINDOW_HEIGHT.getPixels(), false);
             game.start();
         } catch (SlickException ex) {
             ex.printStackTrace();

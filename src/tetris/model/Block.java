@@ -1,7 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* *****************************************
+ * CSCI205 - Software Engineering and Design
+ * Spring 2016
+ *
+ * Name: Andre Amirsaleh, Brooke Bullek, Daniel Vasquez, Xizhou Li
+ * Date: Apr, 2016
+ * Time:
+ *
+ * Project: csci205FinalProject
+ * Package: tetris.controller
+ * File: MainController
+ * Description: Class that represents a single Block or "Mino"
+ *
+ * ****************************************
  */
 package tetris.model;
 
@@ -99,7 +109,6 @@ public class Block implements Cloneable {
      * Returns a deep copy of this Block object.
      *
      * @return a copy of this Block object
-     * @throws CloneNotSupportedException
      */
     public Block copy() {
         Block block = null;

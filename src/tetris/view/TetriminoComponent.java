@@ -29,10 +29,15 @@ import tetris.resources.Resources;
  * @author Brooke Bullek
  */
 public class TetriminoComponent {
-    /* The Tetrimino to be rendered by this component */
+
+    /**
+     * The Tetrimino to be rendered by this component.
+     */
     private Tetrimino tetrimino;
 
-    /* The location of the pivot block of this Tetrimino */
+    /**
+     * The location of the pivot block of this Tetrimino.
+     */
     private Point relativeTetriminoLocation;
 
     /**
@@ -81,10 +86,11 @@ public class TetriminoComponent {
             // extract the color of this Block
             String color = block.getColor();
             // draw the block as a small square
-            Image image = Resources.getImages().get(color);
-            image.draw(xLocation * Window.BLOCK_PIXEL_OFFSET,
-                       yLocation * Window.BLOCK_PIXEL_OFFSET,
-                       Window.BLOCK_PIXEL_OFFSET, Window.BLOCK_PIXEL_OFFSET);
+            Image image = Resources.IMAGES.get(color);
+            image.draw(xLocation * PixelDimension.BLOCK_WIDTH.getPixels(),
+                       yLocation * PixelDimension.BLOCK_WIDTH.getPixels(),
+                       PixelDimension.BLOCK_WIDTH.getPixels(),
+                       PixelDimension.BLOCK_WIDTH.getPixels());
         }
     }
 }

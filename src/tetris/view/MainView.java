@@ -36,27 +36,65 @@ import tetris.view.GameStates.MenuState;
  * @author Xizhou Li
  */
 public class MainView extends StateBasedGame {
-    // states
+
+    // States:
+    /**
+     * The state wherein the user is actually playing a game.
+     */
     private GameState gameState;
+
+    /**
+     * The state wherein the user is in the menu screen.
+     */
     private MenuState menuState;
+
+    /**
+     * The state wherein the player has lost the game.
+     */
     private GameOverState gameOverState;
+
+    /**
+     * The state wherein the user is in the high scores screen.
+     */
     private HighScoresState highScoresState;
 
-    // components
+    // Components:
+    /**
+     * Handles the rendering of the GameBoard (left of the GameState screen).
+     */
     private GameBoardComponent gameBoardComponent;
+
+    /**
+     * Handles the rendering of the ScoreBoard (in the right half of the
+     * GameState screen).
+     */
     private ScoreBoardComponent scoreBoardComponent;
+
+    /**
+     * Handles the rendering of a Tetrimino (within a GameBoardComponent).
+     */
     private TetriminoComponent tetriminoComponent;
-    private TetriminoContainersComponent nextTetriminoComponent;
+
+    /**
+     * Handles the rendering of the nextTetrimino (in the right half of the
+     * GameState screen).
+     */
+    private TetriminoPreviewComponent nextTetriminoComponent;
 
     // TODO: Refactor so MainView doesn't have a dependency on MainController.
     // However, this would require a revamp of the GameState class which is
     // unfortunately integral to the Slick API
+    /**
+     * The initialized controller object
+     */
     private MainController controller;
 
     /**
      * Constructs as new <code>MainView</code> instance
      *
      * @param name The <code>GameEngine</code>'s name
+     * @param mainController An instance of the initialized primary controller
+     * class
      */
     public MainView(String name, MainController mainController) {
         super("Tetris");
@@ -73,7 +111,7 @@ public class MainView extends StateBasedGame {
         gameBoardComponent = new GameBoardComponent();
         scoreBoardComponent = new ScoreBoardComponent();
         tetriminoComponent = new TetriminoComponent();
-        nextTetriminoComponent = new TetriminoContainersComponent();
+        nextTetriminoComponent = new TetriminoPreviewComponent();
     }
 
     /**
@@ -85,7 +123,6 @@ public class MainView extends StateBasedGame {
      */
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        new Resources();
         // The frame will update 60 times a second
         gc.setTargetFrameRate(60);
         // This implements multiwindow rendering
@@ -93,21 +130,13 @@ public class MainView extends StateBasedGame {
         // The game will update 60 times a second
         gc.setMaximumLogicUpdateInterval(60);
 
-        scoreBoardComponent.setFont(Resources.getFonts().get("activeHighScore"));
+        scoreBoardComponent.setFont(Resources.FONTS.get("activeHighScore"));
 
         // create new game states
-        gameState = new GameState();
-        menuState = new MenuState();
-        gameOverState = new GameOverState();
-        // TODO: Make the controller a required parameter to construct a state!!
-        // Rather than calling the setController method right after
-        // As shown for the HighScoresState constructor below:
+        gameState = new GameState(controller);
+        menuState = new MenuState(controller);
+        gameOverState = new GameOverState(controller);
         highScoresState = new HighScoresState(controller);
-
-        // associate each State object with the controller (important!)
-        gameState.setController(controller);
-        menuState.setController(controller);
-        gameOverState.setController(controller);
 
         gc.setVSync(true);
         gc.setShowFPS(false);
@@ -164,7 +193,7 @@ public class MainView extends StateBasedGame {
         return tetriminoComponent;
     }
 
-    public TetriminoContainersComponent getTetriminoContainersComponent() {
+    public TetriminoPreviewComponent getTetriminoContainersComponent() {
         return nextTetriminoComponent;
     }
 
@@ -183,13 +212,14 @@ public class MainView extends StateBasedGame {
      */
     public void renderGameState(GameContainer gc, Graphics g) {
         // draw the background underneath the game elements
-        gameState.getBackground().draw(0, 0,
-                                       GameBoard.WIDTH * Window.BLOCK_PIXEL_OFFSET,
-                                       GameBoard.HEIGHT * Window.BLOCK_PIXEL_OFFSET);
+        GameState.BACKGROUND.draw(0, 0,
+                                  GameBoard.WIDTH * PixelDimension.BLOCK_WIDTH.getPixels(),
+                                  GameBoard.HEIGHT * PixelDimension.BLOCK_WIDTH.getPixels());
 
         // draw the background underneath this component
-        gameState.getPanelComponent().draw(Window.WIDTH / 2, 0, Window.WIDTH / 2,
-                                           Window.HEIGHT);
+        GameState.SIDE_PANEL.draw(PixelDimension.WINDOW_WIDTH.getPixels() / 2, 0,
+                                  PixelDimension.WINDOW_WIDTH.getPixels() / 2,
+                                  PixelDimension.WINDOW_HEIGHT.getPixels());
 
         scoreBoardComponent.render(gc, g); // draw the ScoreBoard
         tetriminoComponent.render(gc, g); // draw the active Tetrimino
@@ -208,11 +238,13 @@ public class MainView extends StateBasedGame {
      */
     public void renderMenuState(GameContainer gc, Graphics g) {
         // draw the menu's background
-        menuState.getBackground().draw(0, 0, Window.WIDTH, Window.HEIGHT);
+        menuState.getBackground().draw(0, 0,
+                                       PixelDimension.WINDOW_WIDTH.getPixels(),
+                                       PixelDimension.WINDOW_HEIGHT.getPixels());
 
-        menuState.getTetrisLogo().draw(
-                Window.WIDTH / 2 - (int) (Window.WIDTH / 5.33),
-                Window.HEIGHT / 12, 240, 160);
+        MenuState.TETRIS_LOGO.draw(
+                PixelDimension.WINDOW_WIDTH.getPixels() / 2 - (int) (PixelDimension.WINDOW_WIDTH.getPixels() / 5.33),
+                PixelDimension.WINDOW_HEIGHT.getPixels() / 12, 240, 160);
     }
 
     /**
@@ -228,12 +260,12 @@ public class MainView extends StateBasedGame {
 
         // render the GameOver screen components over the gameboard
         int widthOffset = 0;
-        int heightOffset = Window.HEIGHT / 3;
-        int animationWidth = Window.WIDTH / 2;
+        int heightOffset = PixelDimension.WINDOW_HEIGHT.getPixels() / 3;
+        int animationWidth = PixelDimension.WINDOW_WIDTH.getPixels() / 2;
         int animationHeight = animationWidth / 4;
-        gameOverState.getGameOverAnimation().draw(widthOffset, heightOffset,
-                                                  animationWidth,
-                                                  animationHeight);
+        GameOverState.GAME_OVER_ANIMATION.draw(widthOffset, heightOffset,
+                                               animationWidth,
+                                               animationHeight);
     }
 
     /**
@@ -245,7 +277,9 @@ public class MainView extends StateBasedGame {
      */
     public void renderHighScoresState(GameContainer gc, Graphics g) {
         // draw the background
-        highScoresState.getBackground().draw(0, 0, Window.WIDTH, Window.HEIGHT);
+        highScoresState.getBackground().draw(0, 0,
+                                             PixelDimension.WINDOW_WIDTH.getPixels(),
+                                             PixelDimension.WINDOW_HEIGHT.getPixels());
 
         // Draw high scores and rankings
         int[] iHighScores = highScoresState.getIHighScores();
@@ -264,12 +298,12 @@ public class MainView extends StateBasedGame {
 
             // Draw rank (integer)
             g.setColor(Color.white);
-            g.setFont(highScoresState.getRanksFont());
+            g.setFont(HighScoresState.RANKS_FONT);
             g.drawString(sRank, xRankLoc, yRankLoc);
 
             // Now draw score next to rank
             g.setColor(Color.pink);
-            g.setFont(highScoresState.getValuesFont());
+            g.setFont(HighScoresState.VALUES_FONT);
             g.drawString(sScore, xRankLoc + 45, yRankLoc + 5);
         }
     }
