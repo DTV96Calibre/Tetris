@@ -18,7 +18,7 @@ package tetris.model;
 import java.awt.Point;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -68,6 +68,8 @@ public class GameBoardTest {
 
     /**
      * Test of clearLine method, of class GameBoard.
+     *
+     * @author Xizhou Li and Brooke Bullek
      */
     @Test
     public void testClearLine() {
@@ -80,16 +82,14 @@ public class GameBoardTest {
 
         instance.clearLine(y);
         for (int i = 0; i < instance.getWidth(); i++) {
-            if (instance.getTheBoard()[i][y] != null) {
-                fail("The test case is a prototype.");
-            }
+            assertTrue(instance.getTheBoard()[i][y] == null);
         }
-        // TODO review the generated test code and remove the default call to fail.
-
     }
 
     /**
      * Test of dropLine method, of class GameBoard.
+     *
+     * @author Xizhou Li and Brooke Bullek
      */
     @Test
     public void testDropLine() {
@@ -101,11 +101,8 @@ public class GameBoardTest {
         }
 
         instance.dropLine(y);
-        // TODO review the generated test code and remove the default call to fail.
         for (int i = 0; i < instance.getWidth(); i++) {
-            if (instance.getTheBoard()[i][y - 1] != null) {
-                fail("The test case is a prototype.");
-            }
+            assertTrue(instance.getTheBoard()[i][y - 1] == null);
         }
     }
 
