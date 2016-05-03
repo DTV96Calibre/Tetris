@@ -59,14 +59,13 @@ public class ScoreBoard {
         this.points += points;
     }
 
-    /**
-     * Returns the <code>points</code> attribute
-     *
-     * @return Current number of points that a player has
-     * @author Andre Amirsaleh
-     */
+    /* Getters and setters */
     public int getPoints() {
         return points;
     }
 
+    public void setPoints(int points) {
+        this.points = points;
+    }
+    /* End of getters and setters */
 }
