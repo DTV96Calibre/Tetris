@@ -33,8 +33,9 @@ public enum Keymap {
     ROTATE_TETRIMINO(Input.KEY_UP),
     START_NEW_GAME(Input.KEY_ESCAPE);
 
-    /* An integer that maps to a constant from the Input class. Designates
-     which key activates this command.
+    /**
+     * An integer that maps to a constant from the Input class. Designates which
+     * key activates this command.
      */
     private final int key;
 

@@ -15,12 +15,7 @@
  */
 package tetris.view.GameStates;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.StateBasedGame;
 import tetris.controller.MainController;
 import tetris.resources.Resources;
 
@@ -29,45 +24,42 @@ import tetris.resources.Resources;
  *
  * @author Xizhou Li & Brooke Bullek
  */
-public class MenuState extends BasicGameState {
-    /* The Controller object used to render & update entities */
-    private MainController controller;
+public class MenuState extends BasicTetrisState {
 
-    /* Menu background image */
-    private Image background = Resources.getImages().get("menuNoHighlight");
+    /**
+     * The image for the Play button in the menu screen.
+     */
+    public static final Image PLAY_BUTTON = Resources.IMAGES.get("play");
 
-    /* The title logo for the menu */
-    private Image tetrisLogo;
+    /**
+     * The title logo for the menu screen.
+     */
+    public static final Image TETRIS_LOGO = Resources.IMAGES.get("menu");
 
-    /* The graphic for the Play button on the menu */
-    private Image playButton;
+    /**
+     * The ID associated with the MenuState.
+     */
+    private static final int ID = State.MENU.getID();
 
-    @Override
-    public void init(GameContainer gc, StateBasedGame s) throws SlickException {
-        tetrisLogo = Resources.getImages().get("menu");
-        playButton = Resources.getImages().get("play");
+    /**
+     * Background image for the menu screen.
+     */
+    private static Image background;
+
+    /**
+     * Constructs a new MenuState instance
+     *
+     * @param controller An instance of the primary controller class
+     */
+    public MenuState(MainController controller) {
+        super(controller);
+        background = Resources.IMAGES.get("menuNoHighlight");
     }
 
     /* Getters and setters */
     @Override
     public int getID() {
-        return State.MENU.getID();
-    }
-
-    public MainController getController() {
-        return controller;
-    }
-
-    public void setController(MainController controller) {
-        this.controller = controller;
-    }
-
-    public Image getTetrisLogo() {
-        return tetrisLogo;
-    }
-
-    public Image getPlayButton() {
-        return playButton;
+        return ID;
     }
 
     public Image getBackground() {
@@ -75,19 +67,7 @@ public class MenuState extends BasicGameState {
     }
 
     public void setBackground(Image background) {
-        this.background = background;
+        MenuState.background = background;
     }
     /* End of getters and setters */
-
-    @Override
-    public void render(GameContainer gc, StateBasedGame s, Graphics g) throws SlickException {
-        // delegate this method to the game's controller
-        this.controller.render(gc, s, g);
-    }
-
-    @Override
-    public void update(GameContainer gc, StateBasedGame s, int delta) throws SlickException {
-        // delegate this method to the game's controller
-        controller.update(gc, s, delta);
-    }
 }

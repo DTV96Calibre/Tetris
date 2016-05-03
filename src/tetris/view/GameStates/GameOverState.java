@@ -16,11 +16,6 @@
 package tetris.view.GameStates;
 
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.StateBasedGame;
 import tetris.controller.MainController;
 import tetris.resources.Resources;
 
@@ -30,63 +25,38 @@ import tetris.resources.Resources;
  *
  * @author Brooke Bullek
  */
-public class GameOverState extends BasicGameState {
-    /* The Controller object used to render & update entities */
-    private MainController controller;
+public class GameOverState extends BasicTetrisState {
 
     /**
-     * The "game over" animation.
+     * The ID associated with the GameOverState.
      */
-    private Animation gameOverAnimation;
+    private static final int ID = State.GAME_OVER.getID();
 
     /**
-     * Initializes a new GameOverState.
+     * The "game over" animation, which is displayed when the user loses.
+     */
+    public static final Animation GAME_OVER_ANIMATION = Resources.ANIMATIONS.get(
+            "gameOverAnimation");
+
+    /**
+     * Constructs a new GameOverState instance
      *
-     * @param gc
-     * @param s
-     * @throws SlickException
+     * @param controller An instance of the primary controller class used to
+     * render and update entities.
      */
-    @Override
-    public void init(GameContainer gc, StateBasedGame s) throws SlickException {
-        gameOverAnimation = Resources.getAnimations().get("gameOverAnimation");
+    public GameOverState(MainController controller) {
+        super(controller);
     }
 
     /* Getters and setters */
-    @Override
-    public int getID() {
-        return State.GAME_OVER.getID();
-    }
-
-    public MainController getController() {
-        return controller;
-    }
-
-    public void setController(MainController controller) {
-        this.controller = controller;
-    }
-
-    public Animation getGameOverAnimation() {
-        return gameOverAnimation;
-    }
-    /* End of getters and setters */
-
     /**
-     * Renders on-screen elements while the game is in the GameOverState.
+     * Returns the <code>ID</code> attribute
      *
-     * @param gc A generic game container that handles the game loop
-     * @param s A State based game isolated into different stages
-     * @param g A graphics context used to render primitives to the canvas
-     * @throws SlickException
+     * @return
      */
     @Override
-    public void render(GameContainer gc, StateBasedGame s, Graphics g) throws SlickException {
-        // delegate this method to the game's controller
-        this.controller.render(gc, s, g);
+    public int getID() {
+        return ID;
     }
-
-    @Override
-    public void update(GameContainer gc, StateBasedGame s, int delta) throws SlickException {
-        // delegate this method to the game's controller
-        this.controller.update(gc, s, delta);
-    }
+    /* End of getters and setters */
 }
