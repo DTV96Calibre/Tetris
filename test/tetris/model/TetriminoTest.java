@@ -170,7 +170,7 @@ public class TetriminoTest {
                                         new Point(1, -1))};
         assertEquals(result, expResult6);
 
-        //Test L-Blcok CCW and CW rotate
+        //Test L-Block CCW and CW rotate
         factor = -1; // CCW
         instance = new Tetrimino(TShape.T_BLOCK);
         instance.rotate(factor);
@@ -200,7 +200,7 @@ public class TetriminoTest {
                                         new Point(1, 0))};
         assertEquals(result, expResult8);
 
-        //Test L-Blcok CCW and CW rotate
+        //Test L-Block CCW and CW rotate
         factor = -1; // CCW
         instance = new Tetrimino(TShape.Z_BLOCK);
         instance.rotate(factor);
@@ -250,39 +250,7 @@ public class TetriminoTest {
     }
 
     /**
-     * check instance drop, game over together
-     *
-     * @author Xizhou Li
-     */
-    @Test
-    public void checkGameOver() {
-        System.out.println("Game Over");
-        MainModel model = new MainModel();
-        GameBoard board = model.getMyBoard();
-        // drop 4 vertical I shape Tetrimino has not reached Game Over
-        int loop = 0;
-        while (loop < 4) {
-            model.setActiveTetrimino(new Tetrimino(TShape.I_BLOCK));
-            model.getActiveTetrimino().rotate(-1);// rotate the L-shape Tetrimino so that it is vertical.
-            model.instantDropTetrimino();
-            loop++;
-        }
-        Boolean result = model.checkGameOver();
-        Boolean expResult = false;
-        assertEquals(result, expResult);
-        // add another loop
-        // drop 5 vertical I shape Tetrimino has reached Game Over
-        model.setActiveTetrimino(new Tetrimino(TShape.I_BLOCK));
-        model.getActiveTetrimino().rotate(-1);// rotate the L-shape Tetrimino so that it is vertical.
-        model.instantDropTetrimino();
-        result = model.checkGameOver();
-        expResult = true;
-        assertEquals(result, expResult);
-
-    }
-
-    /**
-     * check if a TetriMino is still movable to the left and right
+     * check if a Tetrimino is still movable to the left and right
      *
      * @author Xizhou Li
      */
