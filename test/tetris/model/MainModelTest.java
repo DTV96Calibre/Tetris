@@ -49,6 +49,7 @@ public class MainModelTest {
     public void testInitializeBag() {
         System.out.println("initializeBag");
         MainModel model = new MainModel();
+        model.initializeBag();
         ArrayList<TShape> instance = model.getBag();
 
         // verify each TShape is present within the bag
