@@ -16,9 +16,6 @@
 package tetris.view.GameStates;
 
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.StateBasedGame;
 import tetris.controller.MainController;
 import tetris.resources.Resources;
 
@@ -31,39 +28,35 @@ import tetris.resources.Resources;
 public class GameOverState extends BasicTetrisState {
 
     /**
-     * The "game over" animation.
-     */
-    private Animation gameOverAnimation;
-
-    /**
-     * The ID associated with the GameOverState
+     * The ID associated with the GameOverState.
      */
     private static final int ID = State.GAME_OVER.getID();
 
+    /**
+     * The "game over" animation, which is displayed when the user loses.
+     */
+    public static final Animation GAME_OVER_ANIMATION = Resources.getAnimations().get(
+            "gameOverAnimation");
+
+    /**
+     * Constructs a new GameOverState instance
+     *
+     * @param controller An instance of the primary controller class used to
+     * render and update entities.
+     */
     public GameOverState(MainController controller) {
         super(controller);
     }
 
-    /**
-     * Initializes a new GameOverState.
-     *
-     * @param gc A generic game container that handles the game loop
-     * @param s A State based game isolated into different stages
-     * @throws SlickException
-     */
-    @Override
-    public void init(GameContainer gc, StateBasedGame s) throws SlickException {
-        gameOverAnimation = Resources.getAnimations().get("gameOverAnimation");
-    }
-
     /* Getters and setters */
+    /**
+     * Returns the <code>ID</code> attribute
+     *
+     * @return
+     */
     @Override
     public int getID() {
         return ID;
-    }
-
-    public Animation getGameOverAnimation() {
-        return gameOverAnimation;
     }
     /* End of getters and setters */
 }

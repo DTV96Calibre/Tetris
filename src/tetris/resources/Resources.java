@@ -19,10 +19,7 @@ import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
@@ -46,50 +43,50 @@ public class Resources {
     private static Map<String, Image> images;
 
     /**
-     * Sounds files
+     * Sounds files.
      */
     private static Map<String, Sound> sounds;
 
     /**
-     * Music files
+     * Music files.
      */
     private static Map<String, Music> musics;
 
     /**
-     * Animation files
+     * Animation files.
      */
     private static Map<String, Animation> animations;
 
     /**
-     * font files
+     * Font files.
      */
     private static Map<String, TrueTypeFont> fonts;
 
     /**
      * Constructs a new Resources instance
      */
-    public Resources() {
-        images = new HashMap<>();
-        musics = new HashMap<>();
-        sounds = new HashMap<>();
-        animations = new HashMap<>();
-        fonts = new HashMap<>();
-        try {
-            collectImages(); // put images into the image hashmap
-            collectSounds(); // put sounds into the sound hashmap
-            collectMusic(); // put music into the music hashmap
-            collectAnimations(); // put animations into the animation hashmap
-            collectFonts(); // put fonts into the font hashmap
-        } catch (SlickException ex) {
-            ex.printStackTrace();
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(Resources.class.getName()).log(Level.SEVERE, null,
-                                                            ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Resources.class.getName()).log(Level.SEVERE, null,
-                                                            ex);
-        }
-    }
+//    public Resources() {
+//        images = new HashMap<>();
+//        musics = new HashMap<>();
+//        sounds = new HashMap<>();
+//        animations = new HashMap<>();
+//        fonts = new HashMap<>();
+//        try {
+//            collectImages(); // put images into the image hashmap
+//            collectSounds(); // put sounds into the sound hashmap
+//            collectMusic(); // put music into the music hashmap
+//            collectAnimations(); // put animations into the animation hashmap
+//            collectFonts(); // put fonts into the font hashmap
+//        } catch (SlickException ex) {
+//            ex.printStackTrace();
+//        } catch (UnsupportedAudioFileException ex) {
+//            Logger.getLogger(Resources.class.getName()).log(Level.SEVERE, null,
+//                                                            ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(Resources.class.getName()).log(Level.SEVERE, null,
+//                                                            ex);
+//        }
+//    }
 
     /* Getters and setters */
     public static Map<String, Sound> getSounds() {
@@ -196,8 +193,9 @@ public class Resources {
      * @author Xizhou Li & Brooke Bullek
      * @throws org.newdawn.slick.SlickException
      */
-    public static void collectImages() throws SlickException {
+    public static Map<String, Image> collectImages() throws SlickException {
         // load block graphics
+        Map<String, Image> images = new HashMap<>();
         images.put("red", loadImage("res/red.png"));
         images.put("orange", loadImage("res/orange.png"));
         images.put("green", loadImage("res/green.png"));
@@ -229,6 +227,7 @@ public class Resources {
 
         // load Tetris logo
         images.put("menu", loadImage("res/Tetris-logo.png"));
+        return images;
     }
 
     /**

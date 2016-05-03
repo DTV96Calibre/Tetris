@@ -134,14 +134,10 @@ public class MainView extends StateBasedGame {
         scoreBoardComponent.setFont(Resources.getFonts().get("activeHighScore"));
 
         // create new game states
-        gameState = new GameState();
-        menuState = new MenuState();
+        gameState = new GameState(controller);
+        menuState = new MenuState(controller);
         gameOverState = new GameOverState(controller);
         highScoresState = new HighScoresState(controller);
-
-        // associate each State object with the controller (important!)
-        gameState.setController(controller);
-        menuState.setController(controller);
 
         gc.setVSync(true);
         gc.setShowFPS(false);
@@ -217,15 +213,14 @@ public class MainView extends StateBasedGame {
      */
     public void renderGameState(GameContainer gc, Graphics g) {
         // draw the background underneath the game elements
-        gameState.getBackground().draw(0, 0,
-                                       GameBoard.WIDTH * PixelDimension.WINDOW_WIDTH.getPixels(),
-                                       GameBoard.HEIGHT * PixelDimension.WINDOW_HEIGHT.getPixels());
+        GameState.BACKGROUND.draw(0, 0,
+                                  GameBoard.WIDTH * PixelDimension.BLOCK_WIDTH.getPixels(),
+                                  GameBoard.HEIGHT * PixelDimension.BLOCK_WIDTH.getPixels());
 
         // draw the background underneath this component
-        gameState.getPanelComponent().draw(
-                PixelDimension.WINDOW_WIDTH.getPixels() / 2, 0,
-                PixelDimension.WINDOW_WIDTH.getPixels() / 2,
-                PixelDimension.WINDOW_HEIGHT.getPixels());
+        GameState.SIDE_PANEL.draw(PixelDimension.WINDOW_WIDTH.getPixels() / 2, 0,
+                                  PixelDimension.WINDOW_WIDTH.getPixels() / 2,
+                                  PixelDimension.WINDOW_HEIGHT.getPixels());
 
         scoreBoardComponent.render(gc, g); // draw the ScoreBoard
         tetriminoComponent.render(gc, g); // draw the active Tetrimino
@@ -248,7 +243,7 @@ public class MainView extends StateBasedGame {
                                        PixelDimension.WINDOW_WIDTH.getPixels(),
                                        PixelDimension.WINDOW_HEIGHT.getPixels());
 
-        menuState.getTetrisLogo().draw(
+        MenuState.TETRIS_LOGO.draw(
                 PixelDimension.WINDOW_WIDTH.getPixels() / 2 - (int) (PixelDimension.WINDOW_WIDTH.getPixels() / 5.33),
                 PixelDimension.WINDOW_HEIGHT.getPixels() / 12, 240, 160);
     }
@@ -269,9 +264,9 @@ public class MainView extends StateBasedGame {
         int heightOffset = PixelDimension.WINDOW_HEIGHT.getPixels() / 3;
         int animationWidth = PixelDimension.WINDOW_WIDTH.getPixels() / 2;
         int animationHeight = animationWidth / 4;
-        gameOverState.getGameOverAnimation().draw(widthOffset, heightOffset,
-                                                  animationWidth,
-                                                  animationHeight);
+        GameOverState.GAME_OVER_ANIMATION.draw(widthOffset, heightOffset,
+                                               animationWidth,
+                                               animationHeight);
     }
 
     /**
@@ -304,12 +299,12 @@ public class MainView extends StateBasedGame {
 
             // Draw rank (integer)
             g.setColor(Color.white);
-            g.setFont(highScoresState.getRanksFont());
+            g.setFont(HighScoresState.RANKS_FONT);
             g.drawString(sRank, xRankLoc, yRankLoc);
 
             // Now draw score next to rank
             g.setColor(Color.pink);
-            g.setFont(highScoresState.getValuesFont());
+            g.setFont(HighScoresState.VALUES_FONT);
             g.drawString(sScore, xRankLoc + 45, yRankLoc + 5);
         }
     }

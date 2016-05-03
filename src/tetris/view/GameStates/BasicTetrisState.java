@@ -30,7 +30,8 @@ import tetris.controller.MainController;
 public abstract class BasicTetrisState extends BasicGameState {
 
     /**
-     * The Controller object used to render and update entities.
+     * An instance of the primary controller class used to render and update
+     * entities.
      */
     private final MainController controller;
 
@@ -52,22 +53,27 @@ public abstract class BasicTetrisState extends BasicGameState {
     public abstract int getID();
 
     /**
-     * Initialize this BasicTetrisState. Children must override this method
-     * because Slick will call this method when initializing the GameStates
+     * Initialize this BasicTetrisState. Does NOTHING, but children may override
+     * this method because Slick will call this method when initializing the
+     * specific BasicTetrisStates
      *
-     * @param gc
-     * @param sbg
+     * @param gc A generic game container that handles the game loop
+     * @param sbg A State based game isolated into different stages
      * @throws SlickException
      */
     @Override
-    public abstract void init(GameContainer gc, StateBasedGame sbg) throws SlickException;
+    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        // Do nothing!
+    }
 
     /**
-     * Renders on-screen elements.
+     * Renders on-screen elements while in the specified state. Passes
+     * responsibility to controller. Controller distinguishes which state Tetris
+     * is in by using the State class (enum).
      *
-     * @param gc
-     * @param sbg
-     * @param grphcs
+     * @param gc A generic game container that handles the game loop
+     * @param sbg A State based game isolated into different stages
+     * @param grphcs A graphics context used to render primitives to the canvas
      * @throws SlickException
      */
     @Override
@@ -76,10 +82,12 @@ public abstract class BasicTetrisState extends BasicGameState {
     }
 
     /**
+     * Updates this BasicTetrisState. This method merely calls the
+     * <code>controller</code>'s update method.
      *
-     * @param gc
-     * @param sbg
-     * @param i
+     * @param gc A generic game container that handles the game loo
+     * @param sbg A State based game isolated into different stages
+     * @param i Factor by which to alter the game's clock/timer
      * @throws SlickException
      */
     @Override
