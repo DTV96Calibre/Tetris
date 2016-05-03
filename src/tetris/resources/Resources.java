@@ -35,7 +35,7 @@ import org.newdawn.slick.util.ResourceLoader;
  * Contains static Map attributes of files (image, sound, music, and animation
  * files) to use in the GUI.
  *
- * @author Xizhou Li, Brooke Bullek, and Andre Amirsaleh
+ * @author Xizhou Li and Brooke Bullek
  */
 public class Resources {
 
@@ -140,7 +140,7 @@ public class Resources {
      * Collects all of the relevant images from the project directory and places
      * them into a HashMap
      *
-     * @author Xizhou Li and Brooke Bullek and Andre Amirsaleh
+     * @author Xizhou Li and Brooke Bullek
      * @return The Map for the <code>IMAGES</code> attribute
      */
     private static Map<String, Image> collectImages() {
@@ -205,7 +205,7 @@ public class Resources {
      * Collects all of the relevant music from the project directory and places
      * them into a HashMap.
      *
-     * @author Xizhou Li and Brooke Bullek and Andre Amirsaleh
+     * @author Xizhou Li and Brooke Bullek
      * @return The HashMap for the <code>MUSICS</code> attribute
      */
     private static Map<String, Music> collectMusic() {
@@ -225,7 +225,7 @@ public class Resources {
      * Collects all of the relevant animations from the project directory and
      * places them into a HashMap.
      *
-     * @author Brooke Bullek and Andre Amirsaleh
+     * @author Brooke Bullek
      * @return The Map for the <code>ANIMATIONS</code> attribute
      */
     private static Map<String, Animation> collectAnimations() {
@@ -246,7 +246,7 @@ public class Resources {
      * Collects all of the relevant fonts from the project directory and places
      * them into a HashMap.
      *
-     * @author Brooke Bullek and Andre Amirsaleh
+     * @author Brooke Bullek
      * @return The Map for the <code>FONTS</code> attribute
      */
     private static Map<String, TrueTypeFont> collectFonts() {

@@ -226,7 +226,11 @@ public class MainModel {
         this.gameOver = gameOver;
     }
 
+    public ArrayList<TShape> getBag() {
+        return bag;
+    }
     /* End of getters and setters */
+
     /**
      * Inserts each of the 7 Tetrimino types (from the TShape enum) into the
      * "grab bag" to be used for Tetrimino generation.
