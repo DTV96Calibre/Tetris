@@ -3,8 +3,13 @@
  * Spring 2016
  *
  * Name: Andre Amirsaleh, Brooke Bullek, Daniel Vasquez, Xizhou Li
+ <<<<<<< HEAD
  * Date: May 2, 2016
  * Time: 10:20:33 PM
+ =======
+ * Date: May 1, 2016
+ * Time: 11:15:17 PM
+ >>>>>>> fa0eef6427ee734f6554ff3be589ebea7c49d45b
  *
  * Project: csci205FinalProject
  * Package: tetris.model
@@ -17,16 +22,12 @@ package tetris.model;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- *
- * @author btb004
- */
 public class MainModelTest {
 
     public MainModelTest() {
@@ -108,52 +109,6 @@ public class MainModelTest {
         model.instantDropTetrimino();
         result = model.checkGameOver();
         expResult = true;
-        assertEquals(result, expResult);
-    }
-
-    /**
-     * Test of moveActiveTetrimino method, of class MainModel.
-     *
-     * @author Brooke Bullek & Xizhou Li
-     */
-    @Test
-    public void testMoveActiveTetrimino() {
-        System.out.println("moveActiveTetrimino");
-        Direction d = Direction.DOWN;
-        MainModel instance = new MainModel();
-
-        // put blocks in the gameboard so the path is obstructed
-        GameBoard instanceBoard = new GameBoard();
-        for (int i = 0; i < GameBoard.WIDTH; i++) {
-            for (int j = 2; i < GameBoard.HEIGHT; i++) {
-                // all but the first two rows have blocks
-                instanceBoard.setBlock(j, j, new Block("red", new Point(0, 0)));
-            }
-        }
-        instance.setMyBoard(instanceBoard);
-
-        boolean expResult = true;
-        boolean result = instance.moveActiveTetrimino(d); // move down
-        assertEquals(expResult, result);
-
-        MainModel model = new MainModel();
-        GameBoard board = model.getMyBoard();
-        Tetrimino active = new Tetrimino(TShape.S_BLOCK);
-        model.setActiveTetrimino(active);
-        model.setActiveTetriminoLocation(new Point(1, 0));
-        // If a S-Shape Tetrimino is initialized on the most left side of the board
-        // it would not be able to move left
-        result = model.moveActiveTetrimino(Direction.LEFT);
-        expResult = false;
-        assertEquals(result, expResult);
-
-        model.instantDropTetrimino();
-        active = new Tetrimino(TShape.T_BLOCK);
-        // A new T-Block will not be able to move left if there's a new S-Block on his left.
-        model.setActiveTetrimino(active);
-        model.setActiveTetriminoLocation(new Point(3, 18));
-        expResult = false;
-        result = model.moveActiveTetrimino(Direction.LEFT);
         assertEquals(result, expResult);
     }
 

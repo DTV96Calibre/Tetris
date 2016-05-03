@@ -23,8 +23,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * test whether all the blocks rotate properly
  *
- * @author btb004
  */
 public class TetriminoTest {
 
@@ -247,35 +247,5 @@ public class TetriminoTest {
                               result[i].getLocation().getX(),
                               result[i].getLocation().getY());
         }
-    }
-
-    /**
-     * check if a Tetrimino is still movable to the left and right
-     *
-     * @author Xizhou Li
-     */
-    @Test
-    public void TestMove() {
-        System.out.println("Movable");
-        MainModel model = new MainModel();
-        GameBoard board = model.getMyBoard();
-        Tetrimino active = new Tetrimino(TShape.S_BLOCK);
-        model.setActiveTetrimino(active);
-        model.setActiveTetriminoLocation(new Point(1, 0));
-        // If a S-Shape Tetrimino is initialized on the most left side of the board
-        // it would not be able to move left
-        Boolean result = model.moveActiveTetrimino(Direction.LEFT);
-        Boolean expResult = false;
-        assertEquals(result, expResult);
-
-        model.instantDropTetrimino();
-        active = new Tetrimino(TShape.T_BLOCK);
-        // A new T-Block will not be able to move left if there's a new S-Block on his left.
-        model.setActiveTetrimino(active);
-        model.setActiveTetriminoLocation(new Point(3, 18));
-        expResult = false;
-        result = model.moveActiveTetrimino(Direction.LEFT);
-        assertEquals(result, expResult);
-
     }
 }
