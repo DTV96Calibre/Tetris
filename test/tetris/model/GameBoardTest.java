@@ -74,13 +74,13 @@ public class GameBoardTest {
         System.out.println("clearLine");
         int y = 0;
         instance = new GameBoard();
-        for (int i = 0; i < instance.getBlockArray().length; i++) {
+        for (int i = 0; i < instance.getWidth(); i++) {
             instance.setBlock(i, y, new Block());
         }
 
         instance.clearLine(y);
         for (int i = 0; i < instance.getWidth(); i++) {
-            if (instance.getBlockArray()[i][y] != null) {
+            if (instance.getTheBoard()[i][y] != null) {
                 fail("The test case is a prototype.");
             }
         }
@@ -103,7 +103,7 @@ public class GameBoardTest {
         instance.dropLine(y);
         // TODO review the generated test code and remove the default call to fail.
         for (int i = 0; i < instance.getWidth(); i++) {
-            if (instance.getBlockArray()[i][y - 1] != null) {
+            if (instance.getTheBoard()[i][y - 1] != null) {
                 fail("The test case is a prototype.");
             }
         }
