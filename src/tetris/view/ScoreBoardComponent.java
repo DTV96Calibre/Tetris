@@ -27,10 +27,15 @@ import tetris.model.ScoreBoard;
  * @author Brooke Bullek
  */
 public class ScoreBoardComponent {
-    /* The ScoreBoard to be rendered by this component */
+
+    /**
+     * The ScoreBoard to be rendered by this component.
+     */
     private ScoreBoard scoreBoard;
 
-    /* The font used to draw the user's active high score */
+    /**
+     * The font used to draw the user's active high score.
+     */
     private TrueTypeFont font;
 
     /**
@@ -70,6 +75,6 @@ public class ScoreBoardComponent {
         String points = String.valueOf(scoreBoard.getPoints());
         g.setColor(white);
         g.setFont(font);
-        g.drawString(points, Window.BLOCK_PIXEL_OFFSET * 13, 27);
+        g.drawString(points, PixelDimension.BLOCK_WIDTH.getPixels() * 13, 27);
     }
 }

@@ -9,7 +9,7 @@
  * Project: csci205FinalProject
  * Package: tetris.model
  * File: Direction
- * Description:
+ * Description: Contains the possible directions in which the Tetrimino can move
  *
  * ****************************************
  */
@@ -27,9 +27,10 @@ public enum Direction {
     // each Direction is simply an x and y value
     LEFT(new Point(-1, 0)), RIGHT(new Point(1, 0)), DOWN(new Point(0, 1));
 
-    /* a Point object to hold the coordinate direction associated with each
-     type. For example, 'LEFT' is -1 on the horizontal axis but doesn't modify
-     the y-axis, so its Point is (-1, 0).
+    /**
+     * A Point object to hold the coordinate direction associated with each
+     * type. For example, 'LEFT' is -1 on the horizontal axis but doesn't modify
+     * the y-axis, so its Point is (-1, 0).
      */
     private final Point d;
 

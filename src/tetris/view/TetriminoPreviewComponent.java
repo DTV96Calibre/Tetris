@@ -8,7 +8,7 @@
  *
  * Project: csci205FinalProject
  * Package: tetris.view
- * File: TetriminoContainersComponent
+ * File: TetriminoPreviewComponent
  * Description: Component class used to display elements
  * relevant to blocks/Tetriminos not on the gameboard.
  *
@@ -30,20 +30,31 @@ import tetris.resources.Resources;
  *
  * @author Daniel Vasquez
  */
-public class TetriminoContainersComponent {
-    /* The point at which to begin drawing the Tetrimino */
-    private final Point RELATIVE_LOCATION = new Point(14, 7);
-
-    /* The offset at which to draw the next Tetrimino */
-    private final Point NEXT_OFFSET = new Point(0, 0);
-
-    /* The offset at which to draw the held Tetrimino */
-    private final Point HOLD_OFFSET = new Point(0, 7);
+public class TetriminoPreviewComponent {
 
     /**
-     * A TetriminoComponent used to draw the Tetrimino preview.
+     * The point at which to begin drawing the Tetrimino.
+     */
+    private static final Point RELATIVE_LOCATION = new Point(14, 7);
+
+    /**
+     * The offset at which to draw the next Tetrimino.
+     */
+    private static final Point NEXT_OFFSET = new Point(0, 0);
+
+    /**
+     * The offset at which to draw the held Tetrimino.
+     */
+    private static final Point HOLD_OFFSET = new Point(0, 7);
+
+    /**
+     * Used to draw the next Tetrimino preview.
      */
     private Tetrimino nextTetrimino;
+
+    /**
+     * Used to draw the hold Tetrimino preview.
+     */
     private Tetrimino holdTetrimino;
 
     /**
@@ -51,7 +62,7 @@ public class TetriminoContainersComponent {
      *
      * @author Daniel Vasquez
      */
-    public TetriminoContainersComponent() {
+    public TetriminoPreviewComponent() {
         // Initialize tetriminos to something
         this.nextTetrimino = null;
         this.holdTetrimino = null;
@@ -65,8 +76,8 @@ public class TetriminoContainersComponent {
      * @param nextTetrimino
      * @param holdTetrimino
      */
-    public TetriminoContainersComponent(Tetrimino nextTetrimino,
-                                        Tetrimino holdTetrimino) {
+    public TetriminoPreviewComponent(Tetrimino nextTetrimino,
+                                     Tetrimino holdTetrimino) {
         this.nextTetrimino = nextTetrimino;
         this.holdTetrimino = holdTetrimino;
     }
@@ -112,14 +123,14 @@ public class TetriminoContainersComponent {
                     // extract the color of this Block
                     String color = block.getColor();
                     // draw the block as a small square
-                    Image image = Resources.getImages().get(color);
-                    image.draw(xLocation * Window.BLOCK_PIXEL_OFFSET,
-                               yLocation * Window.BLOCK_PIXEL_OFFSET,
-                               Window.BLOCK_PIXEL_OFFSET,
-                               Window.BLOCK_PIXEL_OFFSET);
+                    Image image = Resources.IMAGES.get(color);
+                    image.draw(
+                            xLocation * PixelDimension.BLOCK_WIDTH.getPixels(),
+                            yLocation * PixelDimension.BLOCK_WIDTH.getPixels(),
+                            PixelDimension.BLOCK_WIDTH.getPixels(),
+                            PixelDimension.BLOCK_WIDTH.getPixels());
                 }
             }
         }
     }
-
 }

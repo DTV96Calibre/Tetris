@@ -28,57 +28,84 @@ import tetris.resources.Resources;
  */
 public class MainModel {
 
-    /* The default location of a new Tetrimino when it's first being loaded.
-     Traditionally, the Tetrimino starts at the top of the middle of the
-     screen.
+    /**
+     * The default location of a new Tetrimino when it's first being loaded.
+     * Traditionally, the Tetrimino starts at the top of the middle of the
+     * screen.
      */
     private Point initialTetriminoLocation;
 
-    /* The active game board for this game */
+    /**
+     * The active game board for this game
+     */
     public GameBoard myBoard;
 
-    /* A bag of 7 different types of T-shapes*/
-    private ArrayList<TShape> bag = new ArrayList<TShape>();
+    /**
+     * A bag of 7 different types of T-shapes
+     */
+    private ArrayList<TShape> bag;
 
-    /* The Tetrimino that is currently being placed */
+    /**
+     * The Tetrimino that is currently being placed
+     */
     private Tetrimino activeTetrimino;
 
-    /* The Tetrimino that will be available to the player when the active
-     Tetrimino is placed */
+    /**
+     * The Tetrimino that will be available to the player when the active
+     * Tetrimino is placed
+     */
     private TShape nextTetrimino;
 
-    /* The Tetrimino stored in the hold place. Switched with the active
-     Tetrimino when the hold button is pressed. */
+    /**
+     * The Tetrimino stored in the hold place. Switched with the active
+     * Tetrimino when the hold button is pressed.
+     */
     private Tetrimino heldTetrimino;
 
-    /* Flagged when Tetrimino is held and reset when a new Tetrimino is moved from
-     the queue into the activeTetrimino slot. */
+    /**
+     * Flagged when Tetrimino is held and reset when a new Tetrimino is moved
+     * from the queue into the activeTetrimino slot.
+     */
     private boolean tetriminoHasBeenHeldThisMove;
 
-    /* The location of the center block of the active Tetrimino RELATIVE to the
-     game board */
+    /**
+     * The location of the center block of the active Tetrimino RELATIVE to the
+     * game board
+     */
     private Point activeTetriminoLocation;
 
-    /* The rate at which Tetriminos fall; scales with difficulty and increases
-     whenever the user performs a "soft drop" */
+    /**
+     * The rate at which Tetriminos fall; scales with difficulty and increases
+     * whenever the user performs a "soft drop"
+     */
     private int dropSpeed;
 
-    /* A toggle that indicates whether to perform a soft drop (holding the down
-     arrow key) on the Tetrimino */
+    /**
+     * A toggle that indicates whether to perform a soft drop (holding the down
+     * arrow key) on the Tetrimino
+     */
     private boolean softDropActivated;
 
-    /* Marks the elapsed time since the last game update */
+    /**
+     * Marks the elapsed time since the last game update
+     */
     private int timer;
 
-    /* Indicates whether the current game is still active or has been lost */
+    /**
+     * Indicates whether the current game is still active or has been lost
+     */
     private boolean gameOver;
 
-    /* The number of lines cleared so far in the current game */
+    /**
+     * The number of lines cleared so far in the current game
+     */
     private int numLinesCleared;
 
-    /* The index of the LEVELS array corresponds to the number of lines that
-     have been cleared, and the value at each index is the drop speed (in
-     milliseconds) at this level. */
+    /**
+     * The index of the LEVELS array corresponds to the number of lines that
+     * have been cleared, and the value at each index is the drop speed (in
+     * milliseconds) at this level.
+     */
     private static final int[] LEVELS = {800, 720, 630, 550, 470, 380, 300,
                                          220, 130, 100, 80, 80, 80, 70, 70, 70, 50, 50, 50, 30, 30, 30, 30, 30,
                                          30, 30, 30, 30, 20};
@@ -89,6 +116,8 @@ public class MainModel {
      * @author Brooke Bullek
      */
     public MainModel() {
+        bag = new ArrayList<>();
+
         // TODO: Modify gameboard selection to change with user's choice of
         // game mode?
         myBoard = new GameBoard();
@@ -272,7 +301,7 @@ public class MainModel {
         if (!lines.isEmpty()) {
             increaseDifficulty(lines.size());
             this.myBoard.clearLines(lines);
-            Resources.getSounds().get("breakSound").play();
+            Resources.SOUNDS.get("breakSound").play();
             this.myBoard.dropLines(lines);
         }
         // change the active Tetrimino and add shape to queue
@@ -357,7 +386,7 @@ public class MainModel {
     public boolean checkGameOver() {
         int row = 0; // we'll only check row 0 (the top of the board)
         for (int i = 0; i < myBoard.getWidth(); i++) {
-            if (myBoard.getBlockArray()[i][row] != null) {
+            if (myBoard.getTheBoard()[i][row] != null) {
                 return true;
             }
         }
@@ -416,12 +445,12 @@ public class MainModel {
      */
     public void rotateActiveTetrimino(int factor) {
         // create a deep copy of the old arrangement of Tetrimino blocks
-        Block[] oldBlockArray = new Block[Tetrimino.TETRIMINO_ARRAY_WIDTH];
-        for (int i = 0; i < Tetrimino.TETRIMINO_ARRAY_WIDTH; i++) {
+        Block[] oldBlockArray = new Block[Tetrimino.NUM_BLOCKS];
+        for (int i = 0; i < Tetrimino.NUM_BLOCKS; i++) {
             oldBlockArray[i] = (Block) activeTetrimino.getBlockArray()[i].copy();
         }
 
-        Point[] newBlockPositions = new Point[Tetrimino.TETRIMINO_ARRAY_WIDTH];
+        Point[] newBlockPositions = new Point[Tetrimino.NUM_BLOCKS];
         activeTetrimino.rotate(factor);
 
         // grab the new absolute positions (i.e. their positions on the board)
@@ -435,7 +464,7 @@ public class MainModel {
 
         // reset to the old block array if this rotation is illegal
         if (myBoard.validate(newBlockPositions) == false) {
-            activeTetrimino.setBlockArray(oldBlockArray);
+            activeTetrimino.setFourBlocks(oldBlockArray);
         }
     }
 }
