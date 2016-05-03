@@ -29,12 +29,12 @@ public class MenuState extends BasicTetrisState {
     /**
      * The image for the Play button in the menu screen.
      */
-    public static final Image PLAY_BUTTON = Resources.getImages().get("play");
+    public static final Image PLAY_BUTTON = Resources.IMAGES.get("play");
 
     /**
      * The title logo for the menu screen.
      */
-    public static final Image TETRIS_LOGO = Resources.getImages().get("menu");
+    public static final Image TETRIS_LOGO = Resources.IMAGES.get("menu");
 
     /**
      * The ID associated with the MenuState.
@@ -53,7 +53,7 @@ public class MenuState extends BasicTetrisState {
      */
     public MenuState(MainController controller) {
         super(controller);
-        background = Resources.getImages().get("menuNoHighlight");
+        background = Resources.IMAGES.get("menuNoHighlight");
     }
 
     /* Getters and setters */

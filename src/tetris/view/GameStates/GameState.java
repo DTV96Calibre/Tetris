@@ -39,21 +39,19 @@ public class GameState extends BasicTetrisState {
      * Background music that plays (regardless of the state/screen the player is
      * in).
      */
-    public static final Music MUSIC = Resources.getMusics().get(
+    public static final Music MUSIC = Resources.MUSICS.get(
             "backgroundMusicRemix");
 
     /**
      * Background image to display on the GameBoard (The left half of the
      * GameState screen).
      */
-    public static final Image BACKGROUND = Resources.getImages().get(
-            "background");
+    public static final Image BACKGROUND = Resources.IMAGES.get("background");
 
     /**
      * The background image to render on the right half of the GameState screen.
      */
-    public static final Image SIDE_PANEL = Resources.getImages().get(
-            "gameComponent");
+    public static final Image SIDE_PANEL = Resources.IMAGES.get("gameComponent");
 
     /**
      * Constructs a new GameState instance

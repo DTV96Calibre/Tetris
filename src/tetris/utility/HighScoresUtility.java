@@ -121,8 +121,6 @@ public class HighScoresUtility {
             if (highScoresFile.createNewFile()) { /* File does not already exist
                  and was successfully created */
 
-                System.out.println("true");
-
                 // Write all high scores as 0:
                 writer = new BufferedWriter(new FileWriter(highScoresFile));
                 for (int i = 0; i < highScores.length; i++) {
@@ -132,8 +130,6 @@ public class HighScoresUtility {
 
             } else { /* high scores have already been saved to FILENAME and need
                  to be overwritten */
-
-                System.out.println("false");
 
                 writer = new BufferedWriter(new FileWriter(
                         highScoresFile));

@@ -190,27 +190,27 @@ public class MainController {
         int mouseYPos = input.getMouseY();
         // if the mouse hovers over the "PLAY" button
         if (mouseXPos > 52 && mouseXPos < 144 && mouseYPos > 266 && mouseYPos < 323) {
-            theView.getMenuState().setBackground(Resources.getImages().get(
+            theView.getMenuState().setBackground(Resources.IMAGES.get(
                     "menuHighlightPlay"));
             if (input.isMousePressed(0)) {
                 s.enterState(State.GAME.getID());
             }
         } // if the mouse hovers over the "HIGH SCORES" button
         else if (mouseXPos > 225 && mouseXPos < 422 && mouseYPos > 266 && mouseYPos < 323) {
-            theView.getMenuState().setBackground(Resources.getImages().get(
+            theView.getMenuState().setBackground(Resources.IMAGES.get(
                     "menuHighlightScores"));
             if (input.isMousePressed(0)) {
                 s.enterState(State.HIGH_SCORES.getID());
             }
         } // if the mouse hovers over the "EXIT " button
         else if (mouseXPos > 511 && mouseXPos < 585 && mouseYPos > 266 && mouseYPos < 323) {
-            theView.getMenuState().setBackground(Resources.getImages().get(
+            theView.getMenuState().setBackground(Resources.IMAGES.get(
                     "menuHighlightExit"));
             if (input.isMousePressed(0)) {
                 gc.exit(); // close the game container
             }
         } else {
-            theView.getMenuState().setBackground(Resources.getImages().get(
+            theView.getMenuState().setBackground(Resources.IMAGES.get(
                     "menuNoHighlight"));
         }
     }
@@ -251,15 +251,15 @@ public class MainController {
 
         // if the mouse hovers over the "RETURN" button
         if (mouseXPos > 254 && mouseXPos < 354 && mouseYPos > 586 && mouseYPos < 623) {
-            theView.getHighScoresState().setBackground(
-                    Resources.getImages().get("backgroundScoresHighLight"));
+            theView.getHighScoresState().setBackground(Resources.IMAGES.get(
+                    "backgroundScoresHighLight"));
             // return to the menu if the user clicks return
             if (input.isMousePressed(0)) {
                 s.enterState(State.MENU.getID());
             }
         } else {
-            theView.getHighScoresState().setBackground(
-                    Resources.getImages().get("backgroundScores"));
+            theView.getHighScoresState().setBackground(Resources.IMAGES.get(
+                    "backgroundScores"));
         }
     }
 

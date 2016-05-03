@@ -56,7 +56,7 @@ public class GameBoardComponent {
      * @param g A graphics context used to render primitives to the canvas
      */
     public void render(GameContainer gc, Graphics g) {
-        Image background = Resources.getImages().get("background");
+        Image background = Resources.IMAGES.get("background");
 
         // iterate through the rows and columns of the Board, drawing each block
         for (int i = 0; i < gameBoard.getWidth(); i++) {
@@ -66,7 +66,7 @@ public class GameBoardComponent {
                     // set the color of this block and fill in the square
                     String color = gameBoard.getTheBoard()[i][j].getColor();
                     // draw the block as a small square
-                    Image image = Resources.getImages().get(color);
+                    Image image = Resources.IMAGES.get(color);
                     image.draw(i * PixelDimension.BLOCK_WIDTH.getPixels(),
                                j * PixelDimension.BLOCK_WIDTH.getPixels(),
                                PixelDimension.BLOCK_WIDTH.getPixels(),

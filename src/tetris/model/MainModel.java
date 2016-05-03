@@ -301,7 +301,7 @@ public class MainModel {
         if (!lines.isEmpty()) {
             increaseDifficulty(lines.size());
             this.myBoard.clearLines(lines);
-            Resources.getSounds().get("breakSound").play();
+            Resources.SOUNDS.get("breakSound").play();
             this.myBoard.dropLines(lines);
         }
         // change the active Tetrimino and add shape to queue

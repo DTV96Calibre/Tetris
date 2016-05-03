@@ -123,7 +123,6 @@ public class MainView extends StateBasedGame {
      */
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        new Resources();
         // The frame will update 60 times a second
         gc.setTargetFrameRate(60);
         // This implements multiwindow rendering
@@ -131,7 +130,7 @@ public class MainView extends StateBasedGame {
         // The game will update 60 times a second
         gc.setMaximumLogicUpdateInterval(60);
 
-        scoreBoardComponent.setFont(Resources.getFonts().get("activeHighScore"));
+        scoreBoardComponent.setFont(Resources.FONTS.get("activeHighScore"));
 
         // create new game states
         gameState = new GameState(controller);

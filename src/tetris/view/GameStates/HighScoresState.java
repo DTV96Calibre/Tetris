@@ -38,13 +38,13 @@ public class HighScoresState extends BasicTetrisState {
     /**
      * The font used to draw the scoreboard ranks.
      */
-    public static final TrueTypeFont RANKS_FONT = Resources.getFonts().get(
+    public static final TrueTypeFont RANKS_FONT = Resources.FONTS.get(
             "oldHighScore");
 
     /**
      * The font used to draw the scoreboard values.
      */
-    public static final TrueTypeFont VALUES_FONT = Resources.getFonts().get(
+    public static final TrueTypeFont VALUES_FONT = Resources.FONTS.get(
             "scoreRetro");
 
     /**
@@ -72,7 +72,7 @@ public class HighScoresState extends BasicTetrisState {
         super(controller);
         iHighScores = HighScoresUtility.getHighScores();
         sHighScores = new ArrayList<>();
-        background = Resources.getImages().get("backgroundScores");
+        background = Resources.IMAGES.get("backgroundScores");
         String sScore;
         for (int iScore : iHighScores) {
             sScore = String.valueOf(iScore);

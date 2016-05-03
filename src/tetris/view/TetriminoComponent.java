@@ -86,7 +86,7 @@ public class TetriminoComponent {
             // extract the color of this Block
             String color = block.getColor();
             // draw the block as a small square
-            Image image = Resources.getImages().get(color);
+            Image image = Resources.IMAGES.get(color);
             image.draw(xLocation * PixelDimension.BLOCK_WIDTH.getPixels(),
                        yLocation * PixelDimension.BLOCK_WIDTH.getPixels(),
                        PixelDimension.BLOCK_WIDTH.getPixels(),

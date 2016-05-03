@@ -35,7 +35,7 @@ public class GameOverState extends BasicTetrisState {
     /**
      * The "game over" animation, which is displayed when the user loses.
      */
-    public static final Animation GAME_OVER_ANIMATION = Resources.getAnimations().get(
+    public static final Animation GAME_OVER_ANIMATION = Resources.ANIMATIONS.get(
             "gameOverAnimation");
 
     /**
