@@ -137,7 +137,7 @@ public class Resources {
     }
 
     /**
-     * Collects all of the relevant IMAGES from the project directory and places
+     * Collects all of the relevant images from the project directory and places
      * them into a HashMap
      *
      * @author Xizhou Li and Brooke Bullek and Andre Amirsaleh
@@ -186,7 +186,7 @@ public class Resources {
 
     /**
      * Collects all of the relevant sounds from the project directory and places
-     * them into Resource's sound hashmap.
+     * them into a HashMap.
      *
      * @author Xizhou Li
      * @return The Map for the <code>SOUNDS</code> attribute
@@ -203,7 +203,7 @@ public class Resources {
 
     /**
      * Collects all of the relevant music from the project directory and places
-     * them into Resource's music hashmap.
+     * them into a HashMap.
      *
      * @author Xizhou Li and Brooke Bullek and Andre Amirsaleh
      * @return The HashMap for the <code>MUSICS</code> attribute
@@ -223,7 +223,7 @@ public class Resources {
 
     /**
      * Collects all of the relevant animations from the project directory and
-     * places them into Resource's animation hashmap.
+     * places them into a HashMap.
      *
      * @author Brooke Bullek and Andre Amirsaleh
      * @return The Map for the <code>ANIMATIONS</code> attribute
@@ -244,7 +244,7 @@ public class Resources {
 
     /**
      * Collects all of the relevant fonts from the project directory and places
-     * them into Resource's font hashmap.
+     * them into a HashMap.
      *
      * @author Brooke Bullek and Andre Amirsaleh
      * @return The Map for the <code>FONTS</code> attribute
